@@ -1,3 +1,4 @@
+//for running e2e tests in angular
 // Protractor configuration file, see link for more information
 // https://github.com/angular/protractor/blob/master/lib/config.ts
 

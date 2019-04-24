@@ -1,0 +1,1 @@
+for end to end tests - automated tests that simulates user interaction
