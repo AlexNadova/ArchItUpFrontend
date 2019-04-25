@@ -1,71 +1,8 @@
-<!--The content below is only a placeholder and can be replaced.-->
 <div class="container-fluid">
-  <!--navbar-expand-sm: stacks navbar vertically on small screen. others:-md,-lg,-xl -->
-  <!--navbar-dark: use with dark color - changes text color to lighter. others: navbar-light -->
-  <!--justify-content-center: centers navbar on small screen (small because of navbar-expand-sm)-->
-  <!--sticky-top: navbar stays on screen when you scroll-->
-  <nav
-    class="navbar fixed-top navbar-expand-sm navbar-dark justify-content-center"
-  >
-    <div class="container">
-      <!--for company/project name -->
-      <a class="navbar-brand" href="#">
-        <img src="" width="30" height="30" alt="ArchItUp" />
-      </a>
-      <!--button that appears when screen is too small - links are hidden but when btn is clicked it shows them -->
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-toggle="collapse"
-        data-target="#navbarText"
-        aria-controls="navbarText"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <!--navbar-collapse: for grouping and hiding navbar -->
-      <div class="collapse navbar-collapse ml-lg-4" id="navbarText">
-        <ul class="navbar-nav mr-auto">
-          <!--active list item-->
-          <li class="nav-item active px-lg-1">
-            <a class="nav-link" href="#"
-              >Home
-              <!--sr-only: screen readers only; hide info intended only for screen readers-->
-              <span class="sr-only">(current)</span>
-            </a>
-          </li>
-          <li class="nav-item px-lg-1">
-            <a class="nav-link" href="#">Projects</a>
-          </li>
-          <li class="nav-item px-lg-1">
-            <a class="nav-link" href="#">Articles</a>
-          </li>
-          <li class="nav-item px-lg-1">
-            <a class="nav-link" href="#">Events</a>
-          </li>
-        </ul>
-        <!--form-inline: for anyform controls and actions-->
-        <!-- my-2: https://getbootstrap.com/docs/4.0/utilities/spacing/-->
-        <form class="form-inline my-2 my-lg-0">
-          <!--form-control: form controls like input, select and textarea are styled with this-->
-          <!--aria-label: to simply explain what element is. this string isn't visible on screen-->
-          <input
-            class="form-control form-control-sm mr-sm-2"
-            type="search"
-            placeholder="Search..."
-            aria-label="Search"
-          />
-          <!--btn-outline-dark: btn has only outline, not in full color a it's collor is dark, but e.g. btn-success is used for success btns-->
-          <button class="btn btn-outline-dark btn-sm my-sm-0" type="submit">
-            Search
-          </button>
-        </form>
-      </div>
-    </div>
-  </nav>
-
-  <app-user></app-user>
+  <app-navigation-bar></app-navigation-bar>
+  <div id="content">
+        <router-outlet></router-outlet>
+  </div>
   <hr />
   <hr />
   <hr />
@@ -241,5 +178,5 @@
   <hr />
   <hr />
   <hr />
-  <router-outlet></router-outlet>
 </div>
+
