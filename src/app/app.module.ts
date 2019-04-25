@@ -8,6 +8,8 @@ import { FooterComponent } from './footer/footer.component';
 import { RegistrationComponent } from './user/registration/registration.component';
 import { ProfileComponent } from './user/profile/profile.component';
 
+import {HttpClientModule} from '@angular/common/http';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -18,7 +20,8 @@ import { ProfileComponent } from './user/profile/profile.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, NavigationEnd } from '@angular/router';
 
 @Component({
   selector: 'app-navigation-bar',
@@ -7,17 +8,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavigationBarComponent implements OnInit {
   public routerLinkVariable = "/home";
-  public id = 0;
-  constructor() { }
+  currentUrl:String;
+  public id=1;//need fix
+  constructor(private router: Router) {
+    router.events.subscribe((_:NavigationEnd)=>this.currentUrl=_.url)
+   }
 
   ngOnInit() {
   }
-
+  
   updateRouterLinkToRegister(){
-    this.routerLinkVariable = '/register';
+    return this.routerLinkVariable = '/register';
   }
 
   updateRouterLinkToProfile(){
-    this.routerLinkVariable = '/profile';
+    return this.routerLinkVariable = '/profile/';
   }
 }
