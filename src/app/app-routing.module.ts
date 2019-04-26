@@ -32,13 +32,6 @@ const routes: Routes = [
     data:{
       title:'Login'
     },
-  },
-  {
-    path: 'login',
-    component: LoginComponent,
-    data:{
-      title:'Profile'
-    },
   }
 ];
 
