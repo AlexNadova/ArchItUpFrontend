@@ -2,6 +2,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient} from '@angular/common/http';
 import { User } from 'src/app/models/user';
+import { NgForm } from "@angular/forms";
 
 @Injectable({
   providedIn: 'root'
@@ -18,4 +19,8 @@ export class DataService {
   /*getUser(userId){
     return this.http.get('https://jsonplaceholder.typicode.com/users/'+userId)
   }*/
+  register(form:NgForm){
+    //this.http.post('http://localhost:4200/register',form.value);
+    console.log(form.value);
+  }
 }
