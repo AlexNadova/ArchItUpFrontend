@@ -1,8 +1,18 @@
 /* You can add global styles to this file, and also import other style files */
-body{
-    background-color: rgb(36, 36, 37);
-    color: rgb(199, 199, 199);
+body {
+  background-color: rgb(36, 36, 37);
+  color: rgb(199, 199, 199);
 }
-.navbar{
-    background-color: rgb(21, 21, 22);
+.navbar {
+  background-color: rgb(21, 21, 22);
+}
+
+/*forms*/
+.ng-valid[required],
+.ng-valid.required {
+  border-bottom: 5px solid rgb(54, 201, 62); /* green */
+}
+
+.ng-invalid:not(form) {
+  border-bottom: 5px solid #c7312e; /* red */
 }
