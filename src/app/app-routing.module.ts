@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { RegistrationComponent} from './user/registration/registration.component';
 import { ProfileComponent} from './user/profile/profile.component';
+import { LoginComponent} from './user/login/login.component';
 
 //define routes 
 const routes: Routes = [
@@ -22,6 +23,13 @@ const routes: Routes = [
   {
     path: 'profile/:id',
     component: ProfileComponent,
+    data:{
+      title:'Profile'
+    },
+  }
+  {
+    path: 'login',
+    component: LoginComponent,
     data:{
       title:'Profile'
     },
