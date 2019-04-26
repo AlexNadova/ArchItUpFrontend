@@ -1,5 +1,10 @@
+//app.module.ts defines the application's root module. In it you identify the external modules you'll use 
+//in the application and declare the components that belong to this module
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+//Because template-driven forms are in their own module, you need to add the FormsModule to the array of imports 
+//for the application module before you can use forms.
+import { FormsModule }   from '@angular/forms'; 
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -21,7 +26,8 @@ import {HttpClientModule} from '@angular/common/http';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
