@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { DataService } from "src/app/data.service";
+import { UserService } from "../user.service";
 import { Observable } from "rxjs"; //to hold data returned from API
 import { ActivatedRoute } from "@angular/router";
 
@@ -10,7 +10,7 @@ import { ActivatedRoute } from "@angular/router";
 })
 export class ProfileComponent implements OnInit {
   user$: Object;
-  constructor(private data: DataService, private route: ActivatedRoute) {
+  constructor(private data: UserService, private route: ActivatedRoute) {
     //get id param from url
     /*test get user on random api
     this.route.params.subscribe(params => (this.user$ = params.id)); //named in app-routing.module.ts in route: path: 'profile/:id',

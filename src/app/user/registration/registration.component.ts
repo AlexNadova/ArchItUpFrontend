@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { DataService } from "src/app/data.service";
+import { UserService } from "../user.service";
 import { User } from "src/app/models/user"; //imports user model
 import { NgForm } from "@angular/forms";
 
@@ -36,7 +36,7 @@ export class RegistrationComponent implements OnInit {
     return JSON.stringify(this.model);
   }
 
-  constructor(private data: DataService) {}
+  constructor(private data: UserService) {}
 
   //code executed when this component loads
   ngOnInit() {
