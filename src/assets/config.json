@@ -1,0 +1,4 @@
+{
+    "registerUrl": "api/user/signup",
+    "textfile": "assets/textfile.txt"
+  }
