@@ -12,10 +12,13 @@ export class ProfileComponent implements OnInit {
   user$: Object;
   constructor(private data: DataService, private route: ActivatedRoute) {
     //get id param from url
+    /*test get user on random api
     this.route.params.subscribe(params => (this.user$ = params.id)); //named in app-routing.module.ts in route: path: 'profile/:id',
+  */
   }
 
   ngOnInit() {
-    this.data.getUser(this.user$).subscribe(data => (this.user$ = data));
+    /* test get user on random api
+    this.data.getUser(this.user$).subscribe(data => (this.user$ = data));*/
   }
 }
