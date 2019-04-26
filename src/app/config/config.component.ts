@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
-import { Config, ConfigService } from "./config.service";
-import { Observable } from "rxjs";
+import { Config, ConfigService } from './config.service';
+//import { MessageService } from '../message.service';
 
 @Component({
   selector: "app-config",
@@ -27,7 +27,10 @@ export class ConfigComponent implements OnInit {
         (this.config = {
           registerUrl: data["registerUrl"],
           textfile: data["textfile"]
-        })
+        },
+        //return error object instead of successful response in case or failure
+        error => this.error = error //error path
+        )
     );
   }
 
