@@ -20,7 +20,7 @@ export class DataService {
     return this.http.get('https://jsonplaceholder.typicode.com/users/'+userId)
   }*/
   register(form:NgForm){
-    //this.http.post('http://localhost:4200/register',form.value);
+    this.http.post('http://localhost:4000/api/user/signup',form.value);
     console.log(form.value);
   }
 }
