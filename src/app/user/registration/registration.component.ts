@@ -3,6 +3,7 @@ import { UserService } from "../user.service";
 import { User } from "src/app/models/user"; //imports user model
 import { NgForm } from "@angular/forms";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { NavigationBarService } from "src/app/navigation-bar/navigation-bar.service";
 
 //The @Component selector value of "app-registration" means you can drop this form in a parent template with a <app-registration> tag.
 @Component({
@@ -12,10 +13,14 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 })
 export class RegistrationComponent implements OnInit {
   //users$: Object;
-  model = new User("","","","","");
+  model = new User("", "", "", "", "");
   submitted = false;
 
-  constructor(private data: UserService, private http: HttpClient) {}
+  constructor(
+    private data: UserService,
+    private http: HttpClient,
+    private nav: NavigationBarService
+  ) {}
 
   onSubmit(form: NgForm) {
     this.submitted = true;
@@ -23,7 +28,7 @@ export class RegistrationComponent implements OnInit {
   }
 
   newUser() {
-    this.model = new User("","", "", "", "");
+    this.model = new User("", "", "", "", "");
   }
 
   // TODO: Remove this when we're done
@@ -38,5 +43,6 @@ export class RegistrationComponent implements OnInit {
     this.data.getUsers().subscribe(data=> this.users$ =data)
     this would be for one in profile: this.data.getUser().subscribe(data=> this.users$ =data)
     */
+    this.nav.hide();
   }
 }
