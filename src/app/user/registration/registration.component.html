@@ -89,19 +89,19 @@
         </div>
       </div>
       <div class="form-group">
-        <label for="password1">Password:</label>
+        <label for="password">Password:</label>
         <input
           type="text"
           class="form-control"
-          id="password1"
+          id="password"
           required
           ngModel
-          name="password1"
-          #password1="ngModel"
+          name="password"
+          #password="ngModel"
           pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$"
         />
         <div
-          [hidden]="password1.valid || password1.untouched"
+          [hidden]="password.valid || password.untouched"
           class="alert alert-danger"
         >
           Field is required. Password must contain at least 8 characters, one
@@ -118,8 +118,8 @@
           ngModel
           name="password2"
           #password2="ngModel"
-          pattern="{{ password1.value }}"
-          [disabled]="password1.invalid"
+          pattern="{{ password.value }}"
+          [disabled]="password.invalid"
         />
         <div
           [hidden]="password2.valid || password2.untouched"
