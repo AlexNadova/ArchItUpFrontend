@@ -3,8 +3,7 @@
 <!--justify-content-center: centers navbar on small screen (small because of navbar-expand-sm)-->
 <!--sticky-top: navbar stays on screen when you scroll-->
 <nav
-  class="navbar fixed-top navbar-expand-sm navbar-dark justify-content-center"
->
+  class="navbar fixed-top navbar-expand-sm navbar-dark justify-content-center" *ngIf="nav.visible">
   <div class="container">
     <!--for company/project name -->
     <a class="navbar-brand" href="#">
