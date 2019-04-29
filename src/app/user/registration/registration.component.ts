@@ -2,6 +2,15 @@ import { Component, OnInit } from "@angular/core";
 import { UserService } from "../user.service";
 import { User } from "src/app/models/user"; //imports user model
 import { NgForm } from "@angular/forms";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
+
+const httpOptions = {
+  headers: new HttpHeaders({
+    "Content-Type": "application/json",
+    //'Authorization': 'bestsecretever',
+    "Access-Control-Allow-Origin": "localhost:4200/register"
+  })
+};
 
 //The @Component selector value of "app-registration" means you can drop this form in a parent template with a <app-registration> tag.
 @Component({
@@ -21,9 +30,25 @@ export class RegistrationComponent implements OnInit {
   );
   submitted = false;
 
-  onSubmit(form:NgForm) {
+  constructor(private data: UserService, private http: HttpClient) {}
+
+  onSubmit(form: NgForm) {
     this.submitted = true;
-    this.data.register(form);
+    //this.data.register(form);
+    this.http
+      .post(
+        "localhost:4000/api/user/signup",
+        {
+          'firstName': 'u4ser1',
+          'lastName': 'lutse',
+          'email': 'useraadada@mail.com',
+          'password': 'faasdeDD5',
+          'phone': '111122'
+        },
+        httpOptions
+      )
+      .subscribe();
+    console.log(form.value);
   }
 
   newUser() {
@@ -35,8 +60,6 @@ export class RegistrationComponent implements OnInit {
   get diagnostic() {
     return JSON.stringify(this.model);
   }
-
-  constructor(private data: UserService) {}
 
   //code executed when this component loads
   ngOnInit() {
