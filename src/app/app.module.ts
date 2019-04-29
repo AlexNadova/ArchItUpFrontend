@@ -14,7 +14,6 @@ import { RegistrationComponent } from './user/registration/registration.componen
 import { ProfileComponent } from './user/profile/profile.component';
 import { LoginComponent } from './user/login/login.component';
 import {HttpClientModule} from '@angular/common/http';
-import { ConfigComponent } from './config/config.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +23,6 @@ import { ConfigComponent } from './config/config.component';
     RegistrationComponent,
     ProfileComponent,
     LoginComponent,
-    ConfigComponent,
   ],
   imports: [
     BrowserModule,
