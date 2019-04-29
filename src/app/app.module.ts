@@ -1,10 +1,10 @@
-//app.module.ts defines the application's root module. In it you identify the external modules you'll use 
+//app.module.ts defines the application's root module. In it you identify the external modules you'll use
 //in the application and declare the components that belong to this module
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-//Because template-driven forms are in their own module, you need to add the FormsModule to the array of imports 
+import { BrowserModule } from "@angular/platform-browser";
+import { NgModule } from "@angular/core";
+//Because template-driven forms are in their own module, you need to add the FormsModule to the array of imports
 //for the application module before you can use forms.
-import { FormsModule }   from '@angular/forms'; 
+import { FormsModule } from "@angular/forms";
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -12,8 +12,9 @@ import { NavigationBarComponent } from './navigation-bar/navigation-bar.componen
 import { FooterComponent } from './footer/footer.component';
 import { RegistrationComponent } from './user/registration/registration.component';
 import { ProfileComponent } from './user/profile/profile.component';
-
+import { LoginComponent } from './user/login/login.component';
 import {HttpClientModule} from '@angular/common/http';
+import { ConfigComponent } from './config/config.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,8 @@ import {HttpClientModule} from '@angular/common/http';
     FooterComponent,
     RegistrationComponent,
     ProfileComponent,
+    LoginComponent,
+    ConfigComponent,
   ],
   imports: [
     BrowserModule,
@@ -29,7 +32,8 @@ import {HttpClientModule} from '@angular/common/http';
     HttpClientModule,
     FormsModule,
   ],
+  imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}
