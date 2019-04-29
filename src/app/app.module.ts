@@ -12,7 +12,7 @@ import { NavigationBarComponent } from './navigation-bar/navigation-bar.componen
 import { FooterComponent } from './footer/footer.component';
 import { RegistrationComponent } from './user/registration/registration.component';
 import { ProfileComponent } from './user/profile/profile.component';
-
+import { LoginComponent } from './user/login/login.component';
 import {HttpClientModule} from '@angular/common/http';
 import { ConfigComponent } from './config/config.component';
 
@@ -23,6 +23,7 @@ import { ConfigComponent } from './config/config.component';
     FooterComponent,
     RegistrationComponent,
     ProfileComponent,
+    LoginComponent,
     ConfigComponent,
   ],
   imports: [
