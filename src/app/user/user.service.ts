@@ -39,6 +39,5 @@ export class UserService {
         if (err) console.log(err);
         console.log("Success");
       });
-    console.log(form.value);
   }
 }
