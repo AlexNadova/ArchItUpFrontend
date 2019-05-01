@@ -6,15 +6,15 @@ import { NgModule } from "@angular/core";
 //for the application module before you can use forms.
 import { FormsModule } from "@angular/forms";
 
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { NavigationBarComponent } from './navigation-bar/navigation-bar.component';
-import { FooterComponent } from './footer/footer.component';
-import { RegistrationComponent } from './user/registration/registration.component';
-import { ProfileComponent } from './user/profile/profile.component';
-import { LoginComponent } from './user/login/login.component';
-import {HttpClientModule} from '@angular/common/http';
-import { HomePageComponent } from './home-page/home-page.component';
+import { AppRoutingModule } from "./app-routing.module";
+import { AppComponent } from "./app.component";
+import { NavigationBarComponent } from "./navigation-bar/navigation-bar.component";
+import { FooterComponent } from "./footer/footer.component";
+import { RegistrationComponent } from "./user/registration/registration.component";
+import { ProfileComponent } from "./user/profile/profile.component";
+import { LoginComponent } from "./user/login/login.component";
+import { HttpClientModule } from "@angular/common/http";
+import { HomePageComponent } from "./home-page/home-page.component";
 
 @NgModule({
   declarations: [
@@ -24,14 +24,9 @@ import { HomePageComponent } from './home-page/home-page.component';
     RegistrationComponent,
     ProfileComponent,
     LoginComponent,
-    HomePageComponent,
+    HomePageComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
-    FormsModule,
-  ],
+  imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
   providers: [],
   bootstrap: [AppComponent]
 })
