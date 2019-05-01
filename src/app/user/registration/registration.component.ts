@@ -19,7 +19,7 @@ export class RegistrationComponent implements OnInit {
   constructor(
     private userService: UserService,
     private http: HttpClient,
-    private nav: NavigationBarService
+    //private nav: NavigationBarService
   ) {}
 
   onSubmit(form: NgForm) {
@@ -43,6 +43,6 @@ export class RegistrationComponent implements OnInit {
     this.data.getUsers().subscribe(data=> this.users$ =data)
     this would be for one in profile: this.data.getUser().subscribe(data=> this.users$ =data)
     */
-    this.nav.hide();
+    //this.nav.hide();
   }
 }
