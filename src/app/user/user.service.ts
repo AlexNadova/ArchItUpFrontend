@@ -12,4 +12,10 @@ export class UserService {
     this.http.post("http://localhost:4000/api/user/signup", form.value);
     console.log(form.value);
   }
+  /*
+  login(form: NgForm) {
+    this.http.post("http://localhost:4000/api/user/login", form.value);
+    console.log(form.value);
+  }
+  */
 }
