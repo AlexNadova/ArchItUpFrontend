@@ -17,14 +17,14 @@ export class RegistrationComponent implements OnInit {
   submitted = false;
 
   constructor(
-    private data: UserService,
+    private userService: UserService,
     private http: HttpClient,
     private nav: NavigationBarService
   ) {}
 
   onSubmit(form: NgForm) {
     this.submitted = true;
-    this.data.register(form);
+    this.userService.register(form);
   }
 
   newUser() {

@@ -19,12 +19,12 @@ import { HomePageComponent } from './home-page/home-page.component';
 @NgModule({
   declarations: [
     AppComponent,
-    NavigationBarComponent,
     FooterComponent,
     RegistrationComponent,
     ProfileComponent,
    // LoginComponent,
     HomePageComponent,
+    NavigationBarComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
   providers: [],

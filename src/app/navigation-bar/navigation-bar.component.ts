@@ -12,7 +12,7 @@ export class NavigationBarComponent implements OnInit {
   currentUrl: String;
   public id = 1; //need fix
 
-  constructor(private router: Router, private nav: NavigationBarService) {
+  constructor(private router: Router, public nav: NavigationBarService) {
     router.events.subscribe((_: NavigationEnd) => (this.currentUrl = _.url));
   }
 
