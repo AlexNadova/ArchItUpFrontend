@@ -39,5 +39,12 @@ export class UserService {
         if (err) console.log(err);
         console.log("Success");
       });
+    //console.log(form.value);
   }
+  /*
+  login(form: NgForm) {
+    this.http.post("http://localhost:4000/api/user/login", form.value);
+    console.log(form.value);
+  }
+  */
 }

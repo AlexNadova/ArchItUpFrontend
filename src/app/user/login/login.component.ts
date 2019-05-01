@@ -11,6 +11,7 @@ import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 export class LoginComponent implements OnInit {
     loginForm: FormGroup;
     returnUrl: string;
+    
     constructor(
         private formBuilder: FormBuilder,
         private route: ActivatedRoute,
