@@ -3,6 +3,16 @@ body {
   background-color: rgb(36, 36, 37);
   color: rgb(199, 199, 199);
 }
+.body-class {
+  height: 100vh;
+}
+app-footer {
+  position: static;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+}
+
 .navbar {
   background-color: rgb(21, 21, 22);
 }
