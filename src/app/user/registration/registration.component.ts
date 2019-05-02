@@ -3,7 +3,9 @@ import { UserService } from "../user.service";
 import { User } from "src/app/models/user"; //imports user model
 import { NgForm } from "@angular/forms";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
+
 import { NavigationBarService } from "src/app/navigation-bar/navigation-bar.service";
+import { FooterService } from "src/app/footer/footer.service";
 
 //The @Component selector value of "app-registration" means you can drop this form in a parent template with a <app-registration> tag.
 @Component({
@@ -19,7 +21,8 @@ export class RegistrationComponent implements OnInit {
   constructor(
     private userService: UserService,
     private http: HttpClient,
-    //private nav: NavigationBarService
+    private nav: NavigationBarService,
+    private footer: FooterService
   ) {}
 
   onSubmit(form: NgForm) {
@@ -43,6 +46,7 @@ export class RegistrationComponent implements OnInit {
     this.data.getUsers().subscribe(data=> this.users$ =data)
     this would be for one in profile: this.data.getUser().subscribe(data=> this.users$ =data)
     */
-    //this.nav.hide();
+    this.nav.hide();
+    this.footer.hide();
   }
 }
