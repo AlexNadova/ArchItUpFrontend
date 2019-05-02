@@ -21,7 +21,7 @@ const routes: Routes = [
     redirectTo: "/home", //when user calls architup.sk it redirects to architup.sk/home
     pathMatch: "full"
   },
-  // { path: "**", component: PageNotFoundComponent }, //any other calls - page not found
+  //{ path: "**", component: PageNotFoundComponent }, //any other calls - page not found
   {
     path: "register", // e.g.: architup.sk/register
     component: RegistrationComponent, //component for path
@@ -33,7 +33,7 @@ const routes: Routes = [
     path: "profile/:id",
     component: ProfileComponent,
     //guard is applied to all routes we wish to protect (it's only for users with tokens - so logged)
-    canActivate: [AuthGuardService],
+    //canActivate: [AuthGuardService],
     data: {
       title: "Profile"
     }

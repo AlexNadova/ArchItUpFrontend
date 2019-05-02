@@ -26,7 +26,7 @@
       <ul class="navbar-nav mr-auto">
         <!--active list item-->
         <li class="nav-item active px-lg-1">
-          <a [routerLink]="[updateRouterLinkToHome()]" [class.activated]="currentUrl == '/home'"  class="nav-link"
+          <a [routerLink]="updateRouterLinkToHome()" [class.activated]="currentUrl == '/home'"  class="nav-link"
             >Home
             <!--sr-only: screen readers only; hide info intended only for screen readers-->
             <span class="sr-only">(current)</span>
@@ -44,10 +44,10 @@
       </ul>
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a [routerLink]="[updateRouterLinkToRegister()]" [class.activated]="currentUrl == '/register'" class="nav-link" id="registerText">Sign in</a>
+          <a [routerLink]="updateRouterLinkToRegister()" [class.activated]="currentUrl == '/register'" class="nav-link" id="registerText">Sign in</a>
         </li>
         <li class="nav-item px-lg-1" >
-          <a [routerLink]="[updateRouterLinkToLogin()]"  [class.activated]="currentUrl == '/login'" class="nav-link">Log in</a>
+          <a [routerLink]="updateRouterLinkToLogin()"  [class.activated]="currentUrl == '/login'" class="nav-link">Log in</a>
         </li>
       </ul>
     </div>
