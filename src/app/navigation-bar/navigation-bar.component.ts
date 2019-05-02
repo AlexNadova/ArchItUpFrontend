@@ -21,7 +21,6 @@ export class NavigationBarComponent implements OnInit {
   updateRouterLinkToRegister() {
     return (this.routerLinkVariable = "/register");
   }
-
   updateRouterLinkToProfile() {
     return (this.routerLinkVariable = "/profile/");
   }
