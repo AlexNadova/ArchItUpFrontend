@@ -1,3 +1,30 @@
+/* aligning and colors */
+.first-container {
+  display: table;
+  height: 100%;
+  margin: 0 auto;
+}
+.second-container {
+  height: 90vh;
+  display: table-cell;
+  vertical-align: middle;
+}
 .container {
-  height: 100vh;
+  background-color: rgb(232, 231, 236);
+  padding: 2%;
+  padding-top: 5%;
+  border-radius: 5px;
+  margin: 0 auto;
+}
+.register-header {
+  text-align: center;
+  margin: 0 auto;
+  padding-bottom: 7%;
+}
+/* when screen is smaller container needs to be smaller as well */
+@media screen and (min-width: 800px) {
+  .container {
+    min-height: 270px;
+    width: 700px;
+  }
 }

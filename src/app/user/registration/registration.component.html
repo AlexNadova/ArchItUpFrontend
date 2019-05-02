@@ -1,207 +1,198 @@
-<!-- List of users
-  <h1>Users</h1>
-
-<ul>
-  <li *ngFor = "let user of users$">
-    <a routerLink="/details/{{user.id}}">{{user.name}}</a>
-    <ul>
-      <li>{{user.email}}</li>
-      <li><a href="http://{{user.website}}">{{user.website}}</a></li>
-    </ul>
-  </li>
-</ul> -->
-
 <!-- The FormControl instance tracks the value, user interaction, and validation status of the control and keeps 
   the view synced with the model. This directive is used by itself or as part of a larger form. ngModel selector is 
   used to activate it. -->
-<h1>Sign in</h1>
-<div class="container" id="registrationContainer">
-  <!-- Wrap the form in a <div> and bind its hidden property to the UserFormComponent.submitted property -->
-  <div [hidden]="submitted">
-    <!--Declare a template variable for the form. The variable userForm is now a reference to the NgForm 
+<div class="first-container">
+  <div class="second-container" id="registrationContainer">
+    <div class="register-header">
+      <h1>Registration</h1>
+    </div>
+    <!-- Wrap the form in a <div> and bind its hidden property to the UserFormComponent.submitted property -->
+    <div class="container" [hidden]="submitted">
+      <!--Declare a template variable for the form. The variable userForm is now a reference to the NgForm 
       directive that governs the form as a whole (Angular automatically creates and attaches an NgForm 
       directive to the <form> tag). The NgForm directive supplements the form element with additional features. 
       It holds the controls created for the elements with an ngModel directive and first_name attribute, 
       and monitors their properties, including their validity. It also has its own valid property which is 
       true only if every contained control is valid. -->
-    <!-- bind the form's ngSubmit event property to the hero form component's onSubmit() method -->
-    <form (ngSubmit)="onSubmit(userForm)" #userForm="ngForm">
-      <div class="row justify-content-center">
-        <div class="col-xs-12 col-sm-6 col-md-4">
-          <div class="form-group">
-            <!-- <label for="first_name">First name:</label> -->
-            <!-- Defining a name attribute is a requirement when using [(ngModel)] in combination with a form. 
+      <!-- bind the form's ngSubmit event property to the hero form component's onSubmit() method -->
+      <form class="reg-form" (ngSubmit)="onSubmit(userForm)" #userForm="ngForm">
+        <div class="row justify-content-center">
+          <div class="col-xs-14 col-sm-10 col-md-6">
+            <div class="form-group">
+              <!-- <label for="first_name">First name:</label> -->
+              <!-- Defining a name attribute is a requirement when using [(ngModel)] in combination with a form. 
         Internally, Angular creates FormControl instances and registers them with an NgForm directive that 
         Angular attached to the <form> tag. Each FormControl is registered under the name you assigned to the 
           name attribute.-->
-            <!-- Each input element has an id property that is used by the label element's for attribute 
+              <!-- Each input element has an id property that is used by the label element's for attribute 
         to match the label to its input control. -->
-            <!--[(ngModel)]="model.first_name" to dislay field with name  -->
-            <input
-              type="text"
-              class="form-control"
-              id="first_name"
-              required
-              ngModel
-              name="first_name"
-              #fname="ngModel"
-              placeholder="First name"
-            />
-            <!-- for validation message. pristine means user hasn't changed value -->
-            <div
-              [hidden]="fname.valid || fname.untouched"
-              class="alert alert-danger"
-            >
-              Field is required
+              <!--[(ngModel)]="model.first_name" to dislay field with name  -->
+              <input
+                type="text"
+                class="form-control"
+                id="first_name"
+                required
+                ngModel
+                name="first_name"
+                #fname="ngModel"
+                placeholder="First name"
+              />
+              <!-- for validation message. pristine means user hasn't changed value -->
+              <div
+                [hidden]="fname.valid || fname.untouched"
+                class="alert alert-danger"
+              >
+                Field is required
+              </div>
+            </div>
+          </div>
+          <div class="col-xs-14 col-sm-10 col-md-6">
+            <div class="form-group">
+              <input
+                type="text"
+                class="form-control"
+                id="last_name"
+                required
+                ngModel
+                name="last_name"
+                #lname="ngModel"
+                placeholder="Last name"
+              />
+              <div
+                [hidden]="lname.valid || lname.untouched"
+                class="alert alert-danger"
+              >
+                Field is required
+              </div>
             </div>
           </div>
         </div>
-        <div class="col-xs-12 col-sm-6 col-md-4">
-          <div class="form-group">
-            <input
-              type="text"
-              class="form-control"
-              id="last_name"
-              required
-              ngModel
-              name="last_name"
-              #lname="ngModel"
-              placeholder="Last name"
-            />
-            <div
-              [hidden]="lname.valid || lname.untouched"
-              class="alert alert-danger"
-            >
-              Field is required
+        <div class="row justify-content-center">
+          <div class="col-xs-14 col-sm-10 col-md-6">
+            <div class="form-group">
+              <input
+                type="text"
+                class="form-control"
+                id="password"
+                required
+                ngModel
+                name="password"
+                #password="ngModel"
+                pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$"
+                placeholder="Password"
+              />
+              <div
+                [hidden]="password.valid || password.untouched"
+                class="alert alert-danger"
+              >
+                Field is required. Password must contain at least 8 characters,
+                one lowercase letter, one uppercase letter and number. (e.g.
+                PassWord7)
+              </div>
             </div>
+          </div>
+          <div class="col-xs-14 col-sm-10 col-md-6">
+            <div class="form-group">
+              <input
+                type="text"
+                class="form-control"
+                id="password2"
+                required
+                ngModel
+                name="password2"
+                #password2="ngModel"
+                pattern="{{ password.value }}"
+                [disabled]="password.invalid"
+                placeholder="Repeat password"
+              />
+              <div
+                [hidden]="password2.valid || password2.untouched"
+                class="alert alert-danger"
+              >
+                Field is required and must match with first password
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row justify-content-center">
+          <div class="col-xs-14 col-sm-10 col-md-6">
+            <div class="form-group">
+              <input
+                type="text"
+                class="form-control"
+                id="email"
+                required
+                ngModel
+                name="email"
+                #email="ngModel"
+                placeholder="Email"
+              />
+              <div
+                [hidden]="email.valid || email.untouched"
+                class="alert alert-danger"
+              >
+                Field is required
+              </div>
+            </div>
+          </div>
+          <div class="col-xs-14 col-sm-10 col-md-6">
+            <div class="form-group">
+              <input
+                type="text"
+                class="form-control"
+                id="phone"
+                required
+                ngModel
+                name="phone"
+                #phone="ngModel"
+                placeholder="Phone number"
+              />
+              <div
+                [hidden]="phone.valid || phone.untouched"
+                class="alert alert-danger"
+              >
+                Field is required
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row justify-content-center">
+          <div class="col">
+            <!-- [disabled]...: button is disabled if some fields are invalid -->
+            <!-- When you click the Submit button, the submitted flag becomes true and the form disappears. (submitted property from ts file) -->
+            <button
+              type="submit"
+              class="btn btn-primary btn-block"
+              [disabled]="!userForm.form.valid"
+            >
+              Sign in
+            </button>
+          </div>
+        </div>
+        <hr />
+      </form>
+      <!-- for fb registration -->
+      <div>
+        <div class="row justify-content-center">
+          <div class="col">
+            <h4 class="invert-text">...or register with Facebook!</h4>
+          </div>
+          <div class="col">
+            <button type="button" class="btn btn-primary btn-block">
+              FB
+            </button>
           </div>
         </div>
       </div>
-      <div class="row justify-content-center">
-        <div class="col-xs-12 col-sm-6 col-md-4">
-          <div class="form-group">
-            <input
-              type="text"
-              class="form-control"
-              id="password"
-              required
-              ngModel
-              name="password"
-              #password="ngModel"
-              pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$"
-              placeholder="Password"
-            />
-            <div
-              [hidden]="password.valid || password.untouched"
-              class="alert alert-danger"
-            >
-              Field is required. Password must contain at least 8 characters,
-              one lowercase letter, one uppercase letter and number. (e.g.
-              PassWord7)
-            </div>
-          </div>
-        </div>
-        <div class="col-xs-12 col-sm-6 col-md-4">
-          <div class="form-group">
-            <input
-              type="text"
-              class="form-control"
-              id="password2"
-              required
-              ngModel
-              name="password2"
-              #password2="ngModel"
-              pattern="{{ password.value }}"
-              [disabled]="password.invalid"
-              placeholder="Repeat password"
-            />
-            <div
-              [hidden]="password2.valid || password2.untouched"
-              class="alert alert-danger"
-            >
-              Field is required and must match with first password
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="row justify-content-center">
-        <div class="col-xs-12 col-sm-6 col-md-4">
-          <div class="form-group">
-            <input
-              type="text"
-              class="form-control"
-              id="email"
-              required
-              ngModel
-              name="email"
-              #email="ngModel"
-              placeholder="Email"
-            />
-            <div
-              [hidden]="email.valid || email.untouched"
-              class="alert alert-danger"
-            >
-              Field is required
-            </div>
-          </div>
-        </div>
-        <div class="col-xs-12 col-sm-6 col-md-4">
-          <div class="form-group">
-            <input
-              type="text"
-              class="form-control"
-              id="phone"
-              required
-              ngModel
-              name="phone"
-              #phone="ngModel"
-              placeholder="Phone number"
-            />
-            <div
-              [hidden]="phone.valid || phone.untouched"
-              class="alert alert-danger"
-            >
-              Field is required
-            </div>
-          </div>
-        </div>
-      </div>
-      <button
-        type="button"
-        class="btn btn-success m-1"
-        (click)="newUser(); userForm.reset()"
-      >
-        Delete fields
-      </button>
-      <!-- [disabled]...: button is disabled if some fields are invalid -->
-      <!-- When you click the Submit button, the submitted flag becomes true and the form disappears. (submitted property from ts file) -->
-      <button
-        type="submit"
-        class="btn btn-success"
-        [disabled]="!userForm.form.valid"
-      >
-        Sign in
-      </button>
-    </form>
-  </div>
-  <div [hidden]="!submitted">
-    <div class="row justify-content-center">
-      <div class="col-xs-12 col-sm-6 col-md-4-xs-9">{{ model.first_name }} has been registered.</div>
     </div>
-    <br />
-    <button class="btn btn-primary" (click)="submitted = false">Edit</button>
+    <div [hidden]="!submitted">
+      <div class="row justify-content-center">
+        <div class="col">
+            User has been registered. We sent you confirmation email.
+        </div>
+      </div>
+      <br />
+      <button class="btn btn-primary" (click)="router.navigate(['/home']); showAll()">Login</button>
+    </div>
   </div>
 </div>
-
-<!-- 
-  -Can be used for categoty,.. (where you have to use from values)
-  -list will be maintained internally?? (in RegistrationComponent)
-  -This code repeats the <option> tag for each category in the list of categories. The cat template 
-    input variable is a different category in each iteration; you display its name using the interpolation syntax.
-<div class="form-group">
-  <label for="category">Category</label>
-  <select class="form-control" id="category" required>
-    -bind the options to the categories list using ngFor:
-    <option *ngFor="let cat of categories" [value]="cat">{{ cat }}</option>
-  </select>
-</div> -->

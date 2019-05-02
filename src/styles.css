@@ -1,23 +1,24 @@
 /* You can add global styles to this file, and also import other style files */
 body {
-  background-color: rgb(36, 36, 37);
-  color: rgb(199, 199, 199);
+  background-color: rgb(17, 17, 19);
+  color: rgb(221, 221, 221);
 }
-.body-class {
-  height: 100vh;
-}
+/* footer is always on the bottom */
 app-footer {
   position: static;
   left: 0;
   bottom: 0;
   width: 100%;
 }
-
+/* for text on bright background */
+.invert-text{
+  color: rgb(24, 24, 26);
+}
 .navbar {
-  background-color: rgb(21, 21, 22);
+  background-color: rgb(14, 14, 15);
 }
 
-/*forms*/
+/*form'f fields: green if valid, red if invalid*/
 .ng-valid[required],
 .ng-valid.required {
   border-bottom: 5px solid rgb(54, 201, 62); /* green */
