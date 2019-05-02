@@ -14,8 +14,8 @@
 <!-- The FormControl instance tracks the value, user interaction, and validation status of the control and keeps 
   the view synced with the model. This directive is used by itself or as part of a larger form. ngModel selector is 
   used to activate it. -->
-<h1>Sign in </h1>
-<div class="container">
+<h1>Sign in</h1>
+<div class="container" id="registrationContainer">
   <!-- Wrap the form in a <div> and bind its hidden property to the UserFormComponent.submitted property -->
   <div [hidden]="submitted">
     <!--Declare a template variable for the form. The variable userForm is now a reference to the NgForm 
@@ -26,124 +26,144 @@
       true only if every contained control is valid. -->
     <!-- bind the form's ngSubmit event property to the hero form component's onSubmit() method -->
     <form (ngSubmit)="onSubmit(userForm)" #userForm="ngForm">
-      <div class="form-group">
-        <label for="first_name">First name:</label>
-        <!-- Defining a name attribute is a requirement when using [(ngModel)] in combination with a form. 
+      <div class="row justify-content-center">
+        <div class="col-xs-12 col-sm-6 col-md-4">
+          <div class="form-group">
+            <!-- <label for="first_name">First name:</label> -->
+            <!-- Defining a name attribute is a requirement when using [(ngModel)] in combination with a form. 
         Internally, Angular creates FormControl instances and registers them with an NgForm directive that 
         Angular attached to the <form> tag. Each FormControl is registered under the name you assigned to the 
           name attribute.-->
-        <!-- Each input element has an id property that is used by the label element's for attribute 
+            <!-- Each input element has an id property that is used by the label element's for attribute 
         to match the label to its input control. -->
-        <!--[(ngModel)]="model.first_name" to dislay field with name  -->
-        <input
-          type="text"
-          class="form-control"
-          id="first_name"
-          required
-          ngModel
-          name="first_name"
-          #fname="ngModel"
-        />
-        <!-- for validation message. pristine means user hasn't changed value -->
-        <div
-          [hidden]="fname.valid || fname.untouched"
-          class="alert alert-danger"
-        >
-          Field is required
+            <!--[(ngModel)]="model.first_name" to dislay field with name  -->
+            <input
+              type="text"
+              class="form-control"
+              id="first_name"
+              required
+              ngModel
+              name="first_name"
+              #fname="ngModel"
+              placeholder="First name"
+            />
+            <!-- for validation message. pristine means user hasn't changed value -->
+            <div
+              [hidden]="fname.valid || fname.untouched"
+              class="alert alert-danger"
+            >
+              Field is required
+            </div>
+          </div>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-4">
+          <div class="form-group">
+            <input
+              type="text"
+              class="form-control"
+              id="last_name"
+              required
+              ngModel
+              name="last_name"
+              #lname="ngModel"
+              placeholder="Last name"
+            />
+            <div
+              [hidden]="lname.valid || lname.untouched"
+              class="alert alert-danger"
+            >
+              Field is required
+            </div>
+          </div>
         </div>
       </div>
-      <div class="form-group">
-        <label for="last_name">Last name:</label>
-        <input
-          type="text"
-          class="form-control"
-          id="last_name"
-          required
-          ngModel
-          name="last_name"
-          #lname="ngModel"
-        />
-        <div
-          [hidden]="lname.valid || lname.untouched"
-          class="alert alert-danger"
-        >
-          Field is required
+      <div class="row justify-content-center">
+        <div class="col-xs-12 col-sm-6 col-md-4">
+          <div class="form-group">
+            <input
+              type="text"
+              class="form-control"
+              id="password"
+              required
+              ngModel
+              name="password"
+              #password="ngModel"
+              pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$"
+              placeholder="Password"
+            />
+            <div
+              [hidden]="password.valid || password.untouched"
+              class="alert alert-danger"
+            >
+              Field is required. Password must contain at least 8 characters,
+              one lowercase letter, one uppercase letter and number. (e.g.
+              PassWord7)
+            </div>
+          </div>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-4">
+          <div class="form-group">
+            <input
+              type="text"
+              class="form-control"
+              id="password2"
+              required
+              ngModel
+              name="password2"
+              #password2="ngModel"
+              pattern="{{ password.value }}"
+              [disabled]="password.invalid"
+              placeholder="Repeat password"
+            />
+            <div
+              [hidden]="password2.valid || password2.untouched"
+              class="alert alert-danger"
+            >
+              Field is required and must match with first password
+            </div>
+          </div>
         </div>
       </div>
-      <div class="form-group">
-        <label for="email">Email:</label>
-        <input
-          type="text"
-          class="form-control"
-          id="email"
-          required
-          ngModel
-          name="email"
-          #email="ngModel"
-        />
-        <div
-          [hidden]="email.valid || email.untouched"
-          class="alert alert-danger"
-        >
-          Field is required
+      <div class="row justify-content-center">
+        <div class="col-xs-12 col-sm-6 col-md-4">
+          <div class="form-group">
+            <input
+              type="text"
+              class="form-control"
+              id="email"
+              required
+              ngModel
+              name="email"
+              #email="ngModel"
+              placeholder="Email"
+            />
+            <div
+              [hidden]="email.valid || email.untouched"
+              class="alert alert-danger"
+            >
+              Field is required
+            </div>
+          </div>
         </div>
-      </div>
-      <div class="form-group">
-        <label for="password">Password:</label>
-        <input
-          type="text"
-          class="form-control"
-          id="password"
-          required
-          ngModel
-          name="password"
-          #password="ngModel"
-          pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$"
-        />
-        <div
-          [hidden]="password.valid || password.untouched"
-          class="alert alert-danger"
-        >
-          Field is required. Password must contain at least 8 characters, one
-          lowercase letter, one uppercase letter and number. (e.g. PassWord7)
-        </div>
-      </div>
-      <div class="form-group">
-        <label for="password2">Repeat password:</label>
-        <input
-          type="text"
-          class="form-control"
-          id="password2"
-          required
-          ngModel
-          name="password2"
-          #password2="ngModel"
-          pattern="{{ password.value }}"
-          [disabled]="password.invalid"
-        />
-        <div
-          [hidden]="password2.valid || password2.untouched"
-          class="alert alert-danger"
-        >
-          Field is required and must match with first password
-        </div>
-      </div>
-      <div class="form-group">
-        <label for="phone">Phone number:</label>
-        <input
-          type="text"
-          class="form-control"
-          id="phone"
-          required
-          ngModel
-          name="phone"
-          #phone="ngModel"
-        />
-        <div
-          [hidden]="phone.valid || phone.untouched"
-          class="alert alert-danger"
-        >
-          Field is required
+        <div class="col-xs-12 col-sm-6 col-md-4">
+          <div class="form-group">
+            <input
+              type="text"
+              class="form-control"
+              id="phone"
+              required
+              ngModel
+              name="phone"
+              #phone="ngModel"
+              placeholder="Phone number"
+            />
+            <div
+              [hidden]="phone.valid || phone.untouched"
+              class="alert alert-danger"
+            >
+              Field is required
+            </div>
+          </div>
         </div>
       </div>
       <button
@@ -165,8 +185,8 @@
     </form>
   </div>
   <div [hidden]="!submitted">
-    <div class="row">
-      <div class="col-xs-9">{{ model.first_name }} has been registered.</div>
+    <div class="row justify-content-center">
+      <div class="col-xs-12 col-sm-6 col-md-4-xs-9">{{ model.first_name }} has been registered.</div>
     </div>
     <br />
     <button class="btn btn-primary" (click)="submitted = false">Edit</button>
