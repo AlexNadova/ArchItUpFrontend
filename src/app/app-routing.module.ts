@@ -6,7 +6,7 @@ import { ProfileComponent } from "./user/profile/profile.component";
 import { HomePageComponent } from "./home-page/home-page.component";
 import { AuthGuardService } from "./authentication/auth-guard.service";
 import { RoleGuardService } from "./authentication/roles-service.service";
-//import { LoginComponent} from './user/login/login.component';
+import { LoginComponent} from './user/login/login.component';
 //define routes
 const routes: Routes = [
   {
@@ -37,14 +37,14 @@ const routes: Routes = [
     data: {
       title: "Profile"
     }
-  }
-  /*{
+  },
+  {
     path: 'login',
     component: LoginComponent,
     data:{
       title:'Login'
     }
-  },*/
+  },
   // { //this could be used for admin access (e.g. reports)
   //   path: 'admin',
   //   component: AdminComponent,

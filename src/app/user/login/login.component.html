@@ -1,0 +1,104 @@
+<div class="first-container">
+  <div class="second-container" id="loginContainer">
+    <div class="login-header">
+      <h1>Login</h1>
+    </div>
+    
+    <div class="container" [hidden]="submitted">
+      <form class="login-form" (ngSubmit)="onSubmit(userForm)" #userForm="ngForm">
+        <div class="row justify-content-center">
+          <div class="col-xs-14 col-sm-10 col-md-6">
+            <div class="form-group">
+                <input
+                type="text"
+                class="form-control"
+                id="email"
+                required
+                ngModel
+                name="email"
+                #email="ngModel"
+                placeholder="Email"
+              />
+              <div
+                  [hidden]="email.valid || email.untouched"
+                  class="alert alert-danger"
+                >
+                  Field is required
+                </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row justify-content-center">
+          <div class="col-xs-14 col-sm-10 col-md-6">
+            <div class="form-group">
+                <input
+                type="text"
+                class="form-control"
+                id="password"
+                required
+                ngModel
+                name="password"
+                #password="ngModel"
+                pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$"
+                placeholder="Password"
+              />
+              <div
+                [hidden]="password.valid || password.untouched"
+                class="alert alert-danger"
+              >
+                Field is required. Password must contain at least 8 characters,
+                one lowercase letter, one uppercase letter and number. (e.g.
+                PassWord7)
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row justify-content-center">
+          <div class="col">
+            <div class="form-check mb-3">
+              <input 
+                class="form-check-input" 
+                type="checkbox" 
+                checked="checked" 
+                name="remember">
+              <label class="invert-text">Remember me!</label>
+            </div>
+          </div>
+
+          <div class="col">
+            <!-- [disabled]...: button is disabled if some fields are invalid -->
+            <!-- When you click the Login button, the submitted flag becomes true and the form disappears. (submitted property from ts file) -->
+            <!-- For now, when you click the Login button, the "home" page is loaded. -->
+            <button
+              type="submit"
+              class="btn btn-primary btn-block"
+              [disabled]="!userForm.form.valid"
+              (click)="router.navigate(['/home']); showAll();"
+              >
+              Login
+            </button>
+          </div>
+        </div>
+
+        <div class="row justify-content-center"> 
+          <!--For now, the forgotten password? option goes to "/home" page.-->
+          <div class="col">
+            <span class="invert-text">Forgot <a href="#">password?</a></span>
+          </div>
+          <div class="col">
+            <button 
+              type="cancel" 
+              class="btn btn-primary btn-block cancelbtn"
+              (click)="router.navigate(['/home']); showAll();"
+              >
+              Cancel
+            </button>
+          </div>
+        </div>
+
+      </form>
+    </div>
+  </div>
+</div>
