@@ -1,6 +1,5 @@
 import { Component, OnInit } from "@angular/core";
 import { UserService } from "../user.service";
-import { Observable } from "rxjs"; //to hold data returned from API
 import { ActivatedRoute } from "@angular/router";
 
 @Component({
