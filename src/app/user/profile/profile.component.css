@@ -1,0 +1,28 @@
+.container{
+    position: relative;
+}
+.profile-header{
+    background-color: rgb(40, 90, 255);
+    margin-bottom: 2%;
+    border-radius: 5px;
+}
+.header-text{
+    margin-left: 50%;
+    padding-top: 5%;
+    padding-bottom: 2%;
+}
+.options{
+    text-align: right;
+    margin-bottom:2%;
+}
+.profile-picture{
+    position: relative;
+    top: 0;
+    right: 0;
+    margin-left: 2%;
+}
+#profile-pic{
+    height: 200px;
+    width: 200px;
+    border-radius: 50%;
+}
