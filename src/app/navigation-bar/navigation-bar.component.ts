@@ -22,7 +22,7 @@ export class NavigationBarComponent implements OnInit {
     return (this.routerLinkVariable = "/register");
   }
   updateRouterLinkToProfile() {
-    return (this.routerLinkVariable = "/profile/");
+    return (this.routerLinkVariable = "/profile");
   }
   updateRouterLinkToLogin() {
     return (this.routerLinkVariable = "/login");

@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { Router, NavigationEnd } from "@angular/router";
 import { FooterService } from "./footer.service";
 
 @Component({
@@ -7,7 +8,18 @@ import { FooterService } from "./footer.service";
   styleUrls: ["./footer.component.css"]
 })
 export class FooterComponent implements OnInit {
-  constructor(private footer: FooterService) {}
+  constructor(private footer: FooterService, private router: Router) {
+    router.events.subscribe((_: NavigationEnd) => (this.currentUrl = _.url));
+  }
 
+  public routerLinkVariable = "/home";
+  currentUrl: String;
+
+  updateRouterLinkToAboutUs() {
+    return (this.routerLinkVariable = "/about-us");
+  }
+  updateRouterLinkToHelp() {
+    return (this.routerLinkVariable = "/help");
+  }
   ngOnInit() {}
 }

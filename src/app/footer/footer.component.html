@@ -1,4 +1,7 @@
-<footer class="page-footer font-small blue-grey lighten-5" *ngIf="footer.visible">
+<footer
+  class="page-footer font-small blue-grey lighten-5"
+  *ngIf="footer.visible"
+>
   <div style="background-color: #21d192;">
     <div class="container">
       <!-- Grid row-->
@@ -84,7 +87,12 @@
           style="width: 60px;"
         />
         <p>
-          <a class="dark-grey-text" href="#!">About us</a>
+          <a
+            [routerLink]="updateRouterLinkToAboutUs()"
+            [class.activated]="currentUrl == '/profile'"
+            class="dark-grey-text"
+            >About us</a
+          >
         </p>
         <p>
           <a class="dark-grey-text" href="#!">Become an Affiliate</a>
@@ -93,7 +101,12 @@
           <a class="dark-grey-text" href="#!">User agreement</a>
         </p>
         <p>
-          <a class="dark-grey-text" href="#!">Help</a>
+          <a
+            [routerLink]="updateRouterLinkToHelp()"
+            [class.activated]="currentUrl == '/profile'"
+            class="dark-grey-text"
+            >Help</a
+          >
         </p>
       </div>
       <!-- Grid column -->
@@ -117,7 +130,7 @@
   <!-- Footer Links -->
 
   <!-- Copyright -->
-  <div class="footer-copyright text-center text-black-50 py-3">
+  <div class="footer-copyright text-center text-white-50 py-3">
     © 2018 ArchItUp
   </div>
   <!-- Copyright -->

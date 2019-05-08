@@ -46,8 +46,11 @@
         <li class="nav-item">
           <a [routerLink]="updateRouterLinkToRegister()" [class.activated]="currentUrl == '/register'" class="nav-link" id="registerText">Sign in</a>
         </li>
-        <li class="nav-item px-lg-1" >
+        <li class="nav-item" >
           <a [routerLink]="updateRouterLinkToLogin()"  [class.activated]="currentUrl == '/login'" class="nav-link">Log in</a>
+        </li>
+        <li class="nav-item px-lg-1">
+          <a [routerLink]="updateRouterLinkToProfile()" [class.activated]="currentUrl == '/profile'" class="nav-link">Profile</a>
         </li>
       </ul>
     </div>

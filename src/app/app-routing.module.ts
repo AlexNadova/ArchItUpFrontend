@@ -6,6 +6,8 @@ import { ProfileComponent } from "./user/profile/profile.component";
 import { HomePageComponent } from "./home-page/home-page.component";
 import { AuthGuardService } from "./authentication/auth-guard.service";
 import { RoleGuardService } from "./authentication/roles-service.service";
+import { AboutUsPageComponent } from './about-us-page/about-us-page.component';
+import { HowToUsePageComponent } from './how-to-use-page/how-to-use-page.component';
 //import { LoginComponent} from './user/login/login.component';
 //define routes
 const routes: Routes = [
@@ -30,12 +32,26 @@ const routes: Routes = [
     }
   },
   {
-    path: "profile/:id",
+    path: "profile",
     component: ProfileComponent,
     //guard is applied to all routes we wish to protect (it's only for users with tokens - so logged)
     //canActivate: [AuthGuardService],
     data: {
       title: "Profile"
+    }
+  },
+  {
+    path: "about-us", //for Home page   redirectTo: '/heroes',
+    component: AboutUsPageComponent,
+    data: {
+      title: "About us page"
+    }
+  },
+  {
+    path: "help", //for Home page   redirectTo: '/heroes',
+    component: HowToUsePageComponent,
+    data: {
+      title: "Help page"
     }
   }
   /*{
