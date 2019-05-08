@@ -9,6 +9,7 @@ import { RoleGuardService } from "./authentication/roles-service.service";
 import { AboutUsPageComponent } from './about-us-page/about-us-page.component';
 import { HowToUsePageComponent } from './how-to-use-page/how-to-use-page.component';
 //import { LoginComponent} from './user/login/login.component';
+import { LoginComponent} from './user/login/login.component';
 //define routes
 const routes: Routes = [
   {
@@ -60,7 +61,7 @@ const routes: Routes = [
     data:{
       title:'Login'
     }
-  },*/
+  },
   // { //this could be used for admin access (e.g. reports)
   //   path: 'admin',
   //   component: AdminComponent,
@@ -71,7 +72,7 @@ const routes: Routes = [
   //   data: {
   //     expectedRole: 'admin'
   //   }
-  // },
+  // },*/
 ];
 
 @NgModule({

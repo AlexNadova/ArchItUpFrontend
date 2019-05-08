@@ -29,7 +29,7 @@ export class RegistrationComponent implements OnInit {
     this.userService.register(form);
   }
 
-//used when you click on Login button after registration is done. for now it loads home page and it needs to show footer and navbar
+//used when you click on Login button after registration is done. 
   showAll() {
     this.nav.show();
     this.footer.show();

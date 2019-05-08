@@ -3,6 +3,7 @@ import { NgForm } from "@angular/forms";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { User } from '../models/user';
 import { formArrayNameProvider } from '@angular/forms/src/directives/reactive_directives/form_group_name';
+import { from } from 'rxjs';
 
 const httpheaders = new HttpHeaders({
   "Content-Type": "application/json",
@@ -42,9 +43,9 @@ export class UserService {
     //console.log(form.value);
   }
   
-  /*login(form: NgForm) {
+  login(form: NgForm) {
     this.http.post("http://localhost:4000/api/user/login", form.value);
     console.log(form.value);
-  }*/
+  }
   
 }
