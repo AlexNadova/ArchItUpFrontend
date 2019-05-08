@@ -2,7 +2,11 @@
 body {
   background-color: rgb(17, 17, 19);
   color: rgb(221, 221, 221);
+  min-width: 900px;
+  line-height: 70%;
+  font-size: 14px;
 }
+
 /* footer is always on the bottom */
 app-footer {
   position: static;
