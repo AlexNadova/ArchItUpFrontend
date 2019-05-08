@@ -42,6 +42,10 @@ export class UserService {
       });
     //console.log(form.value);
   }
+
+  getUser(){
+    return this.http.get("http://localhost:4000/api/user/5cd2ad96272be528989dcb9b");
+  }
   
   login(form: NgForm) {
     this.http.post("http://localhost:4000/api/user/login", form.value);
