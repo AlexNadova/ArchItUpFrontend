@@ -15,6 +15,8 @@ import { ProfileComponent } from './user/profile/profile.component';
 //import { LoginComponent } from './user/login/login.component';
 import {HttpClientModule} from '@angular/common/http';
 import { HomePageComponent } from './home-page/home-page.component';
+import { AboutUsPageComponent } from './about-us-page/about-us-page.component';
+import { HowToUsePageComponent } from './how-to-use-page/how-to-use-page.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +27,8 @@ import { HomePageComponent } from './home-page/home-page.component';
     ProfileComponent,
    // LoginComponent,
     HomePageComponent,
+   AboutUsPageComponent,
+   HowToUsePageComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
   providers: [],
