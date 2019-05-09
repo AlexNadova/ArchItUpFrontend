@@ -13,10 +13,18 @@ import { FooterComponent } from './footer/footer.component';
 import { RegistrationComponent } from './user/registration/registration.component';
 import { ProfileComponent } from './user/profile/profile.component';
 import { LoginComponent } from './user/login/login.component';
-import {HttpClientModule} from '@angular/common/http';
+import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 import { HomePageComponent } from './home-page/home-page.component';
 import { AboutUsPageComponent } from './about-us-page/about-us-page.component';
 import { HowToUsePageComponent } from './how-to-use-page/how-to-use-page.component';
+import { AdminComponent } from './user/admin/admin.component';
+
+import { JwtInterceptorProvider } from './authentication/jwt.interceptor';
+import { ErrorInterceptorProvider } from './authentication/error.interceptor';
+import { AuthGuard } from './authentication/auth-guard';
+import { UserService } from './user/user.service';
+import { AuthenticationService } from './authentication/authentication.service';
+//import { fakeBackendProvider } from './authentication/fake-backend';
 
 @NgModule({
   declarations: [
@@ -26,12 +34,21 @@ import { HowToUsePageComponent } from './how-to-use-page/how-to-use-page.compone
     RegistrationComponent,
     ProfileComponent,
     HomePageComponent,
-   AboutUsPageComponent,
-   HowToUsePageComponent,
+    AboutUsPageComponent,
+    HowToUsePageComponent,
     LoginComponent,
+    AdminComponent
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
-  providers: [],
+  providers: [
+    AuthGuard,
+    AuthenticationService,
+    UserService,
+    JwtInterceptorProvider,
+    ErrorInterceptorProvider
+        // provider used to create fake backend
+        //fakeBackendProvider
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
