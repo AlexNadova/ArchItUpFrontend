@@ -7,8 +7,8 @@
 <hr />
 <div class="container">
   <div class="card" id="profile-header">
-    <div class="card-header"></div>
-    <div class="card-body">
+    <div class="card-header" id="profile-header-top"></div>
+    <div class="card-body" id="profile-header-bottom">
       <div class="profile-picture">
         <img
           id="profile-pic"
@@ -18,16 +18,32 @@
       </div>
       <div class="row invert-text">
         <div class="col space"></div>
-        <div class="col header-text" #user>
-          <h4 class="name">{{user.first_name}} {{user.last_name}}</h4>
-          <p class="field-of-focus">{{user.field_of_focus}}</p>
-          <p class="address">{{user.county}}, {{user.city}}</p>
+        <div class="col header-text">
+          <h4 class="name">{{ user.firstName }} {{ user.lastName }}</h4>
+          <p class="field-of-focus">{{ user.fieldOfFocus }}</p>
+          <p class="address" *ngIf="user.country || user.city">
+            {{ user.country }}, {{ user.city }}
+          </p>
         </div>
         <!-- profile pic in cycle -->
         <div class="col options">
-          <!-- TO DO: change to btn with wheel or just wheel -->
-          <button class="btn btn-primary">Options</button>
-          <p class="job">{{user.atelier}}</p>
+          <!-- option with glyphicon -->
+          <div class="menu">
+            <span
+              data-toggle="collapse"
+              data-target="#profile_options"
+              class="fas fa-cog"
+            ></span>
+            <div id="profile_options" class="collapse card">
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item">Edit profile</li>
+                <li class="list-group-item">Privacy settings</li>
+                <!--change email, password-->
+                <li class="list-group-item">Delete account</li>
+              </ul>
+            </div>
+          </div>
+          <!-- <p class="job">{{ user.atelier }}</p> -->
         </div>
       </div>
     </div>
@@ -39,22 +55,22 @@
           <!-- frame with phomne, email, perhaps links to other social media -->
           <div class="card-body">
             <h5 class="card-title">Contact</h5>
-            <p class="card-text">Email: {{user.email}}</p>
-            <p class="card-text">Phone number: {{user.phone}}</p>
+            <p class="card-text">Email: {{ user.email }}</p>
+            <p class="card-text">Phone number: {{ user.phone }}</p>
           </div>
         </div>
         <div class="card text-white bg-dark mb-2 education-frame">
           <!-- frame with schools -->
           <div class="card-body">
             <h5 class="card-title">Education</h5>
-            <p class="card-text">{{user.education}}</p>
+            <p class="card-text">{{ user.education }}</p>
           </div>
         </div>
         <div class="card text-white bg-dark mb-2 experience-frame">
           <!-- frame with work experience, projects etc. -->
           <div class="card-body">
             <h5 class="card-title">Experience</h5>
-            <p class="card-text">{{user.experience}}</p>
+            <p class="card-text">{{ user.experience }}</p>
           </div>
         </div>
       </div>

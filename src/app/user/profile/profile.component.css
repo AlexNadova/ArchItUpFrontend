@@ -1,13 +1,18 @@
 .container {
   position: relative;
 }
+/*header has fixed height*/
 #profile-header {
-  height: 100%;
+  height: 300px;
 }
-.card-header {
+#profile-header-top {
   background-color: rgb(40, 90, 255);
-  height: 160px;
+  height: 190px;
 }
+#profile-header-bottom{
+  height: 110px;
+}
+
 /* header content */
 .space {
   -ms-flex: 0 0 240px;
@@ -15,22 +20,28 @@
 }
 .header-text {
   text-align: left;
-  line-height: 70%;
 }
+/*options column*/
 .options {
   text-align: right;
 }
-.btn{
-    margin-bottom: 2%;
+.job{
+  position: relative; /*doesn't expand class but shows over it*/
+}
+#profile_options{
+  position: absolute; /*doesn't expand class but shows over it*/
+  right:0;
+  z-index: 1; /*shows pn top*/
 }
 
 h4{
     font-size: 18px;
 }
+
 /* Profile picture */
 .profile-picture {
   position: absolute;
-  top: 60px;
+  top: 80px;
   left: 20px;
   margin-left: 2%;
   max-width: 200px;
