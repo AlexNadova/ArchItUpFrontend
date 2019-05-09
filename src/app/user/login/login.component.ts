@@ -3,6 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { NavigationBarService } from 'src/app/navigation-bar/navigation-bar.service';
 import { FooterService } from 'src/app/footer/footer.service';
 import { NgForm } from '@angular/forms';
+import { UserService } from '../user.service';
 import { AuthenticationService } from 'src/app/authentication/authentication.service';
 import { first } from 'rxjs/operators';
 
@@ -21,13 +22,9 @@ export class LoginComponent implements OnInit {
   error= '';
 
   constructor(
-<<<<<<< HEAD
     private userService: UserService,
     public router: Router,
-=======
    private route: ActivatedRoute,
-    private router: Router,
->>>>>>> 22a1d17a972c56eb4155907f526d9e3f9827daf9
     private nav: NavigationBarService,
     private footer: FooterService,
     private authenticationService: AuthenticationService,
