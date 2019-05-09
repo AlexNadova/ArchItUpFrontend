@@ -10,15 +10,16 @@ import { ActivatedRoute } from "@angular/router";
 })
 export class ProfileComponent implements OnInit {
   user: FullUser;
+
   constructor(
     private userService: UserService,
     private route: ActivatedRoute
   ) {}
 
   getUserProfile() {
-    this.userService
-      .getUser()
-      .subscribe((data: FullUser) => (this.user = { ...data })); //... <- gets data from User model (works on arrays as well)
+    this.userService.getUser().subscribe((data:FullUser)=> {
+      this.user = {...data};
+    }); 
   }
 
   ngOnInit() {

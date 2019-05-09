@@ -1,9 +1,9 @@
 import { Injectable } from "@angular/core";
 import { NgForm } from "@angular/forms";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
-import { User } from '../models/user';
+import { User, FullUser } from '../models/user';
 import { formArrayNameProvider } from '@angular/forms/src/directives/reactive_directives/form_group_name';
-import { from } from 'rxjs';
+import { from, Observable } from 'rxjs';
 
 const httpheaders = new HttpHeaders({
   "Content-Type": "application/json",
@@ -33,7 +33,7 @@ export class UserService {
     }
     console.log(JSON.stringify(this.user));
     return this.http
-      .post("http://localhost:4000/api/user/signup", JSON.stringify(this.user), {
+      .post<User>("http://localhost:4000/api/user/signup", JSON.stringify(this.user), {
         headers: httpheaders
       })
       .subscribe(err => {
@@ -43,8 +43,8 @@ export class UserService {
     //console.log(form.value);
   }
 
-  getUser(){
-    return this.http.get("http://localhost:4000/api/user/5cd2ad96272be528989dcb9b");
+  getUser(): Observable<any>{
+    return this.http.get<FullUser>("http://localhost:4000/api/user/5cd2ad96272be528989dcb9b");
   }
   
   login(form: NgForm) {
