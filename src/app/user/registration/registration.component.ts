@@ -19,7 +19,7 @@ export class RegistrationComponent implements OnInit {
 
   constructor(
     private userService: UserService,
-    private router: Router,
+    public router: Router,
     private nav: NavigationBarService,
     private footer: FooterService
   ) {}
