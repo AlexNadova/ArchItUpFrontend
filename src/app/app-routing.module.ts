@@ -4,12 +4,13 @@ import { Routes, RouterModule } from "@angular/router";
 import { RegistrationComponent } from "./user/registration/registration.component";
 import { ProfileComponent } from "./user/profile/profile.component";
 import { HomePageComponent } from "./home-page/home-page.component";
-import { AuthGuardService } from "./authentication/auth-guard.service";
-import { RoleGuardService } from "./authentication/roles-service.service";
+import { AuthGuard } from "./authentication/auth-guard";
+//import { RoleGuardService } from "./authentication/roles-service.service";
 import { AboutUsPageComponent } from './about-us-page/about-us-page.component';
 import { HowToUsePageComponent } from './how-to-use-page/how-to-use-page.component';
-//import { LoginComponent} from './user/login/login.component';
 import { LoginComponent} from './user/login/login.component';
+import { AdminComponent } from './user/admin/admin.component';
+import { Role } from './models/role';
 //define routes
 const routes: Routes = [
   {
@@ -36,7 +37,7 @@ const routes: Routes = [
     path: "profile",
     component: ProfileComponent,
     //guard is applied to all routes we wish to protect (it's only for users with tokens - so logged)
-    //canActivate: [AuthGuardService],
+    canActivate: [AuthGuard],
     data: {
       title: "Profile"
     }
@@ -62,17 +63,22 @@ const routes: Routes = [
       title:'Login'
     }
   },
-  // { //this could be used for admin access (e.g. reports)
-  //   path: 'admin',
-  //   component: AdminComponent,
-  // We can now use this RoleGuardService for any of our routes to protect them. (only user with role admin can access this).
-  // canActivate is still used to control navigation, but this time object is passed on the data property which has
-  // that expectedRole key declared in the RoleGuardService.
-  //   canActivate: [RoleGuard],
-  //   data: {
-  //     expectedRole: 'admin'
-  //   }
-  // },
+  { //this could be used for admin access (e.g. reports)
+    path: 'admin',
+    component: AdminComponent,
+    // We can now use this RoleGuardService for any of our routes to protect them. (only user with role admin can access this).
+    // canActivate is still used to control navigation, but this time object is passed on the data property which has
+    // that expectedRole key declared in the RoleGuardService.
+    canActivate: [AuthGuard],
+    data: {
+      roles: [Role.Admin]
+    }
+   },
+     // otherwise redirect to home
+  { 
+    path: "**",
+    redirectTo: ""
+  }
 ];
 
 @NgModule({

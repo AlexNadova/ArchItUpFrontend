@@ -5,7 +5,10 @@ export class User {
     public last_name: string,
     //public password: string,
     public email: string,
-    public phone: string
+    public phone: string,
+
+    public role: string,
+    public token?:string
   ) {}
 }
 
