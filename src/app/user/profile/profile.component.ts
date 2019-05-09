@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { UserService } from "../user.service";
-import { Observable } from "rxjs"; //to hold data returned from API
+import { FullUser, User } from "src/app/models/user";
 import { ActivatedRoute } from "@angular/router";
 
 @Component({
@@ -9,16 +9,19 @@ import { ActivatedRoute } from "@angular/router";
   styleUrls: ["./profile.component.css"]
 })
 export class ProfileComponent implements OnInit {
-  user$: Object;
-  constructor(private data: UserService, private route: ActivatedRoute) {
-    //get id param from url
-    /*test get user on random api
-    this.route.params.subscribe(params => (this.user$ = params.id)); //named in app-routing.module.ts in route: path: 'profile/:id',
-  */
+  user: FullUser;
+  constructor(
+    private userService: UserService,
+    private route: ActivatedRoute
+  ) {}
+
+  getUserProfile() {
+    this.userService
+      .getUser()
+      .subscribe((data: FullUser) => (this.user = { ...data })); //... <- gets data from User model (works on arrays as well)
   }
 
   ngOnInit() {
-    /* test get user on random api
-    this.data.getUser(this.user$).subscribe(data => (this.user$ = data));*/
+    this.getUserProfile();
   }
 }

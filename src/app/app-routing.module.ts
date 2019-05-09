@@ -14,7 +14,7 @@ import { Role } from './models/role';
 //define routes
 const routes: Routes = [
   {
-    path: "home", //for Home page   redirectTo: '/heroes',
+    path: "home", //for Home page
     component: HomePageComponent,
     data: {
       title: "Home page"
@@ -43,14 +43,14 @@ const routes: Routes = [
     }
   },
   {
-    path: "about-us", //for Home page   redirectTo: '/heroes',
+    path: "about-us",
     component: AboutUsPageComponent,
     data: {
       title: "About us page"
     }
   },
   {
-    path: "help", //for Home page   redirectTo: '/heroes',
+    path: "help",
     component: HowToUsePageComponent,
     data: {
       title: "Help page"

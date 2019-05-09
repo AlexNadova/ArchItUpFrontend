@@ -1,31 +1,36 @@
- <!--<h1>Profile of <strong>{{user$.name}}</strong></h1>
+<!--<h1>Profile of <strong>{{user$.name}}</strong></h1>
 <ul>
   <li>{{user$.username}}</li>
   <li>{{user$.email}}</li>
   <li>{{user$.phone}}</li>
 </ul> -->
 <hr />
-<hr />
 <div class="container">
-  <div class="profile-header">
-    <div class="header-text">
-      <h3 class="name">Ing. arch. Ivana Nadova</h3>
-      <p class="field-of-focus">architect, designer</p>
-      <p class="address">Bratislava, Slovakia</p>
-      <p class="job">Atyp Interier, spol. s.r.o.</p>
+  <div class="card" id="profile-header">
+    <div class="card-header"></div>
+    <div class="card-body">
+      <div class="profile-picture">
+        <img
+          id="profile-pic"
+          src="assets/profile-pics/profile_pic.jpg"
+          alt="Profile picture"
+        />
+      </div>
+      <div class="row invert-text">
+        <div class="col space"></div>
+        <div class="col header-text" #user>
+          <h4 class="name">{{user.first_name}} {{user.last_name}}</h4>
+          <p class="field-of-focus">{{user.field_of_focus}}</p>
+          <p class="address">{{user.county}}, {{user.city}}</p>
+        </div>
+        <!-- profile pic in cycle -->
+        <div class="col options">
+          <!-- TO DO: change to btn with wheel or just wheel -->
+          <button class="btn btn-primary">Options</button>
+          <p class="job">{{user.atelier}}</p>
+        </div>
+      </div>
     </div>
-  </div>
-  <div class="profile-picture">
-    <!-- profile pic in cycle -->
-    <img
-      id="profile-pic"
-      src="assets/profile-pics/profile_pic.jpg"
-      alt="Profile picture"
-    />
-  </div>
-  <div class="options">
-    <!-- TO DO: change to btn with wheel or just wheel -->
-    <button class="btn btn-primary">Options</button>
   </div>
   <div class="container-fluid">
     <div class="row">
@@ -34,23 +39,22 @@
           <!-- frame with phomne, email, perhaps links to other social media -->
           <div class="card-body">
             <h5 class="card-title">Contact</h5>
-            <p class="card-text">Email: ivana.nadova@gmail.com</p>
-            <p class="card-text">Phone number: +421 915 984 657</p>
+            <p class="card-text">Email: {{user.email}}</p>
+            <p class="card-text">Phone number: {{user.phone}}</p>
           </div>
         </div>
         <div class="card text-white bg-dark mb-2 education-frame">
           <!-- frame with schools -->
           <div class="card-body">
             <h5 class="card-title">Education</h5>
-            <p class="card-text">high school</p>
-            <p class="card-text">university</p>
+            <p class="card-text">{{user.education}}</p>
           </div>
         </div>
         <div class="card text-white bg-dark mb-2 experience-frame">
           <!-- frame with work experience, projects etc. -->
           <div class="card-body">
             <h5 class="card-title">Experience</h5>
-            <p class="card-text">Atyp Interier</p>
+            <p class="card-text">{{user.experience}}</p>
           </div>
         </div>
       </div>

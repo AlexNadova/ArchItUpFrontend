@@ -1,28 +1,47 @@
-.container{
-    position: relative;
+.container {
+  position: relative;
 }
-.profile-header{
-    background-color: rgb(40, 90, 255);
+#profile-header {
+  height: 100%;
+}
+.card-header {
+  background-color: rgb(40, 90, 255);
+  height: 160px;
+}
+/* header content */
+.space {
+  -ms-flex: 0 0 240px;
+    flex: 0 0 240px;
+}
+.header-text {
+  text-align: left;
+  line-height: 70%;
+}
+.options {
+  text-align: right;
+}
+.btn{
     margin-bottom: 2%;
-    border-radius: 5px;
 }
-.header-text{
-    margin-left: 50%;
-    padding-top: 5%;
-    padding-bottom: 2%;
+
+h4{
+    font-size: 18px;
 }
-.options{
-    text-align: right;
-    margin-bottom:2%;
+/* Profile picture */
+.profile-picture {
+  position: absolute;
+  top: 60px;
+  left: 20px;
+  margin-left: 2%;
+  max-width: 200px;
 }
-.profile-picture{
-    position: relative;
-    top: 0;
-    right: 0;
-    margin-left: 2%;
+img {
+  border-radius: 50%;
+  height: auto;
+  width: 100%;
 }
-#profile-pic{
-    height: 200px;
-    width: 200px;
-    border-radius: 50%;
+
+/* content container */
+.container-fluid {
+  margin-top: 2%;
 }
