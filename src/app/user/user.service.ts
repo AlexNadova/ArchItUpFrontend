@@ -51,9 +51,4 @@ export class UserService {
     this.http.post("http://localhost:4000/api/user/login", form.value);
     console.log(form.value);
   }
-  
-  getAll() {
-    return this.http.get<User[]>(`http://localhost:4000/api/user/users`);
-}
-
 }

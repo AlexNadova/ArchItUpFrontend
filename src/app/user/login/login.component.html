@@ -6,7 +6,7 @@
     
     <!-- if it's not working replace [formGroup]="loginForm"  with class="login-form"-->
     <div class="container" [hidden]="submitted">
-      <form class="login-form" (ngSubmit)="onSubmit(userForm)" #userForm="ngForm">
+      <form class="login-form" (ngSubmit)="OnSubmit(userForm)" #userForm="ngForm">
         <div class="row justify-content-center">
           <div class="col-xs-14 col-sm-10 col-md-6">
             <div class="form-group">
@@ -19,11 +19,12 @@
                 name="email"
                 #email="ngModel"
                 placeholder="Email"
-                [ngClass]="{ 'is-invalid': submitted && f.email.errors }"
+                
               />
+              <!--
               <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
                   <div *ngIf="f.email.errors.required">Email is required</div>
-              </div>
+              </div>-->
               <div
                   [hidden]="email.valid || email.untouched"
                   class="alert alert-danger"
@@ -47,11 +48,12 @@
                 #password="ngModel"
                 pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$"
                 placeholder="Password"
-                [ngClass]="{ 'is-invalid': submitted && f.password.errors }"
+               
               />
+              <!--
               <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
                   <div *ngIf="f.password.errors.required">Password is required</div>
-              </div>
+              </div>-->
               <div
                 [hidden]="password.valid || password.untouched"
                 class="alert alert-danger"

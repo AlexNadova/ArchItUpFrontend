@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit {
 
   constructor(
    private route: ActivatedRoute,
-    private router: Router,
+    public router: Router,
     private nav: NavigationBarService,
     private footer: FooterService,
     private authenticationService: AuthenticationService,
@@ -48,16 +48,16 @@ export class LoginComponent implements OnInit {
     this.footer.show();
   }
 
-  OnSubmit(userForm: NgForm) {
+  OnSubmit(from: NgForm) {
     this.submitted = true;
 
      // stop here if form is invalid
-     if (this.userForm.invalid) {
-      return;
-    }
+     //if (this.userForm.valid) {
+     // return;
+     //}
 
     this.loading = true;
-    this.authenticationService.login(this.userForm.controls.email.value, this.userForm.controls.password.value)
+    /*this.authenticationService.login(this.userForm.controls.email.value, this.userForm.controls.password.value)
         .pipe(first())
         .subscribe(
             data => {
@@ -66,6 +66,6 @@ export class LoginComponent implements OnInit {
             error => {
               this.error = error;
               this.loading = false;
-            });
+            });*/
   }
 }

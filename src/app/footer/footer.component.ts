@@ -8,7 +8,7 @@ import { FooterService } from "./footer.service";
   styleUrls: ["./footer.component.css"]
 })
 export class FooterComponent implements OnInit {
-  constructor(private footer: FooterService, private router: Router) {
+  constructor(public footer: FooterService, private router: Router) {
     router.events.subscribe((_: NavigationEnd) => (this.currentUrl = _.url));
   }
 
