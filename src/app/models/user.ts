@@ -3,16 +3,16 @@ export class User {
     //public profile_picture:??
     public first_name: string,
     public last_name: string,
-    //public password: string,
     public email: string,
-    public phone: string,
-
-    public role: string,
-    public token?:string
+    public phone: string
   ) {}
 }
 
-export class FullUser{
+export class LoginUser {
+  constructor(public role: string, public token?: string) {}
+}
+
+export class FullUser {
   constructor(
     public firstName: string,
     public lastName: string,
@@ -24,7 +24,7 @@ export class FullUser{
     //permissionLevel: { type: Number, default: config.permissionLevels.REG_USER },
     public fieldOfFocus: String,
     public education: String,
-    public experience: String,
-    //public description: String //??
-  ){}
+    public experience: String
+  ) //public description: String //??
+  {}
 }
