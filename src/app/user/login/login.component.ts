@@ -1,77 +1,40 @@
-import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
-import { NavigationBarService } from 'src/app/navigation-bar/navigation-bar.service';
-import { FooterService } from 'src/app/footer/footer.service';
-import { NgForm } from '@angular/forms';
-import { UserService } from '../user.service';
-import { AuthenticationService } from 'src/app/authentication/authentication.service';
-import { first } from 'rxjs/operators';
+import { Component, OnInit } from "@angular/core";
+import { Router } from "@angular/router";
+import { NavigationBarService } from "src/app/navigation-bar/navigation-bar.service";
+import { FooterService } from "src/app/footer/footer.service";
+import { NgForm } from "@angular/forms";
+import { UserService } from "../user.service";
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  selector: "app-login",
+  templateUrl: "./login.component.html",
+  styleUrls: ["./login.component.css"]
 })
 export class LoginComponent implements OnInit {
-  //when from is submitted hide it
-  submitted = false;
-
   userForm: NgForm;
-  loading = false;
-  returnUrl: string;
-  error= '';
 
   constructor(
     private userService: UserService,
     public router: Router,
-   private route: ActivatedRoute,
-<<<<<<< HEAD
-    public router: Router,
-=======
->>>>>>> 6e6ed75f5d61c65e4632504933578b40cd631707
     private nav: NavigationBarService,
-    private footer: FooterService,
-    private authenticationService: AuthenticationService,
-  ) {
-    // redirect to home if already logged in
-    if (this.authenticationService.currentUserValue) {
-      this.router.navigate(['/home']);
-    }
-   }
-
-  ngOnInit() {
-    this.nav.hide();
-    this.footer.hide();
-    // reset login status
-    this.authenticationService.logout();
-
-    // get return url from route parameters or default to '/'
-    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
-
-  }
+    private footer: FooterService
+  ) {}
   showAll() {
     this.nav.show();
     this.footer.show();
   }
 
-  OnSubmit(from: NgForm) {
-    this.submitted = true;
-
-     // stop here if form is invalid
-     //if (this.userForm.valid) {
-     // return;
-     //}
-
-    this.loading = true;
-    /*this.authenticationService.login(this.userForm.controls.email.value, this.userForm.controls.password.value)
-        .pipe(first())
-        .subscribe(
-            data => {
-              this.router.navigate([this.returnUrl]);
-            },
-            error => {
-              this.error = error;
-              this.loading = false;
-            });*/
+  OnSubmit(form: NgForm) {
+    this.userService.login(form).subscribe(
+      res => {
+        localStorage.setItem("token", res.token);
+        this.router.navigate(["profile"]);
+      },
+      err => console.log(err)
+    );
+  }
+  ngOnInit() {
+    this.nav.hide();
+    this.footer.hide();
   }
 }

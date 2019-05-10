@@ -1,13 +1,11 @@
 import { Injectable } from "@angular/core";
 import { NgForm } from "@angular/forms";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
-import { User, FullUser } from '../models/user';
-import { formArrayNameProvider } from '@angular/forms/src/directives/reactive_directives/form_group_name';
-import { from, Observable } from 'rxjs';
+import { User, FullUser, LoginUser } from "../models/user";
+import { Observable } from "rxjs";
 
 const httpheaders = new HttpHeaders({
-  "Content-Type": "application/json",
-  "Authorization": "bestsecretever"
+  "Content-Type": "application/json"
 });
 
 @Injectable({
@@ -16,12 +14,18 @@ const httpheaders = new HttpHeaders({
 export class UserService {
   constructor(private http: HttpClient) {}
 
-  user={    
-  firstName: "",
-  lastName: "",
-  email: "",
-  password: "",
-  phone: ""};
+  user = {
+    firstName: "",
+    lastName: "",
+    email: "",
+    password: "",
+    phone: ""
+  };
+
+  loginUser = {
+    email: "",
+    password: ""
+  };
 
   register(form: NgForm) {
     this.user = {
@@ -30,12 +34,16 @@ export class UserService {
       email: form.value.email,
       password: form.value.password,
       phone: form.value.phone
-    }
+    };
     console.log(JSON.stringify(this.user));
     return this.http
-      .post<User>("http://localhost:4000/api/user/signup", JSON.stringify(this.user), {
-        headers: httpheaders
-      })
+      .post<User>(
+        "http://localhost:4000/api/user/signup",
+        JSON.stringify(this.user),
+        {
+          headers: httpheaders
+        }
+      )
       .subscribe(err => {
         if (err) console.log(err);
         console.log("Success");
@@ -43,12 +51,30 @@ export class UserService {
     //console.log(form.value);
   }
 
-  getUser(): Observable<any>{
-    return this.http.get<FullUser>("http://localhost:4000/api/user/5cd2ad96272be528989dcb9b");
+  getUser(): Observable<any> {
+    return this.http.get<FullUser>(
+      "http://localhost:4000/api/user/5cd2ad96272be528989dcb9b",
+      {
+        headers: httpheaders
+      }
+    );
   }
-  
+
   login(form: NgForm) {
-    this.http.post("http://localhost:4000/api/user/login", form.value);
-    console.log(form.value);
+    this.loginUser = {
+      email: form.value.email,
+      password: form.value.password
+    };
+    return this.http.post<LoginUser>(
+      "http://localhost:4000/api/user/login",
+      JSON.stringify(this.loginUser),
+      {
+        headers: httpheaders
+      }
+    );
+  }
+
+  logout() {
+    localStorage.removeItem("token");
   }
 }
