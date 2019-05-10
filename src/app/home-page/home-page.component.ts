@@ -1,6 +1,4 @@
 import { Component, OnInit } from "@angular/core";
-import { NavigationBarService } from "../navigation-bar/navigation-bar.service";
-import { FooterService } from "../footer/footer.service";
 
 @Component({
   selector: "app-home-page",
@@ -8,13 +6,7 @@ import { FooterService } from "../footer/footer.service";
   styleUrls: ["./home-page.component.css"]
 })
 export class HomePageComponent implements OnInit {
-  constructor(
-    private nav: NavigationBarService,
-    private footer: FooterService
-  ) {}
+  constructor() {}
 
-  ngOnInit() {
-    this.nav.show;
-    this.footer.show;
-  }
+  ngOnInit() {}
 }
