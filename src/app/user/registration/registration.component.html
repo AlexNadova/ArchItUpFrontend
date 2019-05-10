@@ -188,11 +188,16 @@
     <div [hidden]="!submitted">
       <div class="row justify-content-center">
         <div class="col">
-            User has been registered. We sent you confirmation email.
+          User has been registered. We sent you confirmation email.
         </div>
       </div>
       <br />
-      <button class="btn btn-primary" (click)="router.navigate(['/login']); showAll()">Login</button>
+      <button
+        class="btn btn-primary"
+        (click)="router.navigate(['/login']); showAll()"
+      >
+        Login
+      </button>
     </div>
   </div>
 </div>
