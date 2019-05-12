@@ -28,6 +28,9 @@
 .job {
   position: relative; /*doesn't expand class but shows over it*/
 }
+.name {
+  font-size: 17px;
+}
 #profile_options {
   position: absolute; /*doesn't expand class but shows over it*/
   right: 0;
@@ -76,4 +79,8 @@ img {
 /* content container */
 .container-fluid {
   margin-top: 2%;
+}
+.list,
+.job {
+  line-height: 130%;
 }

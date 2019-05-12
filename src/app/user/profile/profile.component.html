@@ -13,7 +13,11 @@
       <div class="row invert-text">
         <div class="col space"></div>
         <div class="col header-text">
-          <h4 class="name">{{ user.firstName }} {{ user.lastName }}</h4>
+          <p>
+            <strong class="name"
+              >{{ user.firstName }} {{ user.lastName }}</strong
+            >; {{ experience[0].company }}
+          </p>
           <p class="field-of-focus">{{ user.fieldOfFocus }}</p>
           <p class="address" *ngIf="user.country || user.city">
             {{ user.country }}, {{ user.city }}
@@ -54,8 +58,6 @@
               </ul>
             </div>
           </div>
-          <!-- last field from experience -->
-          <p class="job"></p>
         </div>
       </div>
     </div>
@@ -123,7 +125,14 @@
           permanent.
         </div>
         <div class="modal-footer" id="delete-modal-footer">
-          <button type="button" class="btn btn-danger" (click)="deleteUser()">Delete user</button>
+          <button
+            type="button"
+            class="btn btn-danger"
+            (click)="deleteUser()"
+            data-dismiss="modal"
+          >
+            Delete user
+          </button>
           <button type="button" class="btn btn-cancel" data-dismiss="modal">
             Close
           </button>
@@ -238,7 +247,13 @@
                 data-target="#edit-education-modal"
               ></span>
             </h5>
-            <p class="card-text">{{ user.education }}</p>
+            <div class="card-text list" *ngFor="let edu of education">
+              <div class="row">
+                <div class="col">{{ edu.school }}</div>
+                <div class="col">{{ edu.specialization }}</div>
+                <div class="col-3">{{ edu.yearStart }} - {{ edu.yearEnd }}</div>
+              </div>
+            </div>
           </div>
         </div>
         <!-- education info edit modal -->
@@ -295,7 +310,13 @@
                 data-target="#edit-experience-modal"
               ></span>
             </h5>
-            <p class="card-text">{{ user.experience }}</p>
+            <div class="card-text list" *ngFor="let exp of experience">
+              <div class="row">
+                <div class="col">{{ exp.company }}</div>
+                <div class="col">{{ exp.position }}</div>
+                <div class="col-3">{{ exp.yearStart }} - {{ exp.yearEnd }}</div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
