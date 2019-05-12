@@ -52,7 +52,7 @@ export class UserService {
   }
 
   getUser(): Observable<any> {
-    this.id = localStorage.getItem("token");
+    //this.id = 
     return this.http.get<FullUser>(userUrl + this.id, {
       headers: httpheaders
     });
@@ -73,7 +73,7 @@ export class UserService {
   }
 
   deleteUser(): Observable<any> {
-    this.id = localStorage.getItem("token");
+    //this.id = 
     return this.http.delete<LoginUser>(userUrl + this.id, {
       headers: httpheaders
     });
