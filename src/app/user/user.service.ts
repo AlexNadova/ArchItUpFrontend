@@ -1,8 +1,9 @@
 import { Injectable } from "@angular/core";
 import { NgForm } from "@angular/forms";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
-import { User, FullUser, LoginUser } from "../models/user";
-import { Observable } from "rxjs";
+import { User } from "../models/user";
+import { Observable, BehaviorSubject } from "rxjs";
+import { map } from "rxjs/operators";
 
 const httpheaders = new HttpHeaders({
   "Content-Type": "application/json"
@@ -16,9 +17,18 @@ const registerUrl = "http://localhost:4000/api/user/signup";
   providedIn: "root"
 })
 export class UserService {
-  constructor(private http: HttpClient) {}
+  private currentUserSubject: BehaviorSubject<User>;
+  public currentUser: Observable<User>;
+
+  constructor(private http: HttpClient) {
+    this.currentUserSubject = new BehaviorSubject<User>(
+      JSON.parse(localStorage.getItem("currentUser"))
+    );
+    this.currentUser = this.currentUserSubject.asObservable();
+  }
   id: String;
   user = {
+    id: "",
     firstName: "",
     lastName: "",
     email: "",
@@ -33,6 +43,7 @@ export class UserService {
 
   register(form: NgForm) {
     this.user = {
+      id: "",
       firstName: form.value.first_name,
       lastName: form.value.last_name,
       email: form.value.email,
@@ -52,8 +63,9 @@ export class UserService {
   }
 
   getUser(): Observable<any> {
-    //this.id = 
-    return this.http.get<FullUser>(userUrl + this.id, {
+    this.id = this.currentUserSubject.value._id;
+    //console.log(this.id);
+    return this.http.get<User>(userUrl + "5cd7393868b4e90a3c1318a7", {
       headers: httpheaders
     });
   }
@@ -63,18 +75,37 @@ export class UserService {
       email: form.value.email,
       password: form.value.password
     };
-    return this.http.post<LoginUser>(loginUrl, JSON.stringify(this.loginUser), {
-      headers: httpheaders
-    });
+    return this.http
+      .post<any>(loginUrl, JSON.stringify(this.loginUser), {
+        headers: httpheaders
+      })
+      .pipe(
+        map(user => {
+          // login successful if there's a jwt token in the response
+          if (user && user.token) {
+            // store user details and jwt token in local storage to keep user logged in between page refreshes
+            localStorage.setItem("currentUser", JSON.stringify(user));
+            this.currentUserSubject.next(user);
+          }
+
+          return user;
+        })
+      );
+  }
+
+  public get currentUserValue() {
+    return this.currentUserSubject.value;
   }
 
   logout() {
+    localStorage.removeItem("currentUser");
     localStorage.removeItem("token");
+    this.currentUserSubject.next(null);
   }
 
   deleteUser(): Observable<any> {
-    //this.id = 
-    return this.http.delete<LoginUser>(userUrl + this.id, {
+    //this.id =
+    return this.http.delete<User>(userUrl + "5cd2b7e252528710788d7020", {
       headers: httpheaders
     });
   }
