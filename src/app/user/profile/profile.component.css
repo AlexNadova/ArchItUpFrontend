@@ -9,14 +9,14 @@
   background-color: rgb(40, 90, 255);
   height: 190px;
 }
-#profile-header-bottom{
+#profile-header-bottom {
   height: 110px;
 }
 
 /* header content */
 .space {
   -ms-flex: 0 0 240px;
-    flex: 0 0 240px;
+  flex: 0 0 240px;
 }
 .header-text {
   text-align: left;
@@ -25,17 +25,38 @@
 .options {
   text-align: right;
 }
-.job{
+.job {
   position: relative; /*doesn't expand class but shows over it*/
 }
-#profile_options{
+#profile_options {
   position: absolute; /*doesn't expand class but shows over it*/
-  right:0;
+  right: 0;
+  margin-top: 3 px;
   z-index: 1; /*shows pn top*/
 }
+#edit-header {
+  margin-right: 6px;
+}
+#title {
+  position: relative;
+}
+#edit,
+#add {
+  right: 3px;
+  position: absolute;
+}
+.fas {
+  font-size: 17px;
+}
+.clickable {
+  cursor: pointer;
+}
+#delete-modal-footer {
+  text-align: center;
+}
 
-h4{
-    font-size: 18px;
+h4 {
+  font-size: 18px;
 }
 
 /* Profile picture */
