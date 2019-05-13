@@ -49,7 +49,6 @@ export class ProfileComponent implements OnInit {
         return obj2.yearEnd - obj1.yearEnd;
       });
     });
-    this.notifier.notify( 'success', 'You are awesome! I mean it!' );
   }
 
   deleteUser() {
@@ -59,7 +58,12 @@ export class ProfileComponent implements OnInit {
     });
     this.userService.logout();
     this.router.navigate(["login"]);
+    this.notifier.notify( 'success', 'User successfully deleted.' );
   }
+
+getCurrentYear():number{
+  return new Date().getFullYear();
+}
 
   ngOnInit() {
     this.footer.hide();
