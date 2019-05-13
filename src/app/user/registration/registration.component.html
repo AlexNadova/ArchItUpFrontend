@@ -123,6 +123,7 @@
                 required
                 ngModel
                 name="email"
+                pattern="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?"
                 #email="ngModel"
                 placeholder="Email"
               />
@@ -130,7 +131,7 @@
                 [hidden]="email.valid || email.untouched"
                 class="alert alert-danger"
               >
-                Field is required
+                Field is required. Email must be in correct form. (e.g.: mail@website.com)
               </div>
             </div>
           </div>
