@@ -1,8 +1,10 @@
+import { Injector } from "@angular/core";
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { UserService } from "../user.service";
 import { User, Education, Experience } from "src/app/models/user";
 import { FooterService } from "src/app/footer/footer.service";
+import { NotifierService } from 'angular-notifier';
 
 @Component({
   selector: "app-profile",
@@ -10,7 +12,7 @@ import { FooterService } from "src/app/footer/footer.service";
   styleUrls: ["./profile.component.css"]
 })
 export class ProfileComponent implements OnInit {
-  user: User={
+  user: User = {
     _id: "",
     firstName: "",
     lastName: "",
@@ -20,18 +22,23 @@ export class ProfileComponent implements OnInit {
     country: "",
     city: "",
     //permissionLevel: { type: Number, default: config.permissionLevels.REG_USER },
-     fieldOfFocus: "",
-     education: []=[],
-     workExperience: []=[]
+    fieldOfFocus: "",
+    education: [] = [],
+    workExperience: [] = []
   };
   currentUser;
-  education: Education[]=[];
-  experience: Experience[]=[];
+  education: Education[] = [];
+  experience: Experience[] = [];
+  private readonly notifier: NotifierService;
   constructor(
     private userService: UserService,
     private footer: FooterService,
-    private router: Router
-  ) {}
+    private router: Router,
+    private injector: Injector,
+    notifierService: NotifierService
+  ) {
+    this.notifier = notifierService;
+  }
 
   getUserProfile() {
     this.userService.getUser().subscribe((data: User) => {
@@ -42,6 +49,7 @@ export class ProfileComponent implements OnInit {
         return obj2.yearEnd - obj1.yearEnd;
       });
     });
+    this.notifier.notify( 'success', 'You are awesome! I mean it!' );
   }
 
   deleteUser() {
