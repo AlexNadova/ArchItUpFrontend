@@ -23,6 +23,10 @@ export class LoginComponent implements OnInit {
     this.nav.show();
     this.footer.show();
   }
+  hideAll() {
+    this.nav.hide();
+    this.footer.hide();
+  }
 
   OnSubmit(form: NgForm) {
     this.userService.login(form).subscribe(
@@ -33,6 +37,16 @@ export class LoginComponent implements OnInit {
       },
       err => console.log(err)
     );
+  }
+  navigateTo(){
+
+    if (this.router.url==="profile"){
+      this.showAll();
+    }
+    else{
+      this.router.navigate(["login"]);
+      this.hideAll();
+    }
   }
   ngOnInit() {
     this.nav.hide();
