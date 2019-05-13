@@ -4,12 +4,10 @@ import { Routes, RouterModule } from "@angular/router";
 import { RegistrationComponent } from "./user/registration/registration.component";
 import { ProfileComponent } from "./user/profile/profile.component";
 import { HomePageComponent } from "./home-page/home-page.component";
-import { AuthGuard } from "./authentication/auth-guard";
+import { AuthGuard, NotAuth } from "./authentication/auth-guard";
 import { AboutUsPageComponent } from "./about-us-page/about-us-page.component";
 import { HowToUsePageComponent } from "./how-to-use-page/how-to-use-page.component";
 import { LoginComponent } from "./user/login/login.component";
-import { AdminComponent } from "./user/admin/admin.component";
-import { Role } from "./models/role";
 //define routes
 const routes: Routes = [
   {
@@ -28,6 +26,7 @@ const routes: Routes = [
   {
     path: "register", // e.g.: architup.sk/register
     component: RegistrationComponent, //component for path
+    canActivate:[NotAuth],
     data: {
       title: "Registration"
     }
@@ -58,6 +57,7 @@ const routes: Routes = [
   {
     path: "login",
     component: LoginComponent,
+    canActivate:[NotAuth],
     data: {
       title: "Login"
     }

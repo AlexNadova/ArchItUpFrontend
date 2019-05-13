@@ -20,7 +20,7 @@ import { HowToUsePageComponent } from "./how-to-use-page/how-to-use-page.compone
 import { AdminComponent } from "./user/admin/admin.component";
 
 import { TokenInterceptorService } from "./authentication/token-interceptor.service";
-import { AuthGuard } from "./authentication/auth-guard";
+import { AuthGuard, NotAuth } from "./authentication/auth-guard";
 import { UserService } from "./user/user.service";
 import { AuthenticationService } from "./authentication/authentication.service";
 import { NotifierModule } from "angular-notifier";
@@ -47,6 +47,7 @@ import { NotifierModule } from "angular-notifier";
   ],
   providers: [
     AuthGuard,
+    NotAuth,
     AuthenticationService,
     UserService,
     {
