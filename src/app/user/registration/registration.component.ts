@@ -5,7 +5,7 @@ import { NgForm } from "@angular/forms";
 import { NavigationBarService } from "src/app/navigation-bar/navigation-bar.service";
 import { FooterService } from "src/app/footer/footer.service";
 import { Router } from "@angular/router";
-import { NotifierService } from 'angular-notifier';
+import { NotifierService } from "angular-notifier";
 
 //The @Component selector value of "app-registration" means you can drop this form in a parent template with a <app-registration> tag.
 @Component({
@@ -18,20 +18,24 @@ export class RegistrationComponent implements OnInit {
 
   constructor(
     private userService: UserService,
-    public router: Router,
     private nav: NavigationBarService,
     private footer: FooterService,
-    notifierService: NotifierService
-  ) {
-    this.notifier = notifierService;
-  }
+    public router: Router,
+    private notifierService: NotifierService
+  ) {}
 
   onSubmit(form: NgForm) {
-    this.userService.register(form);
-    this.notifier.notify( 'success', 'User successfully registered.' );
+    console.log(form);
+    this.userService.register(form).subscribe(
+      res => {
+        this.router.navigate(["/login"]);
+        this.notifier.notify("success", "User successfully registered.");
+      },
+      err => this.notifier.notify("error", "Error occured: " + err.message)
+    );
   }
 
-//used when you click on Login button after registration is done. 
+  //used when you click on Login button after registration is done.
   showAll() {
     this.nav.show();
     this.footer.show();

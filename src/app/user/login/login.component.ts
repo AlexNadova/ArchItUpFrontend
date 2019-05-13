@@ -4,6 +4,7 @@ import { NavigationBarService } from "src/app/navigation-bar/navigation-bar.serv
 import { FooterService } from "src/app/footer/footer.service";
 import { NgForm } from "@angular/forms";
 import { UserService } from "../user.service";
+import { NotifierService } from "angular-notifier";
 
 @Component({
   selector: "app-login",
@@ -12,13 +13,17 @@ import { UserService } from "../user.service";
 })
 export class LoginComponent implements OnInit {
   userForm: NgForm;
+  private readonly notifier: NotifierService;
 
   constructor(
     private userService: UserService,
-     public router: Router,
+    public router: Router,
     private nav: NavigationBarService,
-    private footer: FooterService
-  ) {}
+    private footer: FooterService,
+    private notifierService: NotifierService
+  ) {
+    this.notifier = notifierService;
+  }
   showAll() {
     this.nav.show();
     this.footer.show();
@@ -33,17 +38,17 @@ export class LoginComponent implements OnInit {
       res => {
         localStorage.setItem("_id", res.id);
         localStorage.setItem("token", res.token);
-        this.router.navigate(["profile"]);
+        this.router.navigate(["/profile"]);
+        this.showAll();
+        this.notifier.notify("success", "User successfully logged.");
       },
-      err => console.log(err)
+      err => this.notifier.notify("error", "Error occured: " + err.message)
     );
   }
-  navigateTo(){
-
-    if (this.router.url==="profile"){
+  navigateTo() {
+    if (this.router.url === "profile") {
       this.showAll();
-    }
-    else{
+    } else {
       this.router.navigate(["login"]);
       this.hideAll();
     }
