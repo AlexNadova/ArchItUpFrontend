@@ -8,7 +8,6 @@ import { AuthGuard } from "./authentication/auth-guard";
 import { AboutUsPageComponent } from "./about-us-page/about-us-page.component";
 import { HowToUsePageComponent } from "./how-to-use-page/how-to-use-page.component";
 import { LoginComponent } from "./user/login/login.component";
-import { ErrorsComponent } from "./errors/errors/errors.component";
 import { AdminComponent } from "./user/admin/admin.component";
 import { Role } from "./models/role";
 //define routes
@@ -63,13 +62,13 @@ const routes: Routes = [
       title: "Login"
     }
   },
-  {
-    path: "error",
-    component: ErrorsComponent,
-    data: {
-      title: "Error"
-    }
-  },
+  // {
+  //   path: "error",
+  //   component: ErrorsComponent,
+  //   data: {
+  //     title: "Error"
+  //   }
+  // },
   // { //this could be used for admin access (e.g. reports)
   //   path: 'admin',
   //   component: AdminComponent,
@@ -82,11 +81,11 @@ const routes: Routes = [
   //   }
   //  },
   // otherwise redirect to home
-  {
-    path: "**",
-    component: ErrorsComponent,
-    data: { error: 404 }
-  }
+  // {
+  //   path: "**",
+  //   component: ErrorsComponent,
+  //   data: { error: 404 }
+  // }
 ];
 
 @NgModule({
