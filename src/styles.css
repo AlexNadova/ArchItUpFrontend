@@ -6,6 +6,9 @@ body {
   min-width: 900px;
   font-size: 14px;
 }
+p {
+  line-height: 80%;
+}
 
 /* footer is always on the bottom */
 app-footer {
