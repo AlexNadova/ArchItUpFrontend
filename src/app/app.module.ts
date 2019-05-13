@@ -23,6 +23,7 @@ import { TokenInterceptorService } from "./authentication/token-interceptor.serv
 import { AuthGuard } from "./authentication/auth-guard";
 import { UserService } from "./user/user.service";
 import { AuthenticationService } from "./authentication/authentication.service";
+import { NotifierModule } from "angular-notifier";
 
 @NgModule({
   declarations: [
@@ -37,7 +38,13 @@ import { AuthenticationService } from "./authentication/authentication.service";
     LoginComponent,
     AdminComponent
   ],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule,
+    NotifierModule
+  ],
   providers: [
     AuthGuard,
     AuthenticationService,
