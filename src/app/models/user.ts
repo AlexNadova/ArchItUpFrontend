@@ -8,8 +8,7 @@ export class User {
     public phone: string,
     //public date_of_birth: Date, //??
     public country: String,
-    public city: { type: String },
-    //permissionLevel: { type: Number, default: config.permissionLevels.REG_USER },
+    public city: String,
     public fieldOfFocus: String,
     public education: Array<Education>,
     public workExperience: Array<Experience>
