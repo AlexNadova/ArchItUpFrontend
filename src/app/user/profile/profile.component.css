@@ -4,9 +4,10 @@
 /*header has fixed height*/
 #profile-header {
   height: 300px;
+  background-color: rgb(43, 33, 12);
 }
 #profile-header-top {
-  background-color: rgb(40, 90, 255);
+  background-color: rgb(196, 153, 88);
   height: 190px;
 }
 #profile-header-bottom {
@@ -26,13 +27,15 @@
   text-align: right;
 }
 .job {
-  position: relative; /*doesn't expand class but shows over it*/
+  position: absolute; /*doesn't expand container but shows over it*/
+  bottom: 0;
+  right: 16px;
 }
 .name {
   font-size: 17px;
 }
 #profile_options {
-  position: absolute; /*doesn't expand class but shows over it*/
+  position: absolute; /*doesn't expand container but shows over it*/
   right: 0;
   margin-top: 3 px;
   z-index: 1; /*shows pn top*/
@@ -79,8 +82,4 @@ img {
 /* content container */
 .container-fluid {
   margin-top: 2%;
-}
-.list,
-.job {
-  line-height: 130%;
 }
