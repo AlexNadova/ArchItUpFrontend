@@ -6,8 +6,7 @@
     <div class="register-header">
       <h1>Registration</h1>
     </div>
-    <!-- Wrap the form in a <div> and bind its hidden property to the UserFormComponent.submitted property -->
-    <div class="container" [hidden]="submitted">
+    <div class="container">
       <!--Declare a template variable for the form. The variable userForm is now a reference to the NgForm 
       directive that governs the form as a whole (Angular automatically creates and attaches an NgForm 
       directive to the <form> tag). The NgForm directive supplements the form element with additional features. 
@@ -159,7 +158,6 @@
         <div class="row justify-content-center">
           <div class="col">
             <!-- [disabled]...: button is disabled if some fields are invalid -->
-            <!-- When you click the Submit button, the submitted flag becomes true and the form disappears. (submitted property from ts file) -->
             <button
               type="submit"
               class="btn btn-primary btn-block"
@@ -184,20 +182,6 @@
           </div>
         </div>
       </div>
-    </div>
-    <div [hidden]="!submitted">
-      <div class="row justify-content-center">
-        <div class="col">
-          User has been registered. We sent you confirmation email.
-        </div>
-      </div>
-      <br />
-      <button
-        class="btn btn-primary"
-        (click)="router.navigate(['/login']); showAll()"
-      >
-        Login
-      </button>
     </div>
   </div>
 </div>

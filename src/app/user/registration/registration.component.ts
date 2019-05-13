@@ -13,8 +13,6 @@ import { Router } from "@angular/router";
   styleUrls: ["./registration.component.css"]
 })
 export class RegistrationComponent implements OnInit {
-  //when form is submitted hide it
-  submitted = false;
 
   constructor(
     private userService: UserService,
@@ -24,8 +22,8 @@ export class RegistrationComponent implements OnInit {
   ) {}
 
   onSubmit(form: NgForm) {
-    this.submitted = true;
     this.userService.register(form);
+
   }
 
 //used when you click on Login button after registration is done. 
