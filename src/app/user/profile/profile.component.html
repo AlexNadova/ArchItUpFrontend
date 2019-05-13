@@ -14,8 +14,8 @@
         <div class="col space"></div>
         <div class="col header-text">
           <h3 class="name">{{ user.firstName }} {{ user.lastName }}</h3>
-          <p class="field-of-focus">{{ user.fieldOfFocus }}</p>
-          <p class="address">{{ user.country }}, {{ user.city }}</p>
+          <p class="field-of-focus" *ngIf="user.country!=undefined">{{ user.fieldOfFocus }}</p>
+          <p class="address" *ngIf="user.country!=undefined && user.city!=undefined">{{ user.country }}, {{ user.city }}</p>
         </div>
         <!-- profile pic in cycle -->
         <div class="col options">
@@ -53,7 +53,8 @@
             </div>
           </div>
           <div>
-            <p class="job" *ngIf="experience.length > 0">
+            <!--show if  user has some experience and latest year is current year -->
+            <p class="job" *ngIf="experience.length > 0 && experience[0].yearEnd===getCurrentYear()">
               {{ experience[0].company }}
             </p>
           </div>
@@ -247,7 +248,7 @@
               ></span>
             </h5>
             <div class="card-text" *ngFor="let edu of education">
-              <div class="row">
+              <div class="row" *ngIf="education.length > 0">
                 <p class="col">{{ edu.school }}</p>
                 <p class="col">{{ edu.specialization }}</p>
                 <p class="col-3">{{ edu.yearStart }} - {{ edu.yearEnd }}</p>
@@ -310,7 +311,7 @@
               ></span>
             </h5>
             <div class="card-text" *ngFor="let exp of experience">
-              <div class="row">
+              <div class="row" *ngIf="education.length > 0">
                 <p class="col">{{ exp.company }}</p>
                 <p class="col">{{ exp.position }}</p>
                 <p class="col-3">{{ exp.yearStart }} - {{ exp.yearEnd }}</p>
