@@ -13,7 +13,7 @@
       <div class="row">
         <div class="col space"></div>
         <div class="col header-text">
-          <h3 class="name">{{ user.firstName }} {{ user.lastName }}</h3>
+          <p class="name"><strong>{{ user.firstName }} {{ user.lastName }}</strong></p>
           <p class="field-of-focus" *ngIf="user.country!=undefined">{{ user.fieldOfFocus }}</p>
           <p class="address" *ngIf="user.country!=undefined && user.city!=undefined">{{ user.country }}, {{ user.city }}</p>
         </div>
