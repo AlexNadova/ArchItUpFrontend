@@ -162,8 +162,18 @@
               type="submit"
               class="btn btn-primary btn-block"
               [disabled]="!userForm.form.valid"
+              (click)="router.navigate(['/login'])"
             >
               Sign in
+            </button>
+          </div>
+          <div class="col">
+            <button
+              type="button"
+              class="btn btn-danger btn-block"
+              (click)="router.navigate(['/home']); showAll()"
+            >
+              Cancel
             </button>
           </div>
         </div>
