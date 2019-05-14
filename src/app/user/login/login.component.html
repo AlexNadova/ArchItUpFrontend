@@ -23,16 +23,6 @@
                 #email="ngModel"
                 placeholder="Email"
               />
-              <!--
-              <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
-                  <div *ngIf="f.email.errors.required">Email is required</div>
-              </div>-->
-              <div
-                [hidden]="email.valid || email.untouched"
-                class="alert alert-danger"
-              >
-                Field is required
-              </div>
             </div>
           </div>
         </div>
@@ -49,14 +39,6 @@
                 #password="ngModel"
                 placeholder="Password"
               />
-              <div
-                [hidden]="password.valid || password.untouched"
-                class="alert alert-danger"
-              >
-                Field is required. Password must contain at least 8 characters,
-                one lowercase letter, one uppercase letter and number. (e.g.
-                PassWord7)
-              </div>
             </div>
           </div>
         </div>
