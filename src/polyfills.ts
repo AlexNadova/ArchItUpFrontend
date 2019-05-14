@@ -1,3 +1,5 @@
+/*imports scripts required for running angular, because A uses features of js that are not available in current vs of js 
+  supported by most browsers*/
 /**
  * This file includes polyfills needed by Angular and is loaded before the app.
  * You can add your own extra polyfills to this file.

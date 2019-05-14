@@ -1,3 +1,13 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div class="container-fluid">
-<router-outlet></router-outlet>
+<!-- this is to make it responsive to your screen width -->
+<div class="container">
+  <div class="navbar-container">
+    <app-navigation-bar></app-navigation-bar>
+  </div>
+  <div class="content-container">
+    <notifier-container></notifier-container>
+    <router-outlet></router-outlet>
+  </div>
+  <div class="footer-container">
+    <app-footer></app-footer>
+  </div>
+</div>
