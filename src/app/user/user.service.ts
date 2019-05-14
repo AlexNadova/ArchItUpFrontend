@@ -39,9 +39,13 @@ export class UserService {
       password: form.value.password,
       phone: form.value.phone
     };
-    return this.http.post<User>(registerUrl, JSON.stringify(this.registerUser), {
-      headers: httpheaders
-    });
+    return this.http.post<User>(
+      registerUrl,
+      JSON.stringify(this.registerUser),
+      {
+        headers: httpheaders
+      }
+    );
   }
 
   getUser(): Observable<any> {
@@ -76,12 +80,8 @@ export class UserService {
   updateUser(user): Observable<any> {
     console.log(JSON.stringify(user));
     this.id = localStorage.getItem("_id");
-    return this.http.patch<User>(
-      userUrl + this.id,
-      JSON.stringify(user),
-      {
-        headers: httpheaders
-      }
-    );
+    return this.http.patch<User>(userUrl + this.id, JSON.stringify(user), {
+      headers: httpheaders
+    });
   }
 }
