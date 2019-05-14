@@ -86,10 +86,10 @@
     aria-labelledby="edit-header-modal-label"
     aria-hidden="true"
   >
-    <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-dialog modal-dialog-centered invert-text" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLongTitle">
+          <h5 class="modal-title" id="modal-title">
             Edit header info
           </h5>
           <button
@@ -104,9 +104,9 @@
         <div class="modal-body">
           <div class="container">
             <form
-              class="user-form"
-              (ngSubmit)="updateHeader(userForm)"
-              #userForm="ngForm"
+              class="header-form"
+              (ngSubmit)="updateHeader(headerForm)"
+              #headerForm="ngForm"
             >
               <div class="row">
                 <div class="col">
@@ -115,15 +115,19 @@
                       type="text"
                       class="form-control"
                       id="firstName"
-                      ngModel
+                      [ngModel]="user.firstName"
                       name="firstName"
                       #firstName="ngModel"
-                      pattern="[a-zA-Z]{2,}"
-                      value="{{user.firstName}}"
+                      pattern="[a-zA-Z\s]{2,}"
+                      placeholder="First name"
                     />
                     <!-- for validation message. pristine means user hasn't changed value -->
                     <div
-                      [hidden]="firstName.valid || firstName.untouched|| firstName.pristine"
+                      [hidden]="
+                        firstName.valid ||
+                        firstName.untouched ||
+                        firstName.pristine
+                      "
                       class="alert alert-danger"
                     >
                       Name must contain 2 or more letters.
@@ -138,17 +142,21 @@
                       type="text"
                       class="form-control"
                       id="lastName"
-                      ngModel
+                      [ngModel]="user.lastName"
                       name="lastName"
                       #lastName="ngModel"
-                      pattern="[a-zA-Z]{2,}"
-                      value="{{user.lastName}}"
+                      pattern="[a-zA-Z\s]{2,}"
+                      placeholder="Last name"
                     />
                     <div
-                      [hidden]="lastName.valid || lastName.untouched || lastName.pristine"
+                      [hidden]="
+                        lastName.valid ||
+                        lastName.untouched ||
+                        lastName.pristine
+                      "
                       class="alert alert-danger"
                     >
-                      Field is required. Name must contain 2 or more letters.
+                      Name must contain 2 or more letters.
                     </div>
                   </div>
                 </div>
@@ -160,18 +168,21 @@
                       type="text"
                       class="form-control"
                       id="fieldOfFocus"
-                      ngModel
+                      [ngModel]="user.fieldOfFocus"
                       name="fieldOfFocus"
                       #fieldOfFocus="ngModel"
                       pattern="[a-zA-Z\s]{2,}"
-                      value="{{user.fieldOfFocus}}"
                       placeholder="Field of focus (e.g. architect, teacher)"
                     />
                     <div
-                      [hidden]="fieldOfFocus.valid || fieldOfFocus.untouched || fieldOfFocus.pristine"
+                      [hidden]="
+                        fieldOfFocus.valid ||
+                        fieldOfFocus.untouched ||
+                        fieldOfFocus.pristine
+                      "
                       class="alert alert-danger"
                     >
-                      Field is required. Words must contain 2 or more letters.
+                      Words must contain 2 or more letters.
                     </div>
                   </div>
                 </div>
@@ -183,18 +194,19 @@
                       type="text"
                       class="form-control"
                       id="country"
-                      ngModel
+                      [ngModel]="user.country"
                       name="country"
                       #country="ngModel"
                       pattern="[a-zA-Z\s]{4,}"
-                      value="{{user.country}}"
                       placeholder="Country"
                     />
                     <div
-                      [hidden]="country.valid || country.untouched|| country.pristine"
+                      [hidden]="
+                        country.valid || country.untouched || country.pristine
+                      "
                       class="alert alert-danger"
                     >
-                      Field is required. Country must contain 4 or more letters.
+                      Country must contain 4 or more letters.
                     </div>
                   </div>
                 </div>
@@ -206,31 +218,41 @@
                       type="text"
                       class="form-control"
                       id="city"
-                      ngModel
+                      [ngModel]="user.city"
                       name="city"
                       #city="ngModel"
                       pattern="[a-zA-Z\s]{4,}"
-                      value="{{user.city}}"
                       placeholder="City"
                     />
                     <div
-                      [hidden]="city.valid || city.untouched|| fieldOfFocus.pristine"
+                      [hidden]="
+                        city.valid || city.untouched || fieldOfFocus.pristine
+                      "
                       class="alert alert-danger"
                     >
-                      Field is required. City must contain 4 or more letters.
+                      City must contain 4 or more letters.
                     </div>
                   </div>
                 </div>
               </div>
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">
-                Close
-              </button>
-              <button type="submit" class="btn btn-primary" >Save changes</button>
+              <div class="row">
+                <div class="col">
+                  <button type="submit" class="btn btn-primary btn-block">
+                    Save
+                  </button>
+                </div>
+                <div class="col">
+                  <button
+                    type="button"
+                    class="btn btn-danger btn-block"
+                    data-dismiss="modal"
+                  >
+                    Cancel
+                  </button>
+                </div>
+              </div>
             </form>
           </div>
-        </div>
-        <div class="modal-footer">
-
         </div>
       </div>
     </div>
@@ -344,8 +366,8 @@
           <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">
-                  Modal title
+                <h5 class="modal-title" id="modal-title">
+                  Edit contact information
                 </h5>
                 <button
                   type="button"
@@ -357,19 +379,83 @@
                 </button>
               </div>
               <div class="modal-body">
-                Delete user
-              </div>
-              <div class="modal-footer">
-                <button
-                  type="button"
-                  class="btn btn-secondary"
-                  data-dismiss="modal"
-                >
-                  Close
-                </button>
-                <button type="button" class="btn btn-primary">
-                  Save changes
-                </button>
+                <div class="container">
+                  <form
+                    class="contact-form"
+                    (ngSubmit)="updateContact(contactForm)"
+                    #contactForm="ngForm"
+                  >
+                    <div class="row">
+                      <div class="col">
+                        <div class="form-group">
+                          <input
+                            type="text"
+                            class="form-control"
+                            id="email"
+                            [ngModel]="user.email"
+                            name="email"
+                            #email="ngModel"
+                            pattern="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?"
+                            placeholder="Email"
+                          />
+                          <!-- for validation message. pristine means user hasn't changed value -->
+                          <div
+                            [hidden]="
+                              email.valid || email.untouched || email.pristine
+                            "
+                            class="alert alert-danger"
+                          >
+                            Email must be in correct form. (e.g.:
+                            mail@website.com)
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col">
+                        <div class="form-group">
+                          <input
+                            type="text"
+                            class="form-control"
+                            id="phone"
+                            [ngModel]="user.phone"
+                            name="phone"
+                            #phone="ngModel"
+                            pattern="^[+]*[0-9]{1,4}[\s0-9]*$"
+                            placeholder="Phone number"
+                          />
+                          <div
+                            [hidden]="
+                              phone.valid ||
+                              phone.untouched ||
+                              phone.pristine
+                            "
+                            class="alert alert-danger"
+                          >
+                            Number must start with country prefix and space.
+                            (e.g. +421 918654953 for SK, +45 50256895 for DK)
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col">
+                        <button type="submit" class="btn btn-primary btn-block">
+                          Save
+                        </button>
+                      </div>
+                      <div class="col">
+                        <button
+                          type="button"
+                          class="btn btn-danger btn-block"
+                          data-dismiss="modal"
+                        >
+                          Cancel
+                        </button>
+                      </div>
+                    </div>
+                  </form>
+                </div>
               </div>
             </div>
           </div>

@@ -28,12 +28,16 @@ export class ProfileComponent implements OnInit {
   };
   headerInfo: [
     { propFirstName: "firstName"; value: "" },
-    { propFirstName: "lastName"; value: "" },
+    { propLastName: "lastName"; value: "" },
     { propCountry: "country"; value: "" },
     { propCity: "city"; value: "" }
     //{ propFieldOfFocus: "fieldOfFocus"; value: "" }
   ];
-  
+  contactInfo: [
+    { propPhone: "phone"; value: "" }
+    // { propEmail: "email"; value: "" }
+  ];
+
   currentUser;
   education: Education[] = [];
   experience: Experience[] = [];
@@ -82,39 +86,39 @@ export class ProfileComponent implements OnInit {
 
   updateHeader(form: NgForm) {
     console.log(this.user);
-    console.log(form.value.firstName);
-    this.headerInfo= [
+    console.log();
+    this.headerInfo = [
       {
         propFirstName: "firstName",
         value:
-          !form.value.firstName === undefined
+          form.value.firstName === undefined
             ? this.user.firstName
             : form.value.firstName
       },
       {
-        propFirstName: "lastName",
+        propLastName: "lastName",
         value:
-          !form.value.lastName === undefined
-            ? form.value.lastName
-            : this.user.lastName
+          form.value.lastName === undefined
+            ? this.user.lastName
+            : form.value.lastName
       },
       {
         propCountry: "country",
         value:
-          !form.value.country === undefined
-            ? form.value.country
-            : this.user.country
+          form.value.country === undefined
+            ? this.user.country
+            : form.value.country
       },
       {
         propCity: "city",
-        value: !form.value.city === undefined ? form.value.city : this.user.city
-      },
+        value: form.value.city === undefined ? this.user.city : form.value.city
+      }
       // {
       //   propFieldOfFocus: "fieldOfFocus",
       //   value:
-      //     !form.value.fieldOfFocus === undefined
-      //       ? form.value.firstName
-      //       : this.user.fieldOfFocus
+      //     form.value.fieldOfFocus === undefined
+      //       ? this.user.fieldOfFocus
+      //      : form.value.fieldOfFocus
       // }
     ];
     console.log(this.headerInfo);
@@ -123,6 +127,27 @@ export class ProfileComponent implements OnInit {
         this.notifier.notify(
           "success",
           "Your information was successfully updated"
+        );
+      },
+      err => this.notifier.notify("error", "Error occured: " + err.message)
+    );
+  }
+  updateContact(form: NgForm) {
+    this.contactInfo = [
+      {
+        propPhone: "phone",
+        value:form.value.phone
+      }
+      // {
+      //   propEmail: "email",
+      //   value:form.value.email
+      // }
+    ];
+    this.userService.updateUser(this.contactInfo).subscribe(
+      res => {
+        this.notifier.notify(
+          "success",
+          "Your contact information was successfully updated"
         );
       },
       err => this.notifier.notify("error", "Error occured: " + err.message)
