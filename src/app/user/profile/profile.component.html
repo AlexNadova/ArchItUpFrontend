@@ -13,9 +13,18 @@
       <div class="row">
         <div class="col space"></div>
         <div class="col header-text">
-          <p class="name"><strong>{{ user.firstName }} {{ user.lastName }}</strong></p>
-          <p class="field-of-focus" *ngIf="user.country!=undefined">{{ user.fieldOfFocus }}</p>
-          <p class="address" *ngIf="user.country!=undefined && user.city!=undefined">{{ user.country }}, {{ user.city }}</p>
+          <p class="name">
+            <strong>{{ user.firstName }} {{ user.lastName }}</strong>
+          </p>
+          <p class="field-of-focus" *ngIf="user.fieldOfFocus != undefined">
+            {{ user.fieldOfFocus }}
+          </p>
+          <p
+            class="address"
+            *ngIf="user.country != undefined && user.city != undefined"
+          >
+            {{ user.country }}, {{ user.city }}
+          </p>
         </div>
         <!-- profile pic in cycle -->
         <div class="col options">
@@ -54,7 +63,13 @@
           </div>
           <div>
             <!--show if  user has some experience and latest year is current year -->
-            <p class="job" *ngIf="experience.length > 0 && experience[0].yearEnd===getCurrentYear()">
+            <p
+              class="job"
+              *ngIf="
+                experience.length > 0 &&
+                experience[0].yearEnd === getCurrentYear()
+              "
+            >
               {{ experience[0].company }}
             </p>
           </div>
@@ -74,7 +89,9 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+          <h5 class="modal-title" id="exampleModalLongTitle">
+            Edit header info
+          </h5>
           <button
             type="button"
             class="close"
@@ -85,13 +102,135 @@
           </button>
         </div>
         <div class="modal-body">
-          Header info edit
+          <div class="container">
+            <form
+              class="user-form"
+              (ngSubmit)="updateHeader(userForm)"
+              #userForm="ngForm"
+            >
+              <div class="row">
+                <div class="col">
+                  <div class="form-group">
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="firstName"
+                      ngModel
+                      name="firstName"
+                      #firstName="ngModel"
+                      pattern="[a-zA-Z]{2,}"
+                      value="{{user.firstName}}"
+                    />
+                    <!-- for validation message. pristine means user hasn't changed value -->
+                    <div
+                      [hidden]="firstName.valid || firstName.untouched|| firstName.pristine"
+                      class="alert alert-danger"
+                    >
+                      Name must contain 2 or more letters.
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col">
+                  <div class="form-group">
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="lastName"
+                      ngModel
+                      name="lastName"
+                      #lastName="ngModel"
+                      pattern="[a-zA-Z]{2,}"
+                      value="{{user.lastName}}"
+                    />
+                    <div
+                      [hidden]="lastName.valid || lastName.untouched || lastName.pristine"
+                      class="alert alert-danger"
+                    >
+                      Field is required. Name must contain 2 or more letters.
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col">
+                  <div class="form-group">
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="fieldOfFocus"
+                      ngModel
+                      name="fieldOfFocus"
+                      #fieldOfFocus="ngModel"
+                      pattern="[a-zA-Z\s]{2,}"
+                      value="{{user.fieldOfFocus}}"
+                      placeholder="Field of focus (e.g. architect, teacher)"
+                    />
+                    <div
+                      [hidden]="fieldOfFocus.valid || fieldOfFocus.untouched || fieldOfFocus.pristine"
+                      class="alert alert-danger"
+                    >
+                      Field is required. Words must contain 2 or more letters.
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col">
+                  <div class="form-group">
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="country"
+                      ngModel
+                      name="country"
+                      #country="ngModel"
+                      pattern="[a-zA-Z\s]{4,}"
+                      value="{{user.country}}"
+                      placeholder="Country"
+                    />
+                    <div
+                      [hidden]="country.valid || country.untouched|| country.pristine"
+                      class="alert alert-danger"
+                    >
+                      Field is required. Country must contain 4 or more letters.
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col">
+                  <div class="form-group">
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="city"
+                      ngModel
+                      name="city"
+                      #city="ngModel"
+                      pattern="[a-zA-Z\s]{4,}"
+                      value="{{user.city}}"
+                      placeholder="City"
+                    />
+                    <div
+                      [hidden]="city.valid || city.untouched|| fieldOfFocus.pristine"
+                      class="alert alert-danger"
+                    >
+                      Field is required. City must contain 4 or more letters.
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                Close
+              </button>
+              <button type="submit" class="btn btn-primary" >Save changes</button>
+            </form>
+          </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">
-            Close
-          </button>
-          <button type="button" class="btn btn-primary">Save changes</button>
+
         </div>
       </div>
     </div>
