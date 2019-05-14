@@ -34,6 +34,7 @@
                 ngModel
                 name="first_name"
                 #fname="ngModel"
+                pattern="[a-zA-Z]{2,}"
                 placeholder="First name"
               />
               <!-- for validation message. pristine means user hasn't changed value -->
@@ -41,7 +42,7 @@
                 [hidden]="fname.valid || fname.untouched"
                 class="alert alert-danger"
               >
-                Field is required
+                Field is required. Name must contain 2 or more letters.
               </div>
             </div>
           </div>
@@ -55,13 +56,14 @@
                 ngModel
                 name="last_name"
                 #lname="ngModel"
+                pattern="[a-zA-Z]{2,}"
                 placeholder="Last name"
               />
               <div
                 [hidden]="lname.valid || lname.untouched"
                 class="alert alert-danger"
               >
-                Field is required
+                Field is required. Name must contain 2 or more letters.
               </div>
             </div>
           </div>
@@ -144,6 +146,7 @@
                 required
                 ngModel
                 name="phone"
+                pattern="^[+]*[0-9]{1,4}[\s0-9]*$"
                 #phone="ngModel"
                 placeholder="Phone number"
               />
@@ -151,7 +154,7 @@
                 [hidden]="phone.valid || phone.untouched"
                 class="alert alert-danger"
               >
-                Field is required
+                Field is required. Number must start with country prefix and space. (e.g. +421 918654953 for SK, +45 50256895 for DK)
               </div>
             </div>
           </div>
