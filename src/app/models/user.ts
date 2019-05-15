@@ -8,18 +8,18 @@ export class User {
     public email: string,
     public phone: string,
     //public date_of_birth: Date, //??
-    public country: String,
-    public city: String,
-    public fieldOfFocus: String,
+    public country: string,
+    public city: string,
+    public fieldOfFocus: Array<string>,
     public education: Array<Education>,
     public workExperience: Array<Experience>
-  ) //public description: String //??
+  ) //public description: string //??
   {}
 }
 export class Education {
   constructor(
     public _id: string,
-    public school: String,
+    public school: string,
     public specialisation: string,
     public yearStart: number,
     public yearEnd: number
@@ -28,7 +28,7 @@ export class Education {
 export class Experience {
   constructor(
     public _id: string,
-    public company: String,
+    public company: string,
     public position: string,
     public yearStart: number,
     public yearEnd: number
