@@ -16,7 +16,7 @@
           <p class="name">
             <strong>{{ user.firstName }} {{ user.lastName }}</strong>
           </p>
-          <p class="field-of-focus" *ngIf="user.fieldOfFocus != undefined">
+          <p class="field-of-focus" *ngIf="user.fieldOfFocus.length > 0">
             {{ user.fieldOfFocus }}
           </p>
           <p
@@ -41,12 +41,13 @@
               data-target="#profile_options"
               class="fas fa-cog clickable"
             ></span>
-            <div id="profile_options" class="collapse card">
+            <div id="profile_options" class="collapse card invert-text">
               <ul class="list-group list-group-flush">
                 <li
                   class="list-group-item clickable"
                   data-toggle="modal"
                   data-target="#privacy-setting-model"
+                  onclick="$('#profile_options').toggle('hide')"
                 >
                   Privacy settings
                 </li>
@@ -55,6 +56,7 @@
                   class="list-group-item clickable"
                   data-toggle="modal"
                   data-target="#delete-user-model"
+                  onclick="$('#profile_options').toggle('hide')"
                 >
                   Delete account
                 </li>
@@ -66,11 +68,11 @@
             <p
               class="job"
               *ngIf="
-                experience.length > 0 &&
-                experience[0].yearEnd === getCurrentYear()
+                user.workExperience.length > 0 &&
+                user.workExperience[0].yearEnd === getCurrentYear()
               "
             >
-              {{ experience[0].company }}
+              {{ user.workExperience[0].company }}
             </p>
           </div>
         </div>
@@ -107,6 +109,7 @@
               class="header-form"
               (ngSubmit)="updateHeader(headerForm)"
               #headerForm="ngForm"
+              [ngFormOptions]="{ updateOn: 'submit' }"
             >
               <div class="row">
                 <div class="col">
@@ -115,7 +118,7 @@
                       type="text"
                       class="form-control"
                       id="firstName"
-                      [ngModel]="user.firstName"
+                      [(ngModel)]="user.firstName"
                       name="firstName"
                       #firstName="ngModel"
                       pattern="[a-zA-Z\s]{2,}"
@@ -142,7 +145,7 @@
                       type="text"
                       class="form-control"
                       id="lastName"
-                      [ngModel]="user.lastName"
+                      [(ngModel)]="user.lastName"
                       name="lastName"
                       #lastName="ngModel"
                       pattern="[a-zA-Z\s]{2,}"
@@ -161,18 +164,21 @@
                   </div>
                 </div>
               </div>
-              <div class="row">
+              <hr />
+              <h5>Fields of focus (e.g. architect, designer)</h5>
+
+              <div class="row" *ngFor="let field of fields; let i = index">
                 <div class="col">
                   <div class="form-group">
                     <input
                       type="text"
                       class="form-control"
-                      id="fieldOfFocus"
-                      [ngModel]="user.fieldOfFocus"
-                      name="fieldOfFocus"
+                      id="field"
+                      [(ngModel)]="fields[i]"
+                      name="fieldOfFocus_{{ i }}"
                       #fieldOfFocus="ngModel"
                       pattern="[a-zA-Z\s]{2,}"
-                      placeholder="Field of focus (e.g. architect, teacher)"
+                      placeholder="Field of focus"
                     />
                     <div
                       [hidden]="
@@ -187,6 +193,29 @@
                   </div>
                 </div>
               </div>
+              <div class="row justify-content-around">
+                <div class="col-4">
+                  <button
+                    class="btn btn-block btn-outline-primary btn-sm"
+                    id="add-btn"
+                    type="button"
+                    (click)="addFields(fields)"
+                  >
+                    Add
+                  </button>
+                </div>
+                <div class="col-4">
+                  <button
+                    class="btn btn-block btn-outline-danger btn-sm"
+                    id="add-btn"
+                    type="button"
+                    (click)="removeFields(fields)"
+                  >
+                    Remove last
+                  </button>
+                </div>
+              </div>
+              <hr />
               <div class="row">
                 <div class="col">
                   <div class="form-group">
@@ -194,7 +223,7 @@
                       type="text"
                       class="form-control"
                       id="country"
-                      [ngModel]="user.country"
+                      [(ngModel)]="user.country"
                       name="country"
                       #country="ngModel"
                       pattern="[a-zA-Z\s]{4,}"
@@ -218,16 +247,14 @@
                       type="text"
                       class="form-control"
                       id="city"
-                      [ngModel]="user.city"
+                      [(ngModel)]="user.city"
                       name="city"
                       #city="ngModel"
                       pattern="[a-zA-Z\s]{4,}"
                       placeholder="City"
                     />
                     <div
-                      [hidden]="
-                        city.valid || city.untouched || fieldOfFocus.pristine
-                      "
+                      [hidden]="city.valid || city.untouched || city.pristine"
                       class="alert alert-danger"
                     >
                       City must contain 4 or more letters.
@@ -237,7 +264,11 @@
               </div>
               <div class="row">
                 <div class="col">
-                  <button type="submit" class="btn btn-primary btn-block">
+                  <button
+                    type="submit"
+                    class="btn btn-primary btn-block"
+                    onclick="$('.modal').modal('hide')"
+                  >
                     Save
                   </button>
                 </div>
@@ -304,7 +335,7 @@
   <!-- privacy settings modal -->
   <div
     class="modal fade"
-    id="privacy-settings-model"
+    id="privacy-setting-model"
     tabindex="-1"
     role="dialog"
     aria-labelledby="edit-header-modal-label"
@@ -360,7 +391,7 @@
           id="edit-contact-modal"
           tabindex="-1"
           role="dialog"
-          aria-labelledby="edit-header-modal-label"
+          aria-labelledby="edit-contact-modal-label"
           aria-hidden="true"
         >
           <div class="modal-dialog modal-dialog-centered" role="document">
@@ -384,6 +415,7 @@
                     class="contact-form"
                     (ngSubmit)="updateContact(contactForm)"
                     #contactForm="ngForm"
+                    [ngFormOptions]="{ updateOn: 'submit' }"
                   >
                     <div class="row">
                       <div class="col">
@@ -392,7 +424,7 @@
                             type="text"
                             class="form-control"
                             id="email"
-                            [ngModel]="user.email"
+                            [(ngModel)]="user.email"
                             name="email"
                             #email="ngModel"
                             pattern="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?"
@@ -418,17 +450,15 @@
                             type="text"
                             class="form-control"
                             id="phone"
-                            [ngModel]="user.phone"
+                            [(ngModel)]="user.phone"
                             name="phone"
                             #phone="ngModel"
-                            pattern="^[+]*[0-9]{1,4}[\s0-9]*$"
+                            pattern="^[+]{1}[0-9]{1,4}[\s0-9]*$"
                             placeholder="Phone number"
                           />
                           <div
                             [hidden]="
-                              phone.valid ||
-                              phone.untouched ||
-                              phone.pristine
+                              phone.valid || phone.untouched || phone.pristine
                             "
                             class="alert alert-danger"
                           >
@@ -440,7 +470,11 @@
                     </div>
                     <div class="row">
                       <div class="col">
-                        <button type="submit" class="btn btn-primary btn-block">
+                        <button
+                          type="submit"
+                          class="btn btn-primary btn-block"
+                          onclick="$('.modal').modal('hide')"
+                        >
                           Save
                         </button>
                       </div>
@@ -472,8 +506,8 @@
                 data-target="#edit-education-modal"
               ></span>
             </h5>
-            <div class="card-text" *ngFor="let edu of education">
-              <div class="row" *ngIf="education.length > 0">
+            <div class="card-text" *ngFor="let edu of user.education">
+              <div class="row" *ngIf="user.education.length > 0">
                 <p class="col">{{ edu.school }}</p>
                 <p class="col">{{ edu.specialization }}</p>
                 <p class="col-3">{{ edu.yearStart }} - {{ edu.yearEnd }}</p>
@@ -487,14 +521,14 @@
           id="edit-education-modal"
           tabindex="-1"
           role="dialog"
-          aria-labelledby="edit-header-modal-label"
+          aria-labelledby="edit-education-modal-label"
           aria-hidden="true"
         >
           <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">
-                  Modal title
+                <h5 class="modal-title" id="modal-title">
+                  Edit education information
                 </h5>
                 <button
                   type="button"
@@ -506,19 +540,171 @@
                 </button>
               </div>
               <div class="modal-body">
-                Education info edit
-              </div>
-              <div class="modal-footer">
-                <button
-                  type="button"
-                  class="btn btn-secondary"
-                  data-dismiss="modal"
-                >
-                  Close
-                </button>
-                <button type="button" class="btn btn-primary">
-                  Save changes
-                </button>
+                <div class="container">
+                  <form
+                    class="edu-form"
+                    (ngSubmit)="updateEducation(eduForm)"
+                    #eduForm="ngForm"
+                    [ngFormOptions]="{ updateOn: 'submit' }"
+                  >
+                    <div
+                      class="array-container"
+                      *ngFor="let edu of education; let j = index"
+                    >
+                      <div class="row">
+                        <div class="col">
+                          <div class="form-group">
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="education_school"
+                              [(ngModel)]="education[j].school"
+                              name="education_school_{{ j }}"
+                              #education_school="ngModel"
+                              pattern="[a-zA-Z\s]{2,}"
+                              placeholder="School"
+                            />
+                            <div
+                              [hidden]="
+                                education_school.valid ||
+                                education_school.untouched ||
+                                education_school.pristine
+                              "
+                              class="alert alert-danger"
+                            >
+                              School must contain 2 or more letters.
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col">
+                          <div class="form-group">
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="education_speci"
+                              [(ngModel)]="education[j].specialization"
+                              name="education_speci{{ j }}"
+                              #education_speci="ngModel"
+                              pattern="[a-zA-Z\s]{2,}"
+                              placeholder="Specialisation"
+                            />
+                            <div
+                              [hidden]="
+                                education_speci.valid ||
+                                education_speci.untouched ||
+                                education_speci.pristine
+                              "
+                              class="alert alert-danger"
+                            >
+                              Words must contain 2 or more letters.
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col">
+                          <div class="form-group">
+                            <input
+                              type="number"
+                              class="form-control"
+                              id="education_yearStart"
+                              [(ngModel)]="education[j].yearStart"
+                              name="education_yearStart{{ j }}"
+                              #education_yearStart="ngModel"
+                              pattern="[0-9]{4}"
+                              placeholder="Start year"
+                            />
+                            <div
+                              [hidden]="
+                                education_yearStart.valid ||
+                                education_yearStart.untouched ||
+                                education_yearStart.pristine
+                              "
+                              class="alert alert-danger"
+                            >
+                              Words must contain 2 or more letters.
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col">
+                          <div class="form-group">
+                            <input
+                              type="number"
+                              class="form-control"
+                              id="education_yearEnd"
+                              [(ngModel)]="education[j].yearEnd"
+                              name="education_yearEnd{{ j }}"
+                              #education_yearEnd="ngModel"
+                              pattern="[0-9]{4}"
+                              placeholder="End year"
+                            />
+                            <div
+                              [hidden]="
+                                education_yearEnd.valid ||
+                                education_yearEnd.untouched ||
+                                education_yearEnd.pristine
+                              "
+                              class="alert alert-danger"
+                            >
+                              Words must contain 2 or more letters.
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <hr />
+                      <div
+                        class="row justify-content-around"
+                        *ngIf="edu === education[education.length - 1]"
+                      >
+                        <div class="col-4">
+                          <button
+                            class="btn btn-block btn-outline-primary btn-sm"
+                            id="add-btn"
+                            type="button"
+                            (click)="addFields(education)"
+                          >
+                            Add
+                          </button>
+                        </div>
+                        <div class="col-4">
+                          <button
+                            class="btn btn-block btn-outline-danger btn-sm"
+                            id="add-btn"
+                            type="button"
+                            (click)="removeFields(education)"
+                          >
+                            Remove last
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                    <hr />
+                    <div class="row">
+                      <div class="col">
+                        <button
+                          type="submit"
+                          class="btn btn-primary btn-block"
+                          onclick="$('.modal').modal('hide')"
+                        >
+                          Save
+                        </button>
+                      </div>
+                      <div class="col">
+                        <button
+                          type="button"
+                          class="btn btn-danger btn-block"
+                          data-dismiss="modal"
+                        >
+                          Cancel
+                        </button>
+                      </div>
+                    </div>
+                  </form>
+                </div>
               </div>
             </div>
           </div>
@@ -535,8 +721,8 @@
                 data-target="#edit-experience-modal"
               ></span>
             </h5>
-            <div class="card-text" *ngFor="let exp of experience">
-              <div class="row" *ngIf="education.length > 0">
+            <div class="card-text" *ngFor="let exp of user.workExperience">
+              <div class="row" *ngIf="user.workExperience.length > 0">
                 <p class="col">{{ exp.company }}</p>
                 <p class="col">{{ exp.position }}</p>
                 <p class="col-3">{{ exp.yearStart }} - {{ exp.yearEnd }}</p>
@@ -551,14 +737,14 @@
         id="edit-experience-modal"
         tabindex="-1"
         role="dialog"
-        aria-labelledby="edit-header-modal-label"
+        aria-labelledby="edit-experience-modal-label"
         aria-hidden="true"
       >
         <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLongTitle">
-                Modal title
+              <h5 class="modal-title" id="modal-title">
+                Edit experience information
               </h5>
               <button
                 type="button"
@@ -570,7 +756,171 @@
               </button>
             </div>
             <div class="modal-body">
-              Experience info edit
+              <div class="container">
+                <form
+                  class="exp-form"
+                  (ngSubmit)="updateExperience(expForm)"
+                  #expForm="ngForm"
+                  [ngFormOptions]="{ updateOn: 'submit' }"
+                >
+                  <div
+                    class="array-container"
+                    *ngFor="let exp of experience; let j = index"
+                  >
+                    <div class="row">
+                      <div class="col">
+                        <div class="form-group">
+                          <input
+                            type="text"
+                            class="form-control"
+                            id="company"
+                            [(ngModel)]="experience[0].company"
+                            name="company{{ j }}"
+                            #company="ngModel"
+                            pattern="[a-zA-Z\s]{2,}"
+                            placeholder="Company"
+                          />
+                          <div
+                            [hidden]="
+                            company.valid ||
+                            company.untouched ||
+                            company.pristine
+                            "
+                            class="alert alert-danger"
+                          >
+                            Company name must contain 2 or more letters.
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col">
+                        <div class="form-group">
+                          <input
+                            type="text"
+                            class="form-control"
+                            id="position"
+                            [(ngModel)]="experience[j].position"
+                            name="position{{ j }}"
+                            #position="ngModel"
+                            pattern="[a-zA-Z\s]{2,}"
+                            placeholder="Position"
+                          />
+                          <div
+                            [hidden]="
+                            position.valid ||
+                            position.untouched ||
+                            position.pristine
+                            "
+                            class="alert alert-danger"
+                          >
+                            Position must contain 2 or more letters.
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col">
+                        <div class="form-group">
+                          <input
+                            type="number"
+                            class="form-control"
+                            id="expYearStart"
+                            [(ngModel)]="experience[j].yearStart"
+                            name="expYearStart{{ j }}"
+                            #expYearStart="ngModel"
+                            pattern="[0-9]{4}"
+                            placeholder="Start year"
+                          />
+                          <div
+                            [hidden]="
+                            expYearStart.valid ||
+                            expYearStart.untouched ||
+                            expYearStart.pristine
+                            "
+                            class="alert alert-danger"
+                          >
+                            Must contain 4 numbers.
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col">
+                        <div class="form-group">
+                          <input
+                            type="number"
+                            class="form-control"
+                            id="eduYearEnd"
+                            [(ngModel)]="experience[j].yearEnd"
+                            name="eduYearEnd{{ j }}"
+                            #eduYearEnd="ngModel"
+                            pattern="[0-9]{4}"
+                            placeholder="End year"
+                          />
+                          <div
+                            [hidden]="
+                            eduYearEnd.valid ||
+                            eduYearEnd.untouched ||
+                            eduYearEnd.pristine
+                            "
+                            class="alert alert-danger"
+                          >
+                          Must contain 4 numbers.
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <hr />
+                    
+                  </div>
+                  <div
+                      class="row justify-content-around"
+                    >
+                      <div class="col-4">
+                        <button
+                          class="btn btn-block btn-outline-primary btn-sm"
+                          id="add-btn"
+                          type="button"
+                          (click)="addFields(experience)"
+                        >
+                          Add
+                        </button>
+                      </div>
+                      <div class="col-4">
+                        <button
+                          class="btn btn-block btn-outline-danger btn-sm"
+                          id="add-btn"
+                          type="button"
+                          (click)="removeFields(experience)"
+                        >
+                          Remove last
+                        </button>
+                      </div>
+                    </div>
+                  <hr />
+                  <div class="row">
+                    <div class="col">
+                      <button
+                        type="submit"
+                        class="btn btn-primary btn-block"
+                        onclick="$('.modal').modal('hide')"
+                      >
+                        Save
+                      </button>
+                    </div>
+                    <div class="col">
+                      <button
+                        type="button"
+                        class="btn btn-danger btn-block"
+                        data-dismiss="modal"
+                      >
+                        Cancel
+                      </button>
+                    </div>
+                  </div>
+                </form>
+              </div>
             </div>
             <div class="modal-footer">
               <button

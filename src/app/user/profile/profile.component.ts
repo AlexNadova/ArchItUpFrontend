@@ -22,7 +22,7 @@ export class ProfileComponent implements OnInit {
     phone: "",
     country: "",
     city: "",
-    fieldOfFocus: "",
+    fieldOfFocus: [] = [],
     education: [] = [],
     workExperience: [] = []
   };
@@ -30,17 +30,39 @@ export class ProfileComponent implements OnInit {
     { propFirstName: "firstName"; value: "" },
     { propLastName: "lastName"; value: "" },
     { propCountry: "country"; value: "" },
-    { propCity: "city"; value: "" }
-    //{ propFieldOfFocus: "fieldOfFocus"; value: "" }
+    { propCity: "city"; value: "" },
+    { propFieldOfFocus: "fieldOfFocus"; value: [] }
   ];
   contactInfo: [
-    { propPhone: "phone"; value: "" }
-    // { propEmail: "email"; value: "" }
+    { propPhone: "phone"; value: "" },
+    { propEmail: "email"; value: "" }
   ];
+  eduObj: {
+    school: "";
+    specialization: "";
+    yearStart: null;
+    yearEnd: null;
+  };
+  educationInfo: [
+    {
+      propEducation: "education";
+      value: [
+        // {
+      //   school: "";
+      //   specialization: "";
+      //   yearStart: null;
+      //   yearEnd: null;
+      // }
+      ];
+    }
+  ];
+  experienceInfo: [{ propWorkExperience: "workExperience"; value: [] }];
 
   currentUser;
   education: Education[] = [];
   experience: Experience[] = [];
+  fields: string[] = [];
+
   private readonly notifier: NotifierService;
   constructor(
     private userService: UserService,
@@ -57,6 +79,7 @@ export class ProfileComponent implements OnInit {
       (data: User) => {
         this.user = { ...data };
         this.education = this.user.education;
+        this.fields = this.user.fieldOfFocus;
         this.experience = this.user.workExperience.sort(function(obj1, obj2) {
           return obj2.yearEnd - obj1.yearEnd;
         });
@@ -70,6 +93,10 @@ export class ProfileComponent implements OnInit {
       res => {
         this.userService.logout();
         this.router.navigate([""]);
+        this.notifier.notify(
+          "success",
+          "You successfully deleted your account"
+        );
       },
       err => this.notifier.notify("error", "Error occured: " + err.message)
     );
@@ -83,10 +110,20 @@ export class ProfileComponent implements OnInit {
     this.footer.hide();
     this.getUserProfile();
   }
+  addFields(a) {
+    a.push("");
+  }
+  addArrayFields(a) {
+    a.push(this.eduObj);
+  }
+
+  removeFields(a) {
+    a.splice(a.length - 1, 1);
+  }
 
   updateHeader(form: NgForm) {
     console.log(this.user);
-    console.log();
+    console.log(this.fields);
     this.headerInfo = [
       {
         propFirstName: "firstName",
@@ -112,14 +149,14 @@ export class ProfileComponent implements OnInit {
       {
         propCity: "city",
         value: form.value.city === undefined ? this.user.city : form.value.city
+      },
+      {
+        propFieldOfFocus: "fieldOfFocus",
+        value:
+          form.value.fieldOfFocus === undefined
+            ? this.fields
+            : form.value.fieldOfFocus
       }
-      // {
-      //   propFieldOfFocus: "fieldOfFocus",
-      //   value:
-      //     form.value.fieldOfFocus === undefined
-      //       ? this.user.fieldOfFocus
-      //      : form.value.fieldOfFocus
-      // }
     ];
     console.log(this.headerInfo);
     this.userService.updateUser(this.headerInfo).subscribe(
@@ -132,22 +169,69 @@ export class ProfileComponent implements OnInit {
       err => this.notifier.notify("error", "Error occured: " + err.message)
     );
   }
+
   updateContact(form: NgForm) {
     this.contactInfo = [
       {
         propPhone: "phone",
-        value:form.value.phone
+        value: form.value.phone
+      },
+      {
+        propEmail: "email",
+        value: form.value.email
       }
-      // {
-      //   propEmail: "email",
-      //   value:form.value.email
-      // }
     ];
     this.userService.updateUser(this.contactInfo).subscribe(
       res => {
         this.notifier.notify(
           "success",
           "Your contact information was successfully updated"
+        );
+      },
+      err => this.notifier.notify("error", "Error occured: " + err.message)
+    );
+  }
+  updateEducation(form: NgForm) {
+    console.log(this.user);
+    console.log(this.educationInfo);
+    this.educationInfo = [
+      {
+        propEducation: "education",
+        value:
+          form.value.education === undefined
+            ? this.user.education
+            : form.value.education
+      }
+    ];
+    console.log(this.educationInfo);
+    this.userService.updateUser(this.educationInfo).subscribe(
+      res => {
+        this.notifier.notify(
+          "success",
+          "Your information was successfully updated"
+        );
+      },
+      err => this.notifier.notify("error", "Error occured: " + err.message)
+    );
+  }
+  updateExperience(form: NgForm) {
+    console.log(this.user);
+    console.log(this.experience);
+    this.experienceInfo = [
+      {
+        propWorkExperience: "workExperience",
+        value:
+          form.value.experience === undefined
+            ? this.user.workExperience
+            : form.value.experience
+      }
+    ];
+    console.log(this.experienceInfo);
+    this.userService.updateUser(this.experienceInfo).subscribe(
+      res => {
+        this.notifier.notify(
+          "success",
+          "Your information was successfully updated"
         );
       },
       err => this.notifier.notify("error", "Error occured: " + err.message)
