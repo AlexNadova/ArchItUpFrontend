@@ -18,30 +18,17 @@ const registerUrl = "http://localhost:4000/api/user/signup";
 export class UserService {
   constructor(private http: HttpClient) {}
   id: string;
-  registerUser = {
-    firstName: "",
-    lastName: "",
-    email: "",
-    password: "",
-    phone: ""
-  };
 
   loginUser = {
     email: "",
     password: ""
   };
 
-  register(form: NgForm): Observable<any> {
-    this.registerUser = {
-      firstName: form.value.first_name,
-      lastName: form.value.last_name,
-      email: form.value.email,
-      password: form.value.password,
-      phone: form.value.phone
-    };
+  register(user:User): Observable<any> {
+    console.log(JSON.stringify(user));
     return this.http.post<User>(
       registerUrl,
-      JSON.stringify(this.registerUser),
+      JSON.stringify(user),
       {
         headers: httpheaders
       }
