@@ -24,6 +24,8 @@ import { AuthGuard, NotAuth } from "./authentication/auth-guard";
 import { UserService } from "./user/user.service";
 import { AuthenticationService } from "./authentication/authentication.service";
 import { NotifierModule } from "angular-notifier";
+import { ArticlesComponent } from './article/articles/articles.component';
+import { ArticleComponent } from './article/article/article.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +38,9 @@ import { NotifierModule } from "angular-notifier";
     AboutUsPageComponent,
     HowToUsePageComponent,
     LoginComponent,
-    AdminComponent
+    AdminComponent,
+    ArticlesComponent,
+    ArticleComponent
   ],
   imports: [
     BrowserModule,
