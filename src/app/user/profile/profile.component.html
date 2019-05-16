@@ -166,29 +166,33 @@
               </div>
               <hr />
               <h5>Fields of focus (e.g. architect, designer)</h5>
-
-              <div class="row" *ngFor="let field of fields; let i = index">
-                <div class="col">
-                  <div class="form-group">
-                    <input
-                      type="text"
-                      class="form-control"
-                      id="field"
-                      [(ngModel)]="fields[i]"
-                      name="fieldOfFocus_{{ i }}"
-                      #fieldOfFocus="ngModel"
-                      pattern="[a-zA-Z\s]{2,}"
-                      placeholder="Field of focus"
-                    />
-                    <div
-                      [hidden]="
-                        fieldOfFocus.valid ||
-                        fieldOfFocus.untouched ||
-                        fieldOfFocus.pristine
-                      "
-                      class="alert alert-danger"
-                    >
-                      Words must contain 2 or more letters.
+              <div
+                class="field-of-focus-container"
+                *ngFor="let field of fields; let i = index"
+              >
+                <div class="row">
+                  <div class="col">
+                    <div class="form-group">
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="subField"
+                        [(ngModel)]="fields[i]"
+                        name="subField{{ i }}"
+                        #subField="ngModel"
+                        pattern="[a-zA-Z\s]{2,}"
+                        placeholder="Field of focus"
+                      />
+                      <div
+                        [hidden]="
+                          subField.valid ||
+                          subField.untouched ||
+                          subField.pristine
+                        "
+                        class="alert alert-danger"
+                      >
+                        Words must contain 2 or more letters.
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -267,6 +271,7 @@
                   <button
                     type="submit"
                     class="btn btn-primary btn-block"
+                    [disabled]="!headerForm.form.valid"
                     onclick="$('.modal').modal('hide')"
                   >
                     Save
@@ -473,6 +478,7 @@
                         <button
                           type="submit"
                           class="btn btn-primary btn-block"
+                          [disabled]="!contactForm.form.valid"
                           onclick="$('.modal').modal('hide')"
                         >
                           Save
@@ -613,7 +619,6 @@
                               [(ngModel)]="education[j].yearStart"
                               name="education_yearStart{{ j }}"
                               #education_yearStart="ngModel"
-                              pattern="[0-9]{4}"
                               placeholder="Start year"
                             />
                             <div
@@ -639,7 +644,6 @@
                               [(ngModel)]="education[j].yearEnd"
                               name="education_yearEnd{{ j }}"
                               #education_yearEnd="ngModel"
-                              pattern="[0-9]{4}"
                               placeholder="End year"
                             />
                             <div
@@ -656,30 +660,27 @@
                         </div>
                       </div>
                       <hr />
-                      <div
-                        class="row justify-content-around"
-                        *ngIf="edu === education[education.length - 1]"
-                      >
-                        <div class="col-4">
-                          <button
-                            class="btn btn-block btn-outline-primary btn-sm"
-                            id="add-btn"
-                            type="button"
-                            (click)="addFields(education)"
-                          >
-                            Add
-                          </button>
-                        </div>
-                        <div class="col-4">
-                          <button
-                            class="btn btn-block btn-outline-danger btn-sm"
-                            id="add-btn"
-                            type="button"
-                            (click)="removeFields(education)"
-                          >
-                            Remove last
-                          </button>
-                        </div>
+                    </div>
+                    <div class="row justify-content-around">
+                      <div class="col-4">
+                        <button
+                          class="btn btn-block btn-outline-primary btn-sm"
+                          id="add-btn"
+                          type="button"
+                          (click)="addArrayFields(education)"
+                        >
+                          Add
+                        </button>
+                      </div>
+                      <div class="col-4">
+                        <button
+                          class="btn btn-block btn-outline-danger btn-sm"
+                          id="add-btn"
+                          type="button"
+                          (click)="removeFields(education)"
+                        >
+                          Remove last
+                        </button>
                       </div>
                     </div>
                     <hr />
@@ -688,6 +689,7 @@
                         <button
                           type="submit"
                           class="btn btn-primary btn-block"
+                          [disabled]="!eduForm.form.valid"
                           onclick="$('.modal').modal('hide')"
                         >
                           Save
@@ -782,9 +784,9 @@
                           />
                           <div
                             [hidden]="
-                            company.valid ||
-                            company.untouched ||
-                            company.pristine
+                              company.valid ||
+                              company.untouched ||
+                              company.pristine
                             "
                             class="alert alert-danger"
                           >
@@ -808,9 +810,9 @@
                           />
                           <div
                             [hidden]="
-                            position.valid ||
-                            position.untouched ||
-                            position.pristine
+                              position.valid ||
+                              position.untouched ||
+                              position.pristine
                             "
                             class="alert alert-danger"
                           >
@@ -829,14 +831,13 @@
                             [(ngModel)]="experience[j].yearStart"
                             name="expYearStart{{ j }}"
                             #expYearStart="ngModel"
-                            pattern="[0-9]{4}"
                             placeholder="Start year"
                           />
                           <div
                             [hidden]="
-                            expYearStart.valid ||
-                            expYearStart.untouched ||
-                            expYearStart.pristine
+                              expYearStart.valid ||
+                              expYearStart.untouched ||
+                              expYearStart.pristine
                             "
                             class="alert alert-danger"
                           >
@@ -855,55 +856,52 @@
                             [(ngModel)]="experience[j].yearEnd"
                             name="eduYearEnd{{ j }}"
                             #eduYearEnd="ngModel"
-                            pattern="[0-9]{4}"
                             placeholder="End year"
                           />
                           <div
                             [hidden]="
-                            eduYearEnd.valid ||
-                            eduYearEnd.untouched ||
-                            eduYearEnd.pristine
+                              eduYearEnd.valid ||
+                              eduYearEnd.untouched ||
+                              eduYearEnd.pristine
                             "
                             class="alert alert-danger"
                           >
-                          Must contain 4 numbers.
+                            Must contain 4 numbers.
                           </div>
                         </div>
                       </div>
                     </div>
                     <hr />
-                    
                   </div>
-                  <div
-                      class="row justify-content-around"
-                    >
-                      <div class="col-4">
-                        <button
-                          class="btn btn-block btn-outline-primary btn-sm"
-                          id="add-btn"
-                          type="button"
-                          (click)="addFields(experience)"
-                        >
-                          Add
-                        </button>
-                      </div>
-                      <div class="col-4">
-                        <button
-                          class="btn btn-block btn-outline-danger btn-sm"
-                          id="add-btn"
-                          type="button"
-                          (click)="removeFields(experience)"
-                        >
-                          Remove last
-                        </button>
-                      </div>
+                  <div class="row justify-content-around">
+                    <div class="col-4">
+                      <button
+                        class="btn btn-block btn-outline-primary btn-sm"
+                        id="add-btn"
+                        type="button"
+                        (click)="addArrayFields(experience)"
+                      >
+                        Add
+                      </button>
                     </div>
+                    <div class="col-4">
+                      <button
+                        class="btn btn-block btn-outline-danger btn-sm"
+                        id="add-btn"
+                        type="button"
+                        (click)="removeFields(experience)"
+                      >
+                        Remove last
+                      </button>
+                    </div>
+                  </div>
                   <hr />
                   <div class="row">
                     <div class="col">
                       <button
                         type="submit"
                         class="btn btn-primary btn-block"
+                        [disabled]="!expForm.form.valid"
                         onclick="$('.modal').modal('hide')"
                       >
                         Save

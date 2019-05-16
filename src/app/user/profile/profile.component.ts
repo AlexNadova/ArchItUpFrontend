@@ -31,32 +31,27 @@ export class ProfileComponent implements OnInit {
     { propLastName: "lastName"; value: "" },
     { propCountry: "country"; value: "" },
     { propCity: "city"; value: "" },
-    { propFieldOfFocus: "fieldOfFocus"; value: [] }
+    { propFieldOfFocus: "fieldOfFocus"; value: string[] }
   ];
   contactInfo: [
     { propPhone: "phone"; value: "" },
     { propEmail: "email"; value: "" }
   ];
-  eduObj: {
-    school: "";
-    specialization: "";
-    yearStart: null;
-    yearEnd: null;
+  eduObj = {
+    school: "",
+    specialization: "",
+    yearStart: 0,
+    yearEnd: 0
   };
   educationInfo: [
     {
       propEducation: "education";
-      value: [
-        // {
-      //   school: "";
-      //   specialization: "";
-      //   yearStart: null;
-      //   yearEnd: null;
-      // }
-      ];
+      value: Education[];
     }
   ];
-  experienceInfo: [{ propWorkExperience: "workExperience"; value: [] }];
+  experienceInfo: [
+    { propWorkExperience: "workExperience"; value: Experience[] }
+  ];
 
   currentUser;
   education: Education[] = [];
@@ -78,7 +73,9 @@ export class ProfileComponent implements OnInit {
     this.userService.getUser().subscribe(
       (data: User) => {
         this.user = { ...data };
-        this.education = this.user.education;
+        this.education = this.user.education.sort(function(obj1, obj2) {
+          return obj2.yearEnd - obj1.yearEnd;
+        });
         this.fields = this.user.fieldOfFocus;
         this.experience = this.user.workExperience.sort(function(obj1, obj2) {
           return obj2.yearEnd - obj1.yearEnd;
@@ -114,11 +111,35 @@ export class ProfileComponent implements OnInit {
     a.push("");
   }
   addArrayFields(a) {
+    console.log(this.education);
     a.push(this.eduObj);
+    console.log(this.education);
   }
 
   removeFields(a) {
     a.splice(a.length - 1, 1);
+  }
+  checkIfCorrect(a) {
+    if (Array.isArray(a)) {
+      console.log("array check true");
+      for (let i: 0; i < a.length - 1; i++) {
+        if (!Array.isArray(a[i])) {
+          console.log(a[i] + ": array check false");
+          return false;
+        }
+        console.log(a[i] + ": array check true");
+        for (let j: 0; j < a[i].length - 1; j++) {
+          if (!(typeof a[i][j] === "string") || typeof a[i][j] === "number") {
+            console.log(a[i][j] + ": type check true");
+            return true;
+          }
+          console.log(a[i][j] + ": type check false");
+          return false;
+        }
+      }
+    }
+    console.log("array check false");
+    return false;
   }
 
   updateHeader(form: NgForm) {
@@ -128,34 +149,32 @@ export class ProfileComponent implements OnInit {
       {
         propFirstName: "firstName",
         value:
-          form.value.firstName === undefined
-            ? this.user.firstName
-            : form.value.firstName
+          typeof form.value.firstName === "string"
+            ? form.value.firstName
+            : this.user.firstName
       },
       {
         propLastName: "lastName",
         value:
-          form.value.lastName === undefined
-            ? this.user.lastName
-            : form.value.lastName
+          typeof form.value.lastName === "string"
+            ? form.value.lastName
+            : this.user.lastName
       },
       {
         propCountry: "country",
         value:
-          form.value.country === undefined
-            ? this.user.country
-            : form.value.country
+          typeof form.value.country === "string"
+            ? form.value.country
+            : this.user.country
       },
       {
         propCity: "city",
-        value: form.value.city === undefined ? this.user.city : form.value.city
+        value:
+          typeof form.value.city === "string" ? form.value.city : this.user.city
       },
       {
         propFieldOfFocus: "fieldOfFocus",
-        value:
-          form.value.fieldOfFocus === undefined
-            ? this.fields
-            : form.value.fieldOfFocus
+        value: this.fields
       }
     ];
     console.log(this.headerInfo);
@@ -174,11 +193,17 @@ export class ProfileComponent implements OnInit {
     this.contactInfo = [
       {
         propPhone: "phone",
-        value: form.value.phone
+        value:
+          typeof form.value.phone === "string"
+            ? form.value.phone
+            : this.user.phone
       },
       {
         propEmail: "email",
-        value: form.value.email
+        value:
+          typeof form.value.email === "string"
+            ? form.value.email
+            : this.user.email
       }
     ];
     this.userService.updateUser(this.contactInfo).subscribe(
@@ -193,14 +218,11 @@ export class ProfileComponent implements OnInit {
   }
   updateEducation(form: NgForm) {
     console.log(this.user);
-    console.log(this.educationInfo);
+    console.log(form.value.education);
     this.educationInfo = [
       {
         propEducation: "education",
-        value:
-          form.value.education === undefined
-            ? this.user.education
-            : form.value.education
+        value: this.education
       }
     ];
     console.log(this.educationInfo);
@@ -216,14 +238,12 @@ export class ProfileComponent implements OnInit {
   }
   updateExperience(form: NgForm) {
     console.log(this.user);
+    console.log(form.value);
     console.log(this.experience);
     this.experienceInfo = [
       {
         propWorkExperience: "workExperience",
-        value:
-          form.value.experience === undefined
-            ? this.user.workExperience
-            : form.value.experience
+        value: this.experience
       }
     ];
     console.log(this.experienceInfo);
