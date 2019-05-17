@@ -7,16 +7,22 @@
       *ngFor="let key of articleKeys(articles) | slice: 0:pageLimit"
     >
       <a
-        class="card text-white bg-dark mb-2 article-frame"
+        class="card img-fluid bg-dark mb-2 article-frame"
         [routerLink]="['article', articles[key]._id]"
       >
-        <!-- frame with schools -->
-        <div class="card-body">
-          <h5 id="title" class="card-title">
+        <img
+          class="card-img-top"
+          src="assets/article_pic.png"
+          alt="Card image"
+        />
+        <div class="card-img-overlay">
+          <div class="card-title" id="title">
             {{ articles[key].title }}
-          </h5>
-          <div class="card-text">
-            <p class="row">{{ articles[key].description }}</p>
+          </div>
+          <div class="card-footer">
+            <p class="author" *ngFor="let author of articles[key].author">
+              {{ author }}
+            </p>
           </div>
         </div>
       </a>
