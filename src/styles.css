@@ -34,3 +34,10 @@ app-footer {
 .ng-invalid:not(form) {
   border-bottom: 5px solid #c7312e; /* red */
 }
+
+.space-footer{
+  height: 100px;
+}
+.space-header{
+  height: 70px;
+}
