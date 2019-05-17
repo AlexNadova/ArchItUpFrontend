@@ -15,7 +15,6 @@ import { ProfileComponent } from "./user/profile/profile.component";
 import { LoginComponent } from "./user/login/login.component";
 import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { HomePageComponent } from "./home-page/home-page.component";
-import { AboutUsPageComponent } from "./about-us-page/about-us-page.component";
 import { HowToUsePageComponent } from "./how-to-use-page/how-to-use-page.component";
 import { AdminComponent } from "./user/admin/admin.component";
 
@@ -24,8 +23,6 @@ import { AuthGuard, NotAuth } from "./authentication/auth-guard";
 import { UserService } from "./user/user.service";
 import { AuthenticationService } from "./authentication/authentication.service";
 import { NotifierModule } from "angular-notifier";
-import { ArticlesComponent } from './article/articles/articles.component';
-import { ArticleComponent } from './article/article/article.component';
 
 @NgModule({
   declarations: [
@@ -35,12 +32,9 @@ import { ArticleComponent } from './article/article/article.component';
     RegistrationComponent,
     ProfileComponent,
     HomePageComponent,
-    AboutUsPageComponent,
     HowToUsePageComponent,
     LoginComponent,
-    AdminComponent,
-    ArticlesComponent,
-    ArticleComponent
+    AdminComponent
   ],
   imports: [
     BrowserModule,
