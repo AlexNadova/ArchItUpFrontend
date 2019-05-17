@@ -34,6 +34,7 @@ export class ArticleComponent implements OnInit {
     this.articleService.getArticle(this.articleId).subscribe(
       (data: Article) => {
         this.article = { ...data };
+        //console.log(JSON.stringify(this.article));
         this.authors = this.article.author;
       },
       err => this.notifier.notify("error", "Error occured: " + err.message)
