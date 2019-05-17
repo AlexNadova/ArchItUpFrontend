@@ -1,0 +1,41 @@
+.fab{
+   margin-top: 15px;
+   font-size: 20px;
+}
+.fb-ic{
+    /* margin-top: 70px; */
+}
+.p {
+  line-height: 30px;
+}
+.description {
+  margin-bottom: 20px;
+  text-align: justify;
+  margin-left: 1px;
+}
+.content {
+  text-align: justify;
+  margin-top: 20px;
+}
+.title {
+  margin-left: 15px;
+  margin-bottom: 15px;
+  margin-top: 5px;
+}
+#back {
+  background-color: rgb(10, 10, 10);
+  border-radius: 5px;
+}
+.picture {
+  width: 100%;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+.more {
+  border-left: 1px solid rgb(168, 168, 168);
+  margin-top: 20px;
+}
+hr{
+    background-color:rgb(168, 168, 168);
+}
