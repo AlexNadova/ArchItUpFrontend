@@ -4,10 +4,10 @@
 /*header has fixed height*/
 #profile-header {
   height: 340px;
-  background-color: rgb(43, 33, 12);
+  background-color: rgb(15, 13, 9);
 }
 #profile-header-top {
-  background-color: rgb(196, 153, 88);
+  background-color: rgb(73, 56, 31);
   height: 210px;
 }
 #profile-header-bottom {
