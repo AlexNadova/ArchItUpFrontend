@@ -8,7 +8,8 @@
   <div class="container">
     <!--for company/project name -->
     <a class="navbar-brand" href="#">
-      <img src="" width="30" height="30" alt="ArchItUp" />
+      <!-- <img src="" width="30" height="30" alt="ArchItUp" /> -->
+      ArchItUp
     </a>
     <!--button that appears when screen is too small - links are hidden but when btn is clicked it shows them -->
     <button
@@ -26,21 +27,24 @@
     <div class="collapse navbar-collapse ml-lg-4" id="navbarText">
       <ul class="navbar-nav mr-auto">
         <!--active list item-->
-        <li class="nav-item active px-lg-1">
+        <li class="nav-item px-lg-1">
           <a
             [routerLink]="updateRouterLinkToHome()"
             [class.activated]="currentUrl == '/home'"
             class="nav-link"
             >Home
-            <!--sr-only: screen readers only; hide info intended only for screen readers-->
-            <span class="sr-only">(current)</span>
           </a>
         </li>
         <li class="nav-item px-lg-1">
           <a class="nav-link" href="#">Projects</a>
         </li>
         <li class="nav-item px-lg-1">
-          <a class="nav-link" href="#">Articles</a>
+          <a
+          [routerLink]="updateRouterLinkToArticles()"
+          [class.activated]="currentUrl == '/articles'"
+          class="nav-link"
+          >Articles
+        </a>
         </li>
         <li class="nav-item px-lg-1">
           <a class="nav-link" href="#">Events</a>
