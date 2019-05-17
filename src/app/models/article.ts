@@ -6,7 +6,7 @@ export class Article {
     public description: string,
     //keywords: { type: Array },
     //articleImages: Array<string>,,
-    public titleImage: string,
+    //public titleImage: string,
     //category: string,
     public content: string
   ) {}

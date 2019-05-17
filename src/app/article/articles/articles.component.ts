@@ -14,7 +14,7 @@ export class ArticlesComponent implements OnInit {
     title: "", //required
     author: [] = [], //required
     description: "",
-    titleImage: "",
+    //titleImage: "",
     content: ""
   };
   private readonly notifier: NotifierService;
