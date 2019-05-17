@@ -1,0 +1,26 @@
+.container {
+  min-height: 100vh;
+}
+.article-frame {
+  height: 350px;
+}
+a.custom-card,
+a.custom-card:hover {
+  color: inherit;
+}
+@media screen and (max-width: 1200px) {
+  .article-frame {
+    height: 300px;
+  }
+}
+@media screen and (max-width: 992px) {
+  .article-frame {
+    height: 200px;
+  }
+}
+@media screen and (max-width: 769px) {
+  .article-frame {
+    height: 150px;
+  }
+}
+

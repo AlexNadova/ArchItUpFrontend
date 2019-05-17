@@ -1,3 +1,32 @@
-<p>
-  articles works!
-</p>
+<div class="space-header"></div>
+<div class="container">
+  <div class="row">
+    <!-- articleKeys(articles)="0","1","2",... -->
+    <div
+      class="col-sm-4 py-2"
+      *ngFor="let key of articleKeys(articles) | slice: 0:pageLimit"
+    >
+      <a
+        class="card text-white bg-dark mb-2 article-frame"
+        [routerLink]="['article', articles[key]._id]"
+      >
+        <!-- frame with schools -->
+        <div class="card-body">
+          <h5 id="title" class="card-title">
+            {{ articles[key].title }}
+            {{ articles[key]._id }}
+          </h5>
+          <div class="card-text">
+            <p class="row">{{ articles[key].description }}</p>
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+  <div class="row justify-content-center">
+    <div class="col-1">
+      <button class="btn btn-outline-light" (click)="loadMore()">More</button>
+    </div>
+  </div>
+  <div class="space-footer"></div>
+</div>
