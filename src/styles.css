@@ -1,15 +1,15 @@
 @import "~angular-notifier/styles";
 /* You can add global styles to this file, and also import other style files */
 body {
-  background-color: rgb(19, 18, 16);
-  color: rgb(226, 218, 200);
+  background-color: rgb(6, 6, 6);
+  color: rgb(209, 202, 186);
   min-width: 900px;
   font-size: 14px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
-p {
-  line-height: 80%;
+*{
+  color: rgb(209, 202, 186);
 }
-
 /* footer is always on the bottom */
 app-footer {
   position: static;
@@ -19,10 +19,10 @@ app-footer {
 }
 /* for text on bright background */
 .invert-text{
-  color: rgb(24, 24, 26);
+  color: rgb(19, 18, 18);
 }
 .navbar {
-  background-color: rgb(14, 14, 15);
+  background-color: rgb(5, 5, 5);
 }
 
 /*form'f fields: green if valid, red if invalid*/
