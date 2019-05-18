@@ -1,6 +1,55 @@
-<hr />
-<hr />
-<hr />
 <div class="container">
-  Home page!
+  <header class="card" id="home-header">
+      <img
+        id="home-pic"
+        src="assets/home-pics/home-display.jpg"
+        alt="Home picture"
+      />
+      <div class="top-right"><strong>ArchItUp</strong></div>
+  </header>
+
+<!--Projects section
+    Replace the image from "categoryBox" with the pictor of the project or the category of projects.
+    Replace the "router.navigate(['/about-us']);" with the route of the project or category of projects.
+-->
+  <section>
+    <div class="projects-container" id="projects">
+      <h2>Projects</h2>
+    </div>
+    <section class="category-tree">
+      <div class="category itemNo-0" (click)="router.navigate(['/about-us']);">
+        <div class="categoryBox">
+          <img 
+          id="project-pic"
+          src="assets/home-pics/project-img.jpg"
+          alt="Project picture"
+          />
+          <h3 class="categoryTitle">Project 1</h3>
+          <h4 class="categoryTitleExample">Sommer houses</h4>
+        </div>
+      </div>
+      <div class="category itemNo-1" >
+        <div class="categoryBox">
+          <img 
+          id="project-pic"
+          src="assets/home-pics/project-img.jpg"
+          alt="Project picture"
+          />
+          <h3 class="categoryTitle">Project 2</h3>
+          <h4 class="categoryTitleExample">Renovated</h4>
+        </div>
+      </div>
+      <div class="category itemNo-3" >
+          <div class="categoryBox">
+            <img 
+            id="project-pic"
+            src="assets/home-pics/project-img.jpg"
+            alt="Project picture"
+            />
+            <h3 class="categoryTitle">Project 3</h3>
+            <h4 class="categoryTitleExample">Villa</h4>
+          </div>
+        </div>
+    </section>
+  </section>
 </div>
