@@ -1,9 +1,7 @@
-.fab{
-   margin-top: 15px;
-   font-size: 20px;
-}
-.fb-ic{
-    /* margin-top: 70px; */
+.fab {
+  margin-top: 15px;
+  margin-bottom: 20;
+  font-size: 20px;
 }
 .p {
   line-height: 30px;
@@ -32,10 +30,16 @@
   margin-bottom: 10px;
   text-align: center;
 }
+#add {
+  margin-top: 15px;
+  font-size: 17px;
+}
 .more {
   border-left: 1px solid rgb(168, 168, 168);
   margin-top: 20px;
+  margin-bottom: 20px;
+  text-align: center;
 }
-hr{
-    background-color:rgb(168, 168, 168);
+hr {
+  background-color: rgb(168, 168, 168);
 }
