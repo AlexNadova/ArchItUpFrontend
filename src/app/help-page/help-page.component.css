@@ -1,0 +1,95 @@
+.container{
+	height: 100vh;
+}
+
+.headingscategory {
+	display: block;
+	overflow: hidden;
+	margin-bottom: 53px;
+}
+.headingscategory h1 {
+	font-size: 40px;
+	line-height: 30px;
+	margin: 0;
+	margin-bottom: 25px;
+	text-align: center;
+	font-weight: normal;
+}
+.headingscategory h2 {
+	font-size: 20px;
+	text-align: center;
+	margin: 0;
+	font-weight: normal;
+}
+
+.category-tree {
+	position: relative;
+	text-align: center;
+}
+.category-tree .category {
+	margin-right: 79px;
+	margin-bottom: 77px;
+	font-weight: normal;
+	display: inline-block;
+	vertical-align: top;
+	-webkit-transition: height .2s;
+	-moz-transition: height .2s;
+	-ms-transition: height .2s;
+	-o-transition: height .2s;
+	transition: height .2s;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+.category-tree .category .categoryBox {
+	z-index: 2;
+	position: relative;
+	width: 275px;
+	height: 200px;
+	cursor: pointer;
+	transition: box-shadow .2s ease-in;
+	-webkit-transition: box-shadow .2s ease-in;
+	-moz-transition: box-shadow .2s ease-in;
+	-ms-transition: box-shadow .2s ease-in;
+	-o-transition: box-shadow .2s ease-in;
+	border: 1px solid #eaebed;
+	border-bottom-color: #cdd0d4;
+	border-top-color: #f7f8f8;
+}
+.category-tree .category .categoryBox:hover{
+	border: none;
+	-webkit-box-shadow: 0px 2px 9px 0px rgba(224,226,228,0.88);
+	-moz-box-shadow: 0px 2px 9px 0px rgba(224,226,228,0.88);
+	box-shadow: 0px 2px 9px 0px rgba(224,226,228,0.88);
+}
+.category-tree .category h3.categoryTitle {
+	padding-top: 140px;
+	margin: 0;
+	color: #0a6be9;
+	font-size: 18px;
+	pointer-events: none;
+}
+
+.category-tree .category:nth-child(3n),.category-tree .category:last-child {
+	margin-right: 0;
+}
+.category-tree .category .iconbg {
+	position: absolute;
+	top: 35px;
+	left: 50%;
+	margin-left: -40px;
+	background-repeat: no-repeat;
+	background-position: top center;
+}
+.category-tree .category:first-child .iconbg {
+	background-image: url('https://p6.zdassets.com/hc/theme_assets/212657/200091267/1.png');
+	width: 85px;
+	height: 59px;
+}
+.category-tree .category:nth-child(2) .iconbg {
+	background-image: url('https://p6.zdassets.com/hc/theme_assets/212657/200091267/7.png');
+	width: 77px;
+	height: 60px;
+}
