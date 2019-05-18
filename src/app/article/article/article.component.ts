@@ -40,6 +40,7 @@ export class ArticleComponent implements OnInit {
       err => this.notifier.notify("error", "Error occured: " + err.message)
     );
   }
+  
   ngOnInit() {
     this.footer.hide();
     this.getArticle();
