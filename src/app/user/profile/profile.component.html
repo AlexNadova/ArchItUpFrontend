@@ -39,11 +39,12 @@
               data-toggle="collapse"
               data-target="#profile_options"
               class="fas fa-cog clickable"
+              onclick="$('#profile_options').toggle('view')"
             ></span>
-            <div id="profile_options" class="collapse card invert-text">
+            <div id="profile_options" class="collapse card">
               <ul class="list-group list-group-flush">
                 <li
-                  class="list-group-item clickable"
+                  class="list-group-item clickable invert-text"
                   data-toggle="modal"
                   data-target="#privacy-setting-model"
                   onclick="$('#profile_options').toggle('hide')"
@@ -52,7 +53,7 @@
                 </li>
                 <!--change email, password-->
                 <li
-                  class="list-group-item clickable"
+                  class="list-group-item clickable invert-text"
                   data-toggle="modal"
                   data-target="#delete-user-model"
                   onclick="$('#profile_options').toggle('hide')"
@@ -90,7 +91,7 @@
     <div class="modal-dialog modal-dialog-centered invert-text" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="modal-title">
+          <h5 class="modal-title invert-text" id="modal-title">
             Edit header info
           </h5>
           <button
@@ -164,7 +165,7 @@
                 </div>
               </div>
               <hr />
-              <h5>Fields of focus (e.g. architect, designer)</h5>
+              <h5 class="invert-text">Fields of focus (e.g. architect, designer)</h5>
               <div
                 class="field-of-focus-container"
                 *ngFor="let field of fields; let i = index"
@@ -401,7 +402,7 @@
           <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title" id="modal-title">
+                <h5 class="modal-title invert-text" id="modal-title">
                   Edit contact information
                 </h5>
                 <button
@@ -532,7 +533,7 @@
           <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title" id="modal-title">
+                <h5 class="modal-title invert-text" id="modal-title">
                   Edit education information
                 </h5>
                 <button
@@ -744,7 +745,7 @@
         <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="modal-title">
+              <h5 class="modal-title invert-text" id="modal-title">
                 Edit experience information
               </h5>
               <button
@@ -919,18 +920,6 @@
                 </form>
               </div>
             </div>
-            <div class="modal-footer">
-              <button
-                type="button"
-                class="btn btn-secondary"
-                data-dismiss="modal"
-              >
-                Close
-              </button>
-              <button type="button" class="btn btn-primary">
-                Save changes
-              </button>
-            </div>
           </div>
         </div>
       </div>
@@ -950,7 +939,7 @@
           <div class="card-body">
             <h5 id="title" class="card-title">
               Articles
-              <span id="add" class="fas fa-plus clickable"></span>
+              <span id="add" class="fas fa-plus clickable" [routerLink]="['/articles/create']"></span>
             </h5>
             <p class="card-text">article view</p>
           </div>
