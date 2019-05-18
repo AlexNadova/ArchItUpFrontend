@@ -91,6 +91,7 @@
             [routerLink]="updateRouterLinkToAboutUs()"
             [class.activated]="currentUrl == '/profile'"
             class="dark-grey-text"
+            (click)="topFunction()"
             >About us</a
           >
         </p>
@@ -103,10 +104,10 @@
         <p>
           <a
             [routerLink]="updateRouterLinkToHelp()"
-            [class.activated]="currentUrl == '/profile'"
+            [class.activated]="currentUrl == '/help'"
             class="dark-grey-text"
-            >Help</a
-          >
+            (click)="topFunction()"
+            >Help</a>
         </p>
       </div>
       <!-- Grid column -->

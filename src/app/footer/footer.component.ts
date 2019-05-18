@@ -21,5 +21,11 @@ export class FooterComponent implements OnInit {
   updateRouterLinkToHelp() {
     return (this.routerLinkVariable = "/help");
   }
+
+  topFunction() {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+  }
+  
   ngOnInit() {}
 }
