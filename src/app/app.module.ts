@@ -1,7 +1,7 @@
 //app.module.ts defines the application's root module. In it you identify the external modules you'll use
 //in the application and declare the components that belong to this module
 import { BrowserModule } from "@angular/platform-browser";
-import { NgModule } from "@angular/core";
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
 //Because template-driven forms are in their own module, you need to add the FormsModule to the array of imports
 //for the application module before you can use forms.
 import { FormsModule } from "@angular/forms";
@@ -24,6 +24,8 @@ import { AuthGuard, NotAuth } from "./authentication/auth-guard";
 import { UserService } from "./user/user.service";
 import { AuthenticationService } from "./authentication/authentication.service";
 import { NotifierModule } from "angular-notifier";
+import { HelpPageComponent } from './help-page/help-page.component';
+import { AccountManagementPageComponent } from './account-management-page/account-management-page.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +38,9 @@ import { NotifierModule } from "angular-notifier";
     AboutUsPageComponent,
     HowToUsePageComponent,
     LoginComponent,
-    AdminComponent
+    AdminComponent,
+    HelpPageComponent,
+    AccountManagementPageComponent
   ],
   imports: [
     BrowserModule,
@@ -56,6 +60,7 @@ import { NotifierModule } from "angular-notifier";
       multi: true
     }
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })
 export class AppModule {}

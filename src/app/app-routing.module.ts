@@ -8,6 +8,9 @@ import { AuthGuard, NotAuth } from "./authentication/auth-guard";
 import { AboutUsPageComponent } from "./about-us-page/about-us-page.component";
 import { HowToUsePageComponent } from "./how-to-use-page/how-to-use-page.component";
 import { LoginComponent } from "./user/login/login.component";
+import { HelpPageComponent } from './help-page/help-page.component';
+import { AccountManagementPageComponent } from './account-management-page/account-management-page.component';
+
 //define routes
 const routes: Routes = [
   {
@@ -49,9 +52,23 @@ const routes: Routes = [
   },
   {
     path: "help",
-    component: HowToUsePageComponent,
+    component: HelpPageComponent,
     data: {
       title: "Help page"
+    }
+  },
+  {
+    path: "how-to-use",
+    component: HowToUsePageComponent,
+    data: {
+      title: "How to use page"
+    }
+  },
+  {
+    path: "account-management",
+    component: AccountManagementPageComponent,
+    data: {
+      title: "Account management page"
     }
   },
   {
