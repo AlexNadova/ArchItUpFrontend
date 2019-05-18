@@ -6,7 +6,7 @@ import { NavigationBarService } from "src/app/navigation-bar/navigation-bar.serv
 import { FooterService } from "src/app/footer/footer.service";
 import { Router } from "@angular/router";
 import { NotifierService } from "angular-notifier";
-import { User } from 'src/app/models/user';
+import { User } from "src/app/models/user";
 
 //The @Component selector value of "app-registration" means you can drop this form in a parent template with a <app-registration> tag.
 @Component({
@@ -16,19 +16,19 @@ import { User } from 'src/app/models/user';
 })
 export class RegistrationComponent implements OnInit {
   private readonly notifier: NotifierService;
-user:User={
-  _id: "",
-  password: "",
-  firstName: "",
-  lastName: "",
-  email: "",
-  phone: "",
-  country: "",
-  city: "",
-  fieldOfFocus: []=[],
-  education: []=[],
-  workExperience: []=[] 
-}
+  user: User = {
+    _id: "",
+    password: "",
+    firstName: "",
+    lastName: "",
+    email: "",
+    phone: "",
+    country: "",
+    city: "",
+    fieldOfFocus: [] = [],
+    education: [] = [],
+    workExperience: [] = []
+  };
 
   constructor(
     private userService: UserService,
@@ -45,9 +45,9 @@ user:User={
     this.register(form);
   }
 
-  register(form: NgForm){
+  register(form: NgForm) {
     console.log(form.value);
-    this.user={
+    this.user = {
       _id: "",
       password: form.value.password,
       firstName: form.value.firstName,
@@ -56,10 +56,10 @@ user:User={
       phone: form.value.phone,
       country: "",
       city: "",
-      fieldOfFocus: []=[],
-      education: []=[],
-      workExperience: []=[] 
-    }
+      fieldOfFocus: [] = [],
+      education: [] = [],
+      workExperience: [] = []
+    };
     console.log(this.user);
     this.userService.register(this.user).subscribe(
       res => {
