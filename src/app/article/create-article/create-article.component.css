@@ -1,0 +1,29 @@
+.container {
+  margin-top: 120px;
+}
+.title {
+  margin-bottom: 60px;
+  margin-left: 15%;
+  color: rgb(214, 199, 164);
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+}
+.col-2 {
+  margin-top: 7px;
+  text-align: right;
+}
+.author-row{
+    margin-bottom: 5px;
+}
+.add-row{
+    margin-top: -7px;
+    margin-bottom: -10px;
+}
+#add-btn {
+  text-align: right;
+}
+#remove-btn {
+  text-align: left;
+}
+hr {
+  background-color: rgb(185, 185, 185);
+}
