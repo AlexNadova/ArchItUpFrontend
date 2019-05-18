@@ -40,6 +40,9 @@ export class NavigationBarComponent implements OnInit {
   updateRouterLinkToHome() {
     return (this.routerLinkVariable = "/home");
   }
+  updateRouterLinkToArticles() {
+    return (this.routerLinkVariable = "/articles");
+  }
   logout() {
     this.userService.logout();
     this.router.navigate(["login"]);

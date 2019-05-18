@@ -17,36 +17,22 @@ const registerUrl = "http://localhost:4000/api/user/signup";
 })
 export class UserService {
   constructor(private http: HttpClient) {}
-  id: String;
-  user: User = {
-    _id: "",
-    firstName: "",
-    lastName: "",
-    email: "",
-    password: "",
-    phone: "",
-    country: "",
-    city: "",
-    fieldOfFocus: "",
-    education: [] = [],
-    workExperience: [] = []
-  };
+  id: string;
 
   loginUser = {
     email: "",
     password: ""
   };
 
-  register(form: NgForm): Observable<any> {
-    this.user.firstName = form.value.first_name;
-    this.user.lastName = form.value.last_name;
-    this.user.email = form.value.email;
-    this.user.password = form.value.password;
-    this.user.phone = form.value.phone;
-    console.log("User: " + JSON.stringify(this.user));
-    return this.http.post<User>(registerUrl, JSON.stringify(this.user), {
-      headers: httpheaders
-    });
+  register(user:User): Observable<any> {
+    console.log(JSON.stringify(user));
+    return this.http.post<User>(
+      registerUrl,
+      JSON.stringify(user),
+      {
+        headers: httpheaders
+      }
+    );
   }
 
   getUser(): Observable<any> {
@@ -78,9 +64,10 @@ export class UserService {
     });
   }
 
-  updateUser(form: NgForm): Observable<any> {
+  updateUser(user): Observable<any> {
+    console.log(JSON.stringify(user));
     this.id = localStorage.getItem("_id");
-    return this.http.put<User>(userUrl + this.id, {
+    return this.http.patch<User>(userUrl + this.id, JSON.stringify(user), {
       headers: httpheaders
     });
   }

@@ -1,0 +1,65 @@
+<div class="space-header"></div>
+<div class="container row">
+  <div class="col-2"></div>
+  <div class="col">
+    <div class="row" id="back">
+      <div class="col-6 header">
+        <div class="row">
+          <h3 class="title">{{ article.title }}</h3>
+        </div>
+        <div class="row">
+          <p class="col-2">Authors:</p>
+          <div class="col">
+            <p class="row-2" *ngFor="let author of article.author">
+              {{ author }}
+            </p>
+          </div>
+        </div>
+        <p class="row description">{{ article.description }}</p>
+      </div>
+      <div class="col picture">
+        <img class="title-pic" src="assets/article-tile-pic.png" />
+      </div>
+    </div>
+    <div class="row">
+      <p class="col content">
+        {{ article.content }}
+      </p>
+      <div class="col-3 more">
+        <div class="row social justify-content-center">
+          <a class="fb-ic col">
+            <i class="fab fa-facebook-f white-text"> </i>
+          </a>
+          <!-- Twitter -->
+          <a class="tw-ic col">
+            <i class="fab fa-twitter white-text"> </i>
+          </a>
+          <!--Linkedin -->
+          <a class="li-ic col">
+            <i class="fab fa-linkedin-in white-text"> </i>
+          </a>
+          <!--Instagram-->
+          <a class="ins-ic col">
+            <i class="fab fa-instagram white-text"> </i>
+          </a>
+        </div>
+        <hr />
+        <p class="row justify-content-center">
+          Add your own article!
+        </p>
+        <a
+          id="add"
+          class="fas fa-plus clickable row justify-content-center"
+          [routerLink]="['/articles/create']"
+        ></a>
+        <hr />
+        <div>
+          <p class="row justify-content-center">More articles</p>
+          <hr />
+          <p class="row justify-content-center">Article one</p>
+          <p class="row justify-content-center">Article two</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

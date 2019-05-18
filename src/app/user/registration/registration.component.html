@@ -14,7 +14,7 @@
       and monitors their properties, including their validity. It also has its own valid property which is 
       true only if every contained control is valid. -->
       <!-- bind the form's ngSubmit event property to the hero form component's onSubmit() method -->
-      <form class="reg-form" (ngSubmit)="onSubmit(userForm)" #userForm="ngForm">
+      <form class="reg-form" #regForm="ngForm" >
         <div class="row justify-content-center">
           <div class="col-xs-14 col-sm-10 col-md-6">
             <div class="form-group">
@@ -29,19 +29,20 @@
               <input
                 type="text"
                 class="form-control"
-                id="first_name"
+                id="firstName"
                 required
                 ngModel
-                name="first_name"
-                #fname="ngModel"
+                name="firstName"
+                #firstName="ngModel"
+                pattern="[a-zA-Z]{2,}"
                 placeholder="First name"
               />
               <!-- for validation message. pristine means user hasn't changed value -->
               <div
-                [hidden]="fname.valid || fname.untouched"
+                [hidden]="firstName.valid || firstName.untouched"
                 class="alert alert-danger"
               >
-                Field is required
+                Field is required. Name must contain 2 or more letters.
               </div>
             </div>
           </div>
@@ -50,18 +51,19 @@
               <input
                 type="text"
                 class="form-control"
-                id="last_name"
+                id="lastName"
                 required
                 ngModel
-                name="last_name"
-                #lname="ngModel"
+                name="lastName"
+                #lastName="ngModel"
+                pattern="[a-zA-Z]{2,}"
                 placeholder="Last name"
               />
               <div
-                [hidden]="lname.valid || lname.untouched"
+                [hidden]="lastName.valid || lastName.untouched"
                 class="alert alert-danger"
               >
-                Field is required
+                Field is required. Name must contain 2 or more letters.
               </div>
             </div>
           </div>
@@ -144,6 +146,7 @@
                 required
                 ngModel
                 name="phone"
+                pattern="^[+]{1}[0-9]{1,4}[\s0-9]*$"
                 #phone="ngModel"
                 placeholder="Phone number"
               />
@@ -151,7 +154,7 @@
                 [hidden]="phone.valid || phone.untouched"
                 class="alert alert-danger"
               >
-                Field is required
+                Field is required. Number must start with country prefix and space. (e.g. +421 918654953 for SK, +45 50256895 for DK)
               </div>
             </div>
           </div>
@@ -160,10 +163,10 @@
           <div class="col">
             <!-- [disabled]...: button is disabled if some fields are invalid -->
             <button
-              type="submit"
+              type="button"
               class="btn btn-primary btn-block"
-              [disabled]="!userForm.form.valid"
-              (click)="router.navigate(['/login'])"
+              [disabled]="!regForm.form.valid"
+              (click)="register(regForm)"
             >
               Sign in
             </button>

@@ -5,7 +5,6 @@ import { RegistrationComponent } from "./user/registration/registration.componen
 import { ProfileComponent } from "./user/profile/profile.component";
 import { HomePageComponent } from "./home-page/home-page.component";
 import { AuthGuard, NotAuth } from "./authentication/auth-guard";
-import { AboutUsPageComponent } from "./about-us-page/about-us-page.component";
 import { HowToUsePageComponent } from "./how-to-use-page/how-to-use-page.component";
 import { LoginComponent } from "./user/login/login.component";
 import { HelpPageComponent } from './help-page/help-page.component';
@@ -44,11 +43,8 @@ const routes: Routes = [
     }
   },
   {
-    path: "about-us",
-    component: AboutUsPageComponent,
-    data: {
-      title: "About us page"
-    }
+    path: "articles",
+    loadChildren: "../app/article/article.module#ArticleModule"
   },
   {
     path: "help",
@@ -97,12 +93,16 @@ const routes: Routes = [
   //     roles: [Role.Admin]
   //   }
   //  },
-  // otherwise redirect to home
+  // page doesn't exist
   // {
   //   path: "**",
   //   component: ErrorsComponent,
   //   data: { error: 404 }
   // }
+    {
+    path: "**",
+    redirectTo:"/home"
+  }
 ];
 
 @NgModule({
