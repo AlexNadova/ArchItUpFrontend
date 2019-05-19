@@ -11,10 +11,8 @@ import { NotifierService } from "angular-notifier";
   styleUrls: ["./navigation-bar.component.css"]
 })
 export class NavigationBarComponent implements OnInit {
-  public routerLinkVariable = "/home";
-  currentUrl: String;
   private readonly notifier: NotifierService;
-
+  id = localStorage.getItem("_id");
   constructor(
     private router: Router,
     public nav: NavigationBarService,
@@ -23,26 +21,10 @@ export class NavigationBarComponent implements OnInit {
     private notifierService: NotifierService
   ) {
     this.notifier = notifierService;
-    router.events.subscribe((_: NavigationEnd) => (this.currentUrl = _.url));
   }
 
   ngOnInit() {}
 
-  updateRouterLinkToRegister() {
-    return (this.routerLinkVariable = "/register");
-  }
-  updateRouterLinkToProfile() {
-    return (this.routerLinkVariable = "/profile");
-  }
-  updateRouterLinkToLogin() {
-    return (this.routerLinkVariable = "/login");
-  }
-  updateRouterLinkToHome() {
-    return (this.routerLinkVariable = "/home");
-  }
-  updateRouterLinkToArticles() {
-    return (this.routerLinkVariable = "/articles");
-  }
   logout() {
     this.userService.logout();
     this.router.navigate(["login"]);

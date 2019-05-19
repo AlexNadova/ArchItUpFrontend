@@ -20,16 +20,12 @@
           <a class="tw-ic">
             <i class="fab fa-twitter white-text mr-4"> </i>
           </a>
-          <!-- Google +-->
-          <a class="gplus-ic">
-            <i class="fab fa-google-plus-g white-text mr-4"> </i>
-          </a>
           <!--Linkedin -->
           <a class="li-ic">
             <i class="fab fa-linkedin-in white-text mr-4"> </i>
           </a>
           <!--Instagram-->
-          <a class="ins-ic">
+          <a class="ins-ic" href="https://www.instagram.com/architup_svk/">
             <i class="fab fa-instagram white-text"> </i>
           </a>
         </div>
@@ -69,13 +65,10 @@
           <a class="dark-grey-text" href="#!">Projects</a>
         </p>
         <p>
-          <a class="dark-grey-text" href="#!">Articles</a>
+          <a class="dark-grey-text" [routerLink]="['/articles']">Articles</a>
         </p>
         <p>
           <a class="dark-grey-text" href="#!">Events</a>
-        </p>
-        <p>
-          <a class="dark-grey-text" href="#!">Competitions</a>
         </p>
       </div>
       <!-- Grid column -->
@@ -87,26 +80,11 @@
           style="width: 60px;"
         />
         <p>
-          <a
-            [routerLink]="updateRouterLinkToAboutUs()"
-            [class.activated]="currentUrl == '/profile'"
-            class="dark-grey-text"
-            >About us</a
-          >
-        </p>
-        <p>
-          <a class="dark-grey-text" href="#!">Become an Affiliate</a>
-        </p>
-        <p>
           <a class="dark-grey-text" href="#!">User agreement</a>
         </p>
         <p>
-          <a
-            [routerLink]="updateRouterLinkToHelp()"
-            [class.activated]="currentUrl == '/profile'"
-            class="dark-grey-text"
-            >Help</a
-          >
+          <a [routerLink]="['/home']" class="dark-grey-text">Help</a
+          ><!--needs route to component-->
         </p>
       </div>
       <!-- Grid column -->

@@ -38,7 +38,7 @@ export class LoginComponent implements OnInit {
       res => {
         localStorage.setItem("_id", res.id);
         localStorage.setItem("token", res.token);
-        this.router.navigate(["/profile"]);
+        this.router.navigate(["/profile",res.id]);
         this.showAll();
         this.notifier.notify("success", "User successfully logged.");
       },
