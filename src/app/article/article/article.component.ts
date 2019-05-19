@@ -16,10 +16,12 @@ export class ArticleComponent implements OnInit {
     title: "",
     author: [] = [],
     description: "",
-    content: ""
+    content: "",
+    ownerId: ""
   };
   authors: string[] = [];
   articleId = this.router.url.substring(18, this.router.url.length);
+  ownerId = "";
   private readonly notifier: NotifierService;
 
   constructor(
@@ -34,7 +36,8 @@ export class ArticleComponent implements OnInit {
     this.articleService.getArticle(this.articleId).subscribe(
       (data: Article) => {
         this.article = { ...data };
-        //console.log(JSON.stringify(this.article));
+        console.log(JSON.stringify(this.article));
+        this.ownerId=this.article.ownerId;
         this.authors = this.article.author;
       },
       err => this.notifier.notify("error", "Error occured: " + err.message)
