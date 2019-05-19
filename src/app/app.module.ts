@@ -18,16 +18,13 @@ import { TokenInterceptorService } from "./authentication/token-interceptor.serv
 import { AuthGuard, NotAuth } from "./authentication/auth-guard";
 import { AuthenticationService } from "./authentication/authentication.service";
 import { NotifierModule } from "angular-notifier";
-<<<<<<< HEAD
 import { RegistrationComponent } from './user/registration/registration.component';
 import { LoginComponent } from './user/login/login.component';
 import { ProfileComponent } from './user/profile/profile.component';
 import { OwnerProfileComponent } from './user/owner-profile/owner-profile.component';
 import { UserService } from './user/user.service';
-=======
 import { HelpPageComponent } from './help-page/help-page.component';
 import { AccountManagementPageComponent } from './account-management-page/account-management-page.component';
->>>>>>> 5168c8f4605f5379367acdb86d9d800cb16a41a4
 
 @NgModule({
   declarations: [
@@ -39,14 +36,10 @@ import { AccountManagementPageComponent } from './account-management-page/accoun
     AdminComponent,
     RegistrationComponent,
     LoginComponent,
-<<<<<<< HEAD
     ProfileComponent,
-    OwnerProfileComponent
-=======
-    AdminComponent,
+    OwnerProfileComponent,
     HelpPageComponent,
     AccountManagementPageComponent
->>>>>>> 5168c8f4605f5379367acdb86d9d800cb16a41a4
   ],
   imports: [
     BrowserModule,
