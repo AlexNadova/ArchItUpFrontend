@@ -4,10 +4,17 @@ import { Routes, RouterModule } from "@angular/router";
 import { HomePageComponent } from "./home-page/home-page.component";
 import { AuthGuard, NotAuth } from "./authentication/auth-guard";
 import { HowToUsePageComponent } from "./how-to-use-page/how-to-use-page.component";
+<<<<<<< HEAD
 import { RegistrationComponent } from './user/registration/registration.component';
 import { OwnerProfileComponent } from './user/owner-profile/owner-profile.component';
 import { ProfileComponent } from './user/profile/profile.component';
 import { LoginComponent } from './user/login/login.component';
+=======
+import { LoginComponent } from "./user/login/login.component";
+import { HelpPageComponent } from './help-page/help-page.component';
+import { AccountManagementPageComponent } from './account-management-page/account-management-page.component';
+
+>>>>>>> 5168c8f4605f5379367acdb86d9d800cb16a41a4
 //define routes
 const routes: Routes = [
   {
@@ -51,11 +58,34 @@ const routes: Routes = [
     }
   },
   {
+<<<<<<< HEAD
     path: "my-profile/:id",
     component: OwnerProfileComponent,
     canActivate: [AuthGuard],
+=======
+    path: "articles",
+    loadChildren: "../app/article/article.module#ArticleModule"
+  },
+  {
+    path: "help",
+    component: HelpPageComponent,
+>>>>>>> 5168c8f4605f5379367acdb86d9d800cb16a41a4
     data: {
       title: "Profile"
+    }
+  },
+  {
+    path: "how-to-use",
+    component: HowToUsePageComponent,
+    data: {
+      title: "How to use page"
+    }
+  },
+  {
+    path: "account-management",
+    component: AccountManagementPageComponent,
+    data: {
+      title: "Account management page"
     }
   },
   {

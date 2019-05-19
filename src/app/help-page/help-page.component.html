@@ -1,0 +1,32 @@
+<hr />
+<hr />
+<hr />
+<!--
+  - The "(click)" event handler captures a click event from the users' mouse button on the element to whitch it s attribute is applied.
+  This action results in a call to a JavaScript function (fx: "router.navigate(['/how-to-use'])").
+-->
+<section class="clearfix">
+  <div class="container">
+    <div class="knowledge-base">
+      <div class="headingscategory">
+        <h1>How cen we help you?</h1>
+        <h2>Please select a topic below.</h2>
+      </div>
+
+      <div class="category-tree">
+        <section class="category itemNo-0" (click)="router.navigate(['/how-to-use']); topFunction()">
+          <section class="categoryBox">
+            <h3 class="categoryTitle">How to use</h3>
+            <div class="iconbg"></div>
+          </section>
+        </section>
+        <section class="category itemNo-1" (click)="router.navigate(['account-management']); topFunction()">
+          <section class="categoryBox">
+            <h3 class="categoryTitle">Account Management</h3>
+            <div class="iconbg"></div>
+          </section>
+        </section>
+      </div>
+    </div>
+  </div>
+</section>

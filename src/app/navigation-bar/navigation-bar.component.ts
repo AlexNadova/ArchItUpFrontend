@@ -30,4 +30,8 @@ export class NavigationBarComponent implements OnInit {
     this.router.navigate(["login"]);
     this.notifier.notify("success", "Logged off.");
   }
+  topFunction() {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+  }
 }

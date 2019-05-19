@@ -1,7 +1,7 @@
 //app.module.ts defines the application's root module. In it you identify the external modules you'll use
 //in the application and declare the components that belong to this module
 import { BrowserModule } from "@angular/platform-browser";
-import { NgModule } from "@angular/core";
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
 //Because template-driven forms are in their own module, you need to add the FormsModule to the array of imports
 //for the application module before you can use forms.
 import { FormsModule } from "@angular/forms";
@@ -18,11 +18,16 @@ import { TokenInterceptorService } from "./authentication/token-interceptor.serv
 import { AuthGuard, NotAuth } from "./authentication/auth-guard";
 import { AuthenticationService } from "./authentication/authentication.service";
 import { NotifierModule } from "angular-notifier";
+<<<<<<< HEAD
 import { RegistrationComponent } from './user/registration/registration.component';
 import { LoginComponent } from './user/login/login.component';
 import { ProfileComponent } from './user/profile/profile.component';
 import { OwnerProfileComponent } from './user/owner-profile/owner-profile.component';
 import { UserService } from './user/user.service';
+=======
+import { HelpPageComponent } from './help-page/help-page.component';
+import { AccountManagementPageComponent } from './account-management-page/account-management-page.component';
+>>>>>>> 5168c8f4605f5379367acdb86d9d800cb16a41a4
 
 @NgModule({
   declarations: [
@@ -34,8 +39,14 @@ import { UserService } from './user/user.service';
     AdminComponent,
     RegistrationComponent,
     LoginComponent,
+<<<<<<< HEAD
     ProfileComponent,
     OwnerProfileComponent
+=======
+    AdminComponent,
+    HelpPageComponent,
+    AccountManagementPageComponent
+>>>>>>> 5168c8f4605f5379367acdb86d9d800cb16a41a4
   ],
   imports: [
     BrowserModule,
@@ -55,6 +66,7 @@ import { UserService } from './user/user.service';
       multi: true
     }
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })
 export class AppModule {}

@@ -29,7 +29,9 @@
       <ul class="navbar-nav mr-auto">
         <!--active list item-->
         <li class="nav-item px-lg-1">
-          <a [routerLink]="['/home']" class="nav-link">Home </a>
+          <a [routerLink]="['/home']" class="nav-link" (click)="topFunction()"
+            >Home
+          </a>
         </li>
         <li class="nav-item px-lg-1">
           <a class="nav-link" href="#">Projects</a>
@@ -45,6 +47,7 @@
         <li class="nav-item">
           <a
             [routerLink]="['/register']"
+            (click)="topFunction()"
             class="nav-link"
             id="registerText"
             *ngIf="!authService.isAuthenticated()"
@@ -54,6 +57,7 @@
         <li class="nav-item">
           <a
             [routerLink]="['/login']"
+            (click)="topFunction()"
             class="nav-link"
             *ngIf="!authService.isAuthenticated()"
             >Log in</a
@@ -62,6 +66,7 @@
         <li class="nav-item px-lg-1">
           <a
             [routerLink]="['/my-profile', id]"
+            (click)="topFunction()"
             class="nav-link"
             *ngIf="authService.isAuthenticated()"
             >Profile</a
@@ -71,6 +76,7 @@
           <a
             (click)="logout()"
             [routerLink]="['/home']"
+            (click)="logout(); topFunction()"
             class="nav-link"
             *ngIf="authService.isAuthenticated()"
             >Log out</a
