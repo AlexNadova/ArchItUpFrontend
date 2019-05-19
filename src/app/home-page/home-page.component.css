@@ -1,110 +1,49 @@
 .container {
-    position: relative;
-	height: fit-content;
-	padding-top: 50px;
+  min-height: 100vh;
 }
 
 /*header has fixed height*/
 #home-header {
-    height: 300;
-    background-color: transparent;
+  height: 300;
+  background-color: transparent;
+  margin-top: 55px;
 }
 img {
-    height: 100%;
-    width: 100%;
-    max-height: max-content;
-    color: transparent;
+  height: 100%;
+  width: 100%;
+  max-height: max-content;
+  color: transparent;
 }
 /* header title "ArchItUp" */
 .top-right {
-    position: absolute;
-    top: 10px;
-    right: 20px;
-    font-size: xx-large;
-	color: black;
-	cursor: default;
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  font-size: xx-large;
+  color: black;
+  cursor: default;
 }
-  
+
 /* content container */
 .container-fluid {
-    margin-top: 2%;
+  margin-top: 2%;
 }
 
 /* Projects section */
 h2 {
-	border-bottom: lightgrey solid 1px;
-	padding: 20px;
-}
-.category-tree {
-	position: relative;
-	text-align: center;
-	padding-top: 10px; 
-}
-.category-tree .category {
-	margin-right: 79px;
-	margin-bottom: 77px;
-	font-weight: normal;
-	display: inline-block;
-	vertical-align: top;
-	-webkit-transition: height .2s;
-	-moz-transition: height .2s;
-	-ms-transition: height .2s;
-	-o-transition: height .2s;
-	transition: height .2s;
+  border-bottom: lightgrey solid 1px;
+  padding: 20px;
 }
 
-* {
-	box-sizing: border-box;
+.join-us {
+  margin-bottom: 150px;
+  margin-top: 90px;
+  margin-left: 90px;
 }
-.category-tree .category .categoryBox {
-	z-index: 1;
-	position: relative;
-	width: 275px;
-	height: 200px;
-	cursor: pointer;
-	transition: box-shadow .2s ease-in;
-	-webkit-transition: box-shadow .2s ease-in;
-	-moz-transition: box-shadow .2s ease-in;
-	-ms-transition: box-shadow .2s ease-in;
-	-o-transition: box-shadow .2s ease-in;
-	border: 1px solid #eaebed;
+.title {
+  margin-top: 15px;
+  text-align: center;
 }
-.category-tree .category .categoryBox:hover{
-	border: none;
-	-webkit-box-shadow: 0px 2px 9px 0px rgba(224,226,228,0.88);
-	-moz-box-shadow: 0px 2px 9px 0px rgba(224,226,228,0.88);
-	box-shadow: 0px 2px 9px 0px rgba(224,226,228,0.88);
-}
-.category-tree .category h3.categoryTitle {
-	position: relative;
-	padding-top: 80px;
-    margin: 0;
-    color: #0a6be9;
-	font-size: 18px;
-	pointer-events: visible;
-}
-
-.category-tree .category:nth-child(3n),.category-tree .category:last-child {
-	margin: 0;
-}
-.category-tree .category #project-pic {
-	position: relative;
-	top: 20%;
-	max-width: 200px;
-	height: auto;
-	width: 100%;
-	background-repeat: no-repeat;
-	background-position: top center;
-}
-.category-tree .category:first-child #project-pic {
-	width: 100px;
-	height: 70px;
-}
-.category-tree .category:nth-child(2) #project-pic {
-	width: 100px;
-	height: 70px;
-}
-.category-tree .category:nth-child(3) #project-pic {
-	width: 100px;
-	height: 70px;
+hr {
+  background-color: rgb(168, 168, 168);
 }
