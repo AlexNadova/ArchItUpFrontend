@@ -1,0 +1,953 @@
+<div class="container">
+    <div class="card" id="profile-header">
+      <div class="card-header" id="profile-header-top"></div>
+      <div class="card-body" id="profile-header-bottom">
+        <div class="profile-picture">
+          <img
+            id="profile-pic"
+            src="assets/profile-pics/user.png"
+            alt="Profile picture"
+          />
+        </div>
+        <div class="row">
+          <div class="col space"></div>
+          <div class="col header-text">
+            <p class="name">
+              <strong>{{ user.firstName }} {{ user.lastName }}</strong>
+            </p>
+            <p class="field-of-focus" *ngIf="user.fieldOfFocus.length > 0">
+              {{ user.fieldOfFocus }}
+            </p>
+            <p
+              class="address"
+              *ngIf="user.country != undefined && user.city != undefined"
+            >
+              {{ user.country }}, {{ user.city }}
+            </p>
+          </div>
+          <!-- profile pic in cycle -->
+          <div class="col options">
+            <!-- option with glyphicon -->
+            <div class="menu">
+              <span
+                id="edit-header"
+                class="fas fa-pen clickable"
+                data-toggle="modal"
+                data-target="#edit-header-modal"
+              ></span>
+              <span
+                data-toggle="collapse"
+                data-target="#profile_options"
+                class="fas fa-cog clickable"
+                onclick="$('#profile_options').toggle('view')"
+              ></span>
+              <div id="profile_options" class="collapse card">
+                <ul class="list-group list-group-flush">
+                  <li
+                    class="list-group-item clickable invert-text"
+                    data-toggle="modal"
+                    data-target="#privacy-setting-model"
+                    onclick="$('#profile_options').toggle('hide')"
+                  >
+                    Privacy settings
+                  </li>
+                  <!--change email, password-->
+                  <li
+                    class="list-group-item clickable invert-text"
+                    data-toggle="modal"
+                    data-target="#delete-user-model"
+                    onclick="$('#profile_options').toggle('hide')"
+                  >
+                    Delete account
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div>
+              <!--show if  user has some experience and latest year is current year -->
+              <p
+                class="job"
+                *ngIf="
+                  user.workExperience.length > 0 &&
+                  user.workExperience[0].yearEnd === getCurrentYear()
+                "
+              >
+                {{ user.workExperience[0].company }}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- header info edit modal -->
+    <div
+      class="modal fade"
+      id="edit-header-modal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="edit-header-modal-label"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered invert-text" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title invert-text" id="modal-title">
+              Edit header info
+            </h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="container">
+              <form
+                class="header-form"
+                (ngSubmit)="updateHeader(headerForm)"
+                #headerForm="ngForm"
+                [ngFormOptions]="{ updateOn: 'submit' }"
+              >
+                <div class="row">
+                  <div class="col">
+                    <div class="form-group">
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="firstName"
+                        [(ngModel)]="user.firstName"
+                        name="firstName"
+                        #firstName="ngModel"
+                        pattern="[a-zA-Z\s]{2,}"
+                        placeholder="First name"
+                      />
+                      <!-- for validation message. pristine means user hasn't changed value -->
+                      <div
+                        [hidden]="
+                          firstName.valid ||
+                          firstName.untouched ||
+                          firstName.pristine
+                        "
+                        class="alert alert-danger"
+                      >
+                        Name must contain 2 or more letters.
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col">
+                    <div class="form-group">
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="lastName"
+                        [(ngModel)]="user.lastName"
+                        name="lastName"
+                        #lastName="ngModel"
+                        pattern="[a-zA-Z\s]{2,}"
+                        placeholder="Last name"
+                      />
+                      <div
+                        [hidden]="
+                          lastName.valid ||
+                          lastName.untouched ||
+                          lastName.pristine
+                        "
+                        class="alert alert-danger"
+                      >
+                        Name must contain 2 or more letters.
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <hr />
+                <h5 class="invert-text">Fields of focus (e.g. architect, designer)</h5>
+                <div
+                  class="field-of-focus-container"
+                  *ngFor="let field of fields; let i = index"
+                >
+                  <div class="row">
+                    <div class="col">
+                      <div class="form-group">
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="subField"
+                          [(ngModel)]="fields[i]"
+                          name="subField{{ i }}"
+                          #subField="ngModel"
+                          pattern="[a-zA-Z\s]{2,}"
+                          placeholder="Field of focus"
+                        />
+                        <div
+                          [hidden]="
+                            subField.valid ||
+                            subField.untouched ||
+                            subField.pristine
+                          "
+                          class="alert alert-danger"
+                        >
+                          Words must contain 2 or more letters.
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row justify-content-around">
+                  <div class="col-4">
+                    <button
+                      class="btn btn-block btn-outline-primary btn-sm"
+                      id="add-btn"
+                      type="button"
+                      (click)="addFields(fields)"
+                    >
+                      Add
+                    </button>
+                  </div>
+                  <div class="col-4">
+                    <button
+                      class="btn btn-block btn-outline-danger btn-sm"
+                      id="add-btn"
+                      type="button"
+                      (click)="removeFields(fields)"
+                    >
+                      Remove last
+                    </button>
+                  </div>
+                </div>
+                <hr />
+                <div class="row">
+                  <div class="col">
+                    <div class="form-group">
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="country"
+                        [(ngModel)]="user.country"
+                        name="country"
+                        #country="ngModel"
+                        pattern="[a-zA-Z\s]{4,}"
+                        placeholder="Country"
+                      />
+                      <div
+                        [hidden]="
+                          country.valid || country.untouched || country.pristine
+                        "
+                        class="alert alert-danger"
+                      >
+                        Country must contain 4 or more letters.
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col">
+                    <div class="form-group">
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="city"
+                        [(ngModel)]="user.city"
+                        name="city"
+                        #city="ngModel"
+                        pattern="[a-zA-Z\s]{4,}"
+                        placeholder="City"
+                      />
+                      <div
+                        [hidden]="city.valid || city.untouched || city.pristine"
+                        class="alert alert-danger"
+                      >
+                        City must contain 4 or more letters.
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col">
+                    <button
+                      type="submit"
+                      class="btn btn-primary btn-block"
+                      [disabled]="!headerForm.form.valid"
+                      onclick="$('.modal').modal('hide')"
+                    >
+                      Save
+                    </button>
+                  </div>
+                  <div class="col">
+                    <button
+                      type="button"
+                      class="btn btn-danger btn-block"
+                      data-dismiss="modal"
+                    >
+                      Cancel
+                    </button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- delete user modal -->
+    <div
+      class="modal fade"
+      id="delete-user-model"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="edit-header-modal-label"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title invert-text" id="exampleModalLongTitle">
+              Delete user
+            </h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body invert-text">
+            Are you sure you want to delete your account? This change is
+            permanent.
+          </div>
+          <div class="modal-footer" id="delete-modal-footer">
+            <button
+              type="button"
+              class="btn btn-danger"
+              (click)="deleteUser()"
+              data-dismiss="modal"
+            >
+              Delete user
+            </button>
+            <button type="button" class="btn btn-cancel" data-dismiss="modal">
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- privacy settings modal -->
+    <div
+      class="modal fade"
+      id="privacy-setting-model"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="edit-header-modal-label"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            Privacy settings
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">
+              Close
+            </button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-xs-14 col-sm-12 col-md-6">
+          <div class="card text-white bg-dark mb-2 contact-frame">
+            <!-- frame with phomne, email, perhaps links to other social media -->
+            <div class="card-body">
+              <h5 id="title" class="card-title">
+                Contact
+                <span
+                  id="edit"
+                  class="fas fa-pen clickable"
+                  data-toggle="modal"
+                  data-target="#edit-contact-modal"
+                ></span>
+              </h5>
+              <p class="card-text">Email: {{ user.email }}</p>
+              <p class="card-text">Phone number: {{ user.phone }}</p>
+            </div>
+          </div>
+          <!-- contact info edit modal -->
+          <div
+            class="modal fade"
+            id="edit-contact-modal"
+            tabindex="-1"
+            role="dialog"
+            aria-labelledby="edit-contact-modal-label"
+            aria-hidden="true"
+          >
+            <div class="modal-dialog modal-dialog-centered" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title invert-text" id="modal-title">
+                    Edit contact information
+                  </h5>
+                  <button
+                    type="button"
+                    class="close"
+                    data-dismiss="modal"
+                    aria-label="Close"
+                  >
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <div class="container">
+                    <form
+                      class="contact-form"
+                      (ngSubmit)="updateContact(contactForm)"
+                      #contactForm="ngForm"
+                      [ngFormOptions]="{ updateOn: 'submit' }"
+                    >
+                      <div class="row">
+                        <div class="col">
+                          <div class="form-group">
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="email"
+                              [(ngModel)]="user.email"
+                              name="email"
+                              #email="ngModel"
+                              pattern="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?"
+                              placeholder="Email"
+                            />
+                            <!-- for validation message. pristine means user hasn't changed value -->
+                            <div
+                              [hidden]="
+                                email.valid || email.untouched || email.pristine
+                              "
+                              class="alert alert-danger"
+                            >
+                              Email must be in correct form. (e.g.:
+                              mail@website.com)
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col">
+                          <div class="form-group">
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="phone"
+                              [(ngModel)]="user.phone"
+                              name="phone"
+                              #phone="ngModel"
+                              pattern="^[+]{1}[0-9]{1,4}[\s0-9]*$"
+                              placeholder="Phone number"
+                            />
+                            <div
+                              [hidden]="
+                                phone.valid || phone.untouched || phone.pristine
+                              "
+                              class="alert alert-danger"
+                            >
+                              Number must start with country prefix and space.
+                              (e.g. +421 918654953 for SK, +45 50256895 for DK)
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col">
+                          <button
+                            type="submit"
+                            class="btn btn-primary btn-block"
+                            [disabled]="!contactForm.form.valid"
+                            onclick="$('.modal').modal('hide')"
+                          >
+                            Save
+                          </button>
+                        </div>
+                        <div class="col">
+                          <button
+                            type="button"
+                            class="btn btn-danger btn-block"
+                            data-dismiss="modal"
+                          >
+                            Cancel
+                          </button>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card text-white bg-dark mb-2 education-frame">
+            <!-- frame with schools -->
+            <div class="card-body">
+              <h5 id="title" class="card-title">
+                Education
+                <span
+                  id="edit"
+                  class="fas fa-pen clickable"
+                  data-toggle="modal"
+                  data-target="#edit-education-modal"
+                ></span>
+              </h5>
+              <div class="card-text" *ngFor="let edu of user.education">
+                <div class="row" *ngIf="user.education.length > 0">
+                  <p class="col">{{ edu.school }}</p>
+                  <p class="col">{{ edu.specialization }}</p>
+                  <p class="col-3">{{ edu.yearStart }} - {{ edu.yearEnd }}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- education info edit modal -->
+          <div
+            class="modal fade"
+            id="edit-education-modal"
+            tabindex="-1"
+            role="dialog"
+            aria-labelledby="edit-education-modal-label"
+            aria-hidden="true"
+          >
+            <div class="modal-dialog modal-dialog-centered" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title invert-text" id="modal-title">
+                    Edit education information
+                  </h5>
+                  <button
+                    type="button"
+                    class="close"
+                    data-dismiss="modal"
+                    aria-label="Close"
+                  >
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <div class="container">
+                    <form
+                      class="edu-form"
+                      (ngSubmit)="updateEducation(eduForm)"
+                      #eduForm="ngForm"
+                      [ngFormOptions]="{ updateOn: 'submit' }"
+                    >
+                      <div
+                        class="array-container"
+                        *ngFor="let edu of education; let j = index"
+                      >
+                        <div class="row">
+                          <div class="col">
+                            <div class="form-group">
+                              <input
+                                type="text"
+                                class="form-control"
+                                id="education_school"
+                                [(ngModel)]="education[j].school"
+                                name="education_school_{{ j }}"
+                                #education_school="ngModel"
+                                pattern="[a-zA-Z\s]{2,}"
+                                placeholder="School"
+                              />
+                              <div
+                                [hidden]="
+                                  education_school.valid ||
+                                  education_school.untouched ||
+                                  education_school.pristine
+                                "
+                                class="alert alert-danger"
+                              >
+                                School must contain 2 or more letters.
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col">
+                            <div class="form-group">
+                              <input
+                                type="text"
+                                class="form-control"
+                                id="education_speci"
+                                [(ngModel)]="education[j].specialization"
+                                name="education_speci{{ j }}"
+                                #education_speci="ngModel"
+                                pattern="[a-zA-Z\s]{2,}"
+                                placeholder="Specialisation"
+                              />
+                              <div
+                                [hidden]="
+                                  education_speci.valid ||
+                                  education_speci.untouched ||
+                                  education_speci.pristine
+                                "
+                                class="alert alert-danger"
+                              >
+                                Words must contain 2 or more letters.
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col">
+                            <div class="form-group">
+                              <input
+                                type="number"
+                                class="form-control"
+                                id="education_yearStart"
+                                [(ngModel)]="education[j].yearStart"
+                                name="education_yearStart{{ j }}"
+                                #education_yearStart="ngModel"
+                                placeholder="Start year"
+                              />
+                              <div
+                                [hidden]="
+                                  education_yearStart.valid ||
+                                  education_yearStart.untouched ||
+                                  education_yearStart.pristine
+                                "
+                                class="alert alert-danger"
+                              >
+                                Words must contain 2 or more letters.
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col">
+                            <div class="form-group">
+                              <input
+                                type="number"
+                                class="form-control"
+                                id="education_yearEnd"
+                                [(ngModel)]="education[j].yearEnd"
+                                name="education_yearEnd{{ j }}"
+                                #education_yearEnd="ngModel"
+                                placeholder="End year"
+                              />
+                              <div
+                                [hidden]="
+                                  education_yearEnd.valid ||
+                                  education_yearEnd.untouched ||
+                                  education_yearEnd.pristine
+                                "
+                                class="alert alert-danger"
+                              >
+                                Words must contain 2 or more letters.
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <hr />
+                      </div>
+                      <div class="row justify-content-around">
+                        <div class="col-4">
+                          <button
+                            class="btn btn-block btn-outline-primary btn-sm"
+                            id="add-btn"
+                            type="button"
+                            (click)="addArrayFields(education)"
+                          >
+                            Add
+                          </button>
+                        </div>
+                        <div class="col-4">
+                          <button
+                            class="btn btn-block btn-outline-danger btn-sm"
+                            id="add-btn"
+                            type="button"
+                            (click)="removeFields(education)"
+                          >
+                            Remove last
+                          </button>
+                        </div>
+                      </div>
+                      <hr />
+                      <div class="row">
+                        <div class="col">
+                          <button
+                            type="submit"
+                            class="btn btn-primary btn-block"
+                            [disabled]="!eduForm.form.valid"
+                            onclick="$('.modal').modal('hide')"
+                          >
+                            Save
+                          </button>
+                        </div>
+                        <div class="col">
+                          <button
+                            type="button"
+                            class="btn btn-danger btn-block"
+                            data-dismiss="modal"
+                          >
+                            Cancel
+                          </button>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card text-white bg-dark mb-2 experience-frame">
+            <!-- frame with work experience, projects etc. -->
+            <div class="card-body">
+              <h5 id="title" class="card-title">
+                Experience
+                <span
+                  id="edit"
+                  class="fas fa-pen clickable"
+                  data-toggle="modal"
+                  data-target="#edit-experience-modal"
+                ></span>
+              </h5>
+              <div class="card-text" *ngFor="let exp of user.workExperience">
+                <div class="row" *ngIf="user.workExperience.length > 0">
+                  <p class="col">{{ exp.company }}</p>
+                  <p class="col">{{ exp.position }}</p>
+                  <p class="col-3">{{ exp.yearStart }} - {{ exp.yearEnd }}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- experience info edit modal -->
+        <div
+          class="modal fade"
+          id="edit-experience-modal"
+          tabindex="-1"
+          role="dialog"
+          aria-labelledby="edit-experience-modal-label"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title invert-text" id="modal-title">
+                  Edit experience information
+                </h5>
+                <button
+                  type="button"
+                  class="close"
+                  data-dismiss="modal"
+                  aria-label="Close"
+                >
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <div class="container">
+                  <form
+                    class="exp-form"
+                    (ngSubmit)="updateExperience(expForm)"
+                    #expForm="ngForm"
+                    [ngFormOptions]="{ updateOn: 'submit' }"
+                  >
+                    <div
+                      class="array-container"
+                      *ngFor="let exp of experience; let j = index"
+                    >
+                      <div class="row">
+                        <div class="col">
+                          <div class="form-group">
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="company"
+                              [(ngModel)]="experience[j].company"
+                              name="company{{ j }}"
+                              #company="ngModel"
+                              pattern="[a-zA-Z\s]{2,}"
+                              placeholder="Company"
+                            />
+                            <div
+                              [hidden]="
+                                company.valid ||
+                                company.untouched ||
+                                company.pristine
+                              "
+                              class="alert alert-danger"
+                            >
+                              Company name must contain 2 or more letters.
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col">
+                          <div class="form-group">
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="position"
+                              [(ngModel)]="experience[j].position"
+                              name="position{{ j }}"
+                              #position="ngModel"
+                              pattern="[a-zA-Z\s]{2,}"
+                              placeholder="Position"
+                            />
+                            <div
+                              [hidden]="
+                                position.valid ||
+                                position.untouched ||
+                                position.pristine
+                              "
+                              class="alert alert-danger"
+                            >
+                              Position must contain 2 or more letters.
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col">
+                          <div class="form-group">
+                            <input
+                              type="number"
+                              class="form-control"
+                              id="expYearStart"
+                              [(ngModel)]="experience[j].yearStart"
+                              name="expYearStart{{ j }}"
+                              #expYearStart="ngModel"
+                              placeholder="Start year"
+                            />
+                            <div
+                              [hidden]="
+                                expYearStart.valid ||
+                                expYearStart.untouched ||
+                                expYearStart.pristine
+                              "
+                              class="alert alert-danger"
+                            >
+                              Must contain 4 numbers.
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col">
+                          <div class="form-group">
+                            <input
+                              type="number"
+                              class="form-control"
+                              id="eduYearEnd"
+                              [(ngModel)]="experience[j].yearEnd"
+                              name="eduYearEnd{{ j }}"
+                              #eduYearEnd="ngModel"
+                              placeholder="End year"
+                            />
+                            <div
+                              [hidden]="
+                                eduYearEnd.valid ||
+                                eduYearEnd.untouched ||
+                                eduYearEnd.pristine
+                              "
+                              class="alert alert-danger"
+                            >
+                              Must contain 4 numbers.
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <hr />
+                    </div>
+                    <div class="row justify-content-around">
+                      <div class="col-4">
+                        <button
+                          class="btn btn-block btn-outline-primary btn-sm"
+                          id="add-btn"
+                          type="button"
+                          (click)="addArrayFields(experience)"
+                        >
+                          Add
+                        </button>
+                      </div>
+                      <div class="col-4">
+                        <button
+                          class="btn btn-block btn-outline-danger btn-sm"
+                          id="add-btn"
+                          type="button"
+                          (click)="removeFields(experience)"
+                        >
+                          Remove last
+                        </button>
+                      </div>
+                    </div>
+                    <hr />
+                    <div class="row">
+                      <div class="col">
+                        <button
+                          type="submit"
+                          class="btn btn-primary btn-block"
+                          [disabled]="!expForm.form.valid"
+                          onclick="$('.modal').modal('hide')"
+                        >
+                          Save
+                        </button>
+                      </div>
+                      <div class="col">
+                        <button
+                          type="button"
+                          class="btn btn-danger btn-block"
+                          data-dismiss="modal"
+                        >
+                          Cancel
+                        </button>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xs-14 col-sm-12 col-md-6">
+            <div class="card text-white bg-dark mb-2 projects-frame">
+              <!-- frame with user's projects -->
+              <div class="card-body">
+                <h5 id="title" class="card-title">
+                  Projects
+                </h5>
+                <p class="card-text">projects not implemented yet</p>
+              </div>
+            </div>
+            <div class="card text-white bg-dark mb-2 articles-frame">
+              <!-- frame with user's articles -->
+              <div class="card-body">
+                <h5 id="title" class="card-title">
+                  Articles
+                </h5>
+                <div class="card-text" *ngFor="let key of articleKeys(articles)">
+                    <div class="row" *ngIf="articles[key].length > 0 || articles[key].ownerId===tempId">
+                      <a [routerLink]="['/articles/article', articles[key]._id]" class="col">{{ articles[key].title }}</a>
+                    </div>
+                  </div>
+              </div>
+            </div>
+          </div>
+      </div>
+    </div>
+  </div>
+  
