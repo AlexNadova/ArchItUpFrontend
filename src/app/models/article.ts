@@ -8,6 +8,7 @@ export class Article {
     //articleImages: Array<string>,,
     //public titleImage: string,
     //category: string,
-    public content: string
+    public content: string,
+    public ownerId: string
   ) {}
 }
