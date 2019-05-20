@@ -20,9 +20,6 @@ export class HomePageComponent implements OnInit {
   public routerLinkVariable = "/home";
   currentUrl: String;
 
-  updateRouterLinkToAboutUs() {
-    return (this.routerLinkVariable = "/about-us");
-  }
   ngOnInit() {
     this.nav.show();
     this.footer.show();

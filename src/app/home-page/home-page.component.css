@@ -10,6 +10,8 @@
     background-color: transparent;
 }
 img {
+	border: lightgrey;
+	border-image: 2px;
     height: 100%;
     width: 100%;
     max-height: max-content;
@@ -29,12 +31,13 @@ img {
 .container-fluid {
     margin-top: 2%;
 }
-
-/* Projects section */
 h2 {
 	border-bottom: lightgrey solid 1px;
-	padding: 20px;
+	padding: 16px;
+	font-size: 22px;
 }
+
+/* Projects section */
 .category-tree {
 	position: relative;
 	text-align: center;
@@ -107,4 +110,13 @@ h2 {
 .category-tree .category:nth-child(3) #project-pic {
 	width: 100px;
 	height: 70px;
+}
+
+/* About us section*/
+.content {
+	text-align: justify;
+	margin: 3%;
+}
+p {
+	font-size: 16px;
 }

@@ -10,14 +10,14 @@
 
 <!--Projects section
     Replace the image from "categoryBox" with the pictor of the project or the category of projects.
-    Replace the "router.navigate(['/about-us']);" with the route of the project or category of projects.
+    Replace the "router.navigate(['/articles']);" with the route of the project or category of projects.
 -->
   <section>
     <div class="projects-container" id="projects">
       <h2>Projects</h2>
     </div>
     <section class="category-tree">
-      <div class="category itemNo-0" (click)="router.navigate(['/about-us']);">
+      <div class="category itemNo-0" (click)="router.navigate(['/articles']);">
         <div class="categoryBox">
           <img 
           id="project-pic"
@@ -50,6 +50,29 @@
             <h4 class="categoryTitleExample">Villa</h4>
           </div>
         </div>
+    </section>
+
+    <section >
+      <div class="aboutUs-container" id="aboutUs">
+        <h2>About us</h2>
+      </div>
+      <div class="content">
+        <p>
+            ArchItUp is creative platform for new architects and students of
+          architecture that want to introduce themselves to the pubpc.
+        </p>
+        <p>
+            It’s a place where they can show their projects,
+          write and read interesting articles,
+          discuss architecture, share knowledge with others,
+          find out about workshops and lectures they can attend or test their
+          skills on different competitions.
+        </p>
+        <p>
+            Main focus is to help new architects to present themselves, gain
+          confidence and teach them how to sell themselves.
+        </p>
+      </div>
     </section>
   </section>
 </div>
