@@ -9,6 +9,12 @@
   margin-top: 55px;
 }
 img {
+	border: lightgrey;
+	border-image: 2px;
+    height: 100%;
+    width: 100%;
+    max-height: max-content;
+    color: transparent;
   height: 100%;
   width: 100%;
   max-height: max-content;
@@ -28,9 +34,60 @@ img {
 .container-fluid {
   margin-top: 2%;
 }
+h2 {
+	border-bottom: lightgrey solid 1px;
+	padding: 16px;
+	font-size: 22px;
+}
 
 /* Projects section */
-h2 {
+.category-tree {
+	position: relative;
+	text-align: center;
+	padding-top: 10px; 
+}
+.category-tree .category {
+	margin-right: 79px;
+	margin-bottom: 77px;
+	font-weight: normal;
+	display: inline-block;
+	vertical-align: top;
+	-webkit-transition: height .2s;
+	-moz-transition: height .2s;
+	-ms-transition: height .2s;
+	-o-transition: height .2s;
+	transition: height .2s;
+}
+
+* {
+	box-sizing: border-box;
+}
+.category-tree .category .categoryBox {
+	z-index: 1;
+	position: relative;
+	width: 275px;
+	height: 200px;
+	cursor: pointer;
+	transition: box-shadow .2s ease-in;
+	-webkit-transition: box-shadow .2s ease-in;
+	-moz-transition: box-shadow .2s ease-in;
+	-ms-transition: box-shadow .2s ease-in;
+	-o-transition: box-shadow .2s ease-in;
+	border: 1px solid #eaebed;
+}
+.category-tree .category .categoryBox:hover{
+	border: none;
+	-webkit-box-shadow: 0px 2px 9px 0px rgba(224,226,228,0.88);
+	-moz-box-shadow: 0px 2px 9px 0px rgba(224,226,228,0.88);
+	box-shadow: 0px 2px 9px 0px rgba(224,226,228,0.88);
+}
+.category-tree .category h3.categoryTitle {
+	position: relative;
+	padding-top: 80px;
+    margin: 0;
+    color: #0a6be9;
+	font-size: 18px;
+	pointer-events: visible;
   border-bottom: lightgrey solid 1px;
   padding: 20px;
 }
@@ -46,4 +103,13 @@ h2 {
 }
 hr {
   background-color: rgb(168, 168, 168);
+}
+
+/* About us section*/
+.content {
+	text-align: justify;
+	margin: 3%;
+}
+p {
+	font-size: 16px;
 }

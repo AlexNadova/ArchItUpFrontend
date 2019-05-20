@@ -1,3 +1,37 @@
 .container{
-    height: 100vh;
+    position: relative;
+	height: fit-content;
+    padding-top: 50px;
+}
+h1 {
+    align-self: center;
+    font-size: 25px;
+}
+
+/* Content style */
+.contentcategory {
+    padding: 20px;
+
+}
+li {
+    margin-left: 10%;
+}
+
+/* Sections style */
+.category-container .category {
+    padding-top: 35px;
+    padding-bottom: 35px;
+    text-align: justify;
+}
+.category-container .category h3.categoryTitle {
+    font-size: 20px;
+    margin-bottom: 10px;
+    border-bottom: 1px lightgrey solid;
+    padding-bottom: 10px;
+}
+img {
+    height: 100%;
+    width: 100%;
+    max-height: max-content;
+    color: transparent;
 }

@@ -15,9 +15,6 @@ export class FooterComponent implements OnInit {
   public routerLinkVariable = "/home";
   currentUrl: String;
 
-  updateRouterLinkToAboutUs() {
-    return (this.routerLinkVariable = "/about-us");
-  }
   updateRouterLinkToHelp() {
     return (this.routerLinkVariable = "/help");
   }
