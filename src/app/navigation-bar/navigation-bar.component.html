@@ -41,6 +41,7 @@
         </li>
         <li class="nav-item px-lg-1">
           <a
+          (click)="topFunction()"
           [routerLink]="updateRouterLinkToArticles()"
           [class.activated]="currentUrl == '/articles'"
           class="nav-link"
