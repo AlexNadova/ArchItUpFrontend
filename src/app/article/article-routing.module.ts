@@ -16,7 +16,7 @@ const routes: Routes = [
     path: "article/:id",
     component: ArticleComponent,
     data: {
-      title: "Articles"
+      title: "Article"
     }
   },
   {

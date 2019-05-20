@@ -14,19 +14,21 @@ import { User } from 'src/app/models/user';
   styleUrls: ["./create-article.component.css"]
 })
 export class CreateArticleComponent implements OnInit {
-  private readonly notifier: NotifierService;
   article: Article = {
     _id: "",
     title: "",
     author: [] = [],
     description: "",
-    content: ""
+    content: "",
+    ownerId:""
   };
-  authors:string[]=[];
+  authors:string[]=[""];
+
+  private readonly notifier: NotifierService;
   constructor(
     private articleService: ArticleService,
     private footer: FooterService,
-    private notifierService: NotifierService,
+    notifierService: NotifierService,
     public router: Router,
     private userService:UserService
   ) {
@@ -39,7 +41,8 @@ export class CreateArticleComponent implements OnInit {
       title: form.value.title,
       author: this.authors,
       description: form.value.description,
-      content: form.value.content
+      content: form.value.content,
+      ownerId: localStorage.getItem("_id")
     };
     console.log(this.article);
     this.articleService.create(this.article).subscribe(
@@ -50,18 +53,9 @@ export class CreateArticleComponent implements OnInit {
       err => this.notifier.notify("error", "Error occured: " + err.message)
     );
   }
-  getUserName(){
-    this.userService.getUser().subscribe(
-      (data: User) => {
-        this.authors.push(data.firstName + " " + data.lastName);
-      },
-      err => this.notifier.notify("error", "Can't get user's name. Error: " + err.message)
-    );
-  }
 
   addFields(a) {
     a.push("");
-    console.log(a);
   }
   removeFields(a) {
     if(a.length>1) a.splice(a.length - 1, 1);
@@ -69,6 +63,5 @@ export class CreateArticleComponent implements OnInit {
 
   ngOnInit() {
     this.footer.hide();
-    this.getUserName();
   }
 }

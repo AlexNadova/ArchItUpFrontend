@@ -1,13 +1,12 @@
 .container {
-    position: relative;
-	height: fit-content;
-	padding-top: 50px;
+  min-height: 100vh;
 }
 
 /*header has fixed height*/
 #home-header {
-    height: 300;
-    background-color: transparent;
+  height: 300;
+  background-color: transparent;
+  margin-top: 55px;
 }
 img {
 	border: lightgrey;
@@ -16,20 +15,24 @@ img {
     width: 100%;
     max-height: max-content;
     color: transparent;
+  height: 100%;
+  width: 100%;
+  max-height: max-content;
+  color: transparent;
 }
 /* header title "ArchItUp" */
 .top-right {
-    position: absolute;
-    top: 10px;
-    right: 20px;
-    font-size: xx-large;
-	color: black;
-	cursor: default;
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  font-size: xx-large;
+  color: black;
+  cursor: default;
 }
-  
+
 /* content container */
 .container-fluid {
-    margin-top: 2%;
+  margin-top: 2%;
 }
 h2 {
 	border-bottom: lightgrey solid 1px;
@@ -85,31 +88,21 @@ h2 {
     color: #0a6be9;
 	font-size: 18px;
 	pointer-events: visible;
+  border-bottom: lightgrey solid 1px;
+  padding: 20px;
 }
 
-.category-tree .category:nth-child(3n),.category-tree .category:last-child {
-	margin: 0;
+.join-us {
+  margin-bottom: 150px;
+  margin-top: 90px;
+  margin-left: 90px;
 }
-.category-tree .category #project-pic {
-	position: relative;
-	top: 20%;
-	max-width: 200px;
-	height: auto;
-	width: 100%;
-	background-repeat: no-repeat;
-	background-position: top center;
+.title {
+  margin-top: 15px;
+  text-align: center;
 }
-.category-tree .category:first-child #project-pic {
-	width: 100px;
-	height: 70px;
-}
-.category-tree .category:nth-child(2) #project-pic {
-	width: 100px;
-	height: 70px;
-}
-.category-tree .category:nth-child(3) #project-pic {
-	width: 100px;
-	height: 70px;
+hr {
+  background-color: rgb(168, 168, 168);
 }
 
 /* About us section*/

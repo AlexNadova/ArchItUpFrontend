@@ -35,9 +35,8 @@ export class UserService {
     );
   }
 
-  getUser(): Observable<any> {
-    this.id = localStorage.getItem("_id");
-    return this.http.get<User>(userUrl + this.id, {
+  getUser(id): Observable<any> {
+    return this.http.get<User>(userUrl + id, {
       headers: httpheaders
     });
   }

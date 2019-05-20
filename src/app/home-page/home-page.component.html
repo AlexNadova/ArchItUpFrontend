@@ -1,11 +1,11 @@
 <div class="container">
   <header class="card" id="home-header">
-      <img
-        id="home-pic"
-        src="assets/home-pics/home-display.jpg"
-        alt="Home picture"
-      />
-      <div class="top-right"><strong>ArchItUp</strong></div>
+    <img
+      id="home-pic"
+      src="assets/home-pics/home-display.jpg"
+      alt="Home picture"
+    />
+    <div class="top-right"><strong>ArchItUp</strong></div>
   </header>
 
 <!--Projects section
@@ -20,25 +20,51 @@
       <div class="category itemNo-0" (click)="router.navigate(['/articles']);">
         <div class="categoryBox">
           <img 
+  <div class="join-us row justify-content-center">
+    <h1 class="col-4">Join us today!</h1>
+    <button
+      type="button"
+      class="btn btn-outline-light btn-lg col-3"
+      [routerLink]="['/register']"
+    >
+      Registration
+    </button>
+  </div>
+  <section>
+    <h3>Articles</h3>
+    <hr />
+    <div class="projects-container row justify-content-center" id="projects">
+      <div class="article col">
+        <img
           id="project-pic"
           src="assets/home-pics/project-img.jpg"
           alt="Project picture"
-          />
-          <h3 class="categoryTitle">Project 1</h3>
-          <h4 class="categoryTitleExample">Sommer houses</h4>
-        </div>
+        />
+        <h5 class="title">
+          The Impact of the "Happiness Industry" on Architecture
+        </h5>
       </div>
-      <div class="category itemNo-1" >
-        <div class="categoryBox">
-          <img 
+      <div class="article col">
+        <img
           id="project-pic"
           src="assets/home-pics/project-img.jpg"
           alt="Project picture"
-          />
-          <h3 class="categoryTitle">Project 2</h3>
-          <h4 class="categoryTitleExample">Renovated</h4>
-        </div>
+        />
+        <h5 class="title">
+          Alejandro Aravena Gives His Advice to Young Architects
+        </h5>
       </div>
+      <div class="article col">
+        <img
+          id="project-pic"
+          src="assets/home-pics/project-img.jpg"
+          alt="Project picture"
+        />
+        <h5 class="title">
+          10 Buildings That Helped Define Modernism in New York City
+        </h5>
+      </div>
+<<<<<<< HEAD
       <div class="category itemNo-3" >
           <div class="categoryBox">
             <img 
@@ -74,6 +100,8 @@
         </p>
       </div>
     </section>
+=======
+    </div>
+>>>>>>> d6438251108fe9a09a23a413d464f7b654f99966
   </section>
 </div>
-

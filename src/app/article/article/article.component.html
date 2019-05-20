@@ -26,6 +26,10 @@
         {{ article.content }}
       </p>
       <div class="col-3 more">
+        <div class="row owner justify-content-center">
+          <a [routerLink]="['/profile', ownerId]">See owner's profile</a>
+        </div>
+        <hr />
         <div class="row social justify-content-center">
           <a class="fb-ic col">
             <i class="fab fa-facebook-f white-text"> </i>
@@ -39,7 +43,7 @@
             <i class="fab fa-linkedin-in white-text"> </i>
           </a>
           <!--Instagram-->
-          <a class="ins-ic col">
+          <a class="ins-ic col" href="https://www.instagram.com/architup_svk/">
             <i class="fab fa-instagram white-text"> </i>
           </a>
         </div>

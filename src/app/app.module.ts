@@ -10,19 +10,19 @@ import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { NavigationBarComponent } from "./navigation-bar/navigation-bar.component";
 import { FooterComponent } from "./footer/footer.component";
-import { RegistrationComponent } from "./user/registration/registration.component";
-import { ProfileComponent } from "./user/profile/profile.component";
-import { LoginComponent } from "./user/login/login.component";
 import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { HomePageComponent } from "./home-page/home-page.component";
 import { HowToUsePageComponent } from "./how-to-use-page/how-to-use-page.component";
 import { AdminComponent } from "./user/admin/admin.component";
-
 import { TokenInterceptorService } from "./authentication/token-interceptor.service";
 import { AuthGuard, NotAuth } from "./authentication/auth-guard";
-import { UserService } from "./user/user.service";
 import { AuthenticationService } from "./authentication/authentication.service";
 import { NotifierModule } from "angular-notifier";
+import { RegistrationComponent } from './user/registration/registration.component';
+import { LoginComponent } from './user/login/login.component';
+import { ProfileComponent } from './user/profile/profile.component';
+import { OwnerProfileComponent } from './user/owner-profile/owner-profile.component';
+import { UserService } from './user/user.service';
 import { HelpPageComponent } from './help-page/help-page.component';
 import { AccountManagementPageComponent } from './account-management-page/account-management-page.component';
 
@@ -31,12 +31,13 @@ import { AccountManagementPageComponent } from './account-management-page/accoun
     AppComponent,
     NavigationBarComponent,
     FooterComponent,
-    RegistrationComponent,
-    ProfileComponent,
     HomePageComponent,
     HowToUsePageComponent,
-    LoginComponent,
     AdminComponent,
+    RegistrationComponent,
+    LoginComponent,
+    ProfileComponent,
+    OwnerProfileComponent,
     HelpPageComponent,
     AccountManagementPageComponent
   ],
