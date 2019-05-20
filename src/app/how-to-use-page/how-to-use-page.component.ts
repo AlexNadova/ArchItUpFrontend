@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, NavigationEnd } from '@angular/router';
-import { NavigationBarService } from '../navigation-bar/navigation-bar.service';
 import { FooterService } from '../footer/footer.service';
 
 @Component({
@@ -11,17 +9,11 @@ import { FooterService } from '../footer/footer.service';
 export class HowToUsePageComponent implements OnInit {
 
   constructor(
-    public router: Router,
-    private nav: NavigationBarService,
     private footer: FooterService,
-  ) { 
-    router.events.subscribe((_: NavigationEnd) => (this.currentUrl = _.url));
-  }
-
-  public routerLinkVariable = "/home";
-  currentUrl: String;
+  ) { }
 
   ngOnInit() {
+    this.footer.hide();
   }
 
 }
