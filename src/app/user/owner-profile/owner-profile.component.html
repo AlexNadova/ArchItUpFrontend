@@ -337,40 +337,112 @@
         </div>
       </div>
     </div>
-    <!-- privacy settings modal -->
+    <!-- privacy edit modal -->
     <div
-      class="modal fade"
-      id="privacy-setting-model"
-      tabindex="-1"
-      role="dialog"
-      aria-labelledby="edit-header-modal-label"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
-            <button
-              type="button"
-              class="close"
-              data-dismiss="modal"
-              aria-label="Close"
+    class="modal fade"
+    id="privacy-setting-model"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="privacy-setting-model-label"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title invert-text" id="modal-title">
+            Edit privacy
+          </h5>
+          <button
+            type="button"
+            class="close"
+            data-dismiss="modal"
+            aria-label="Close"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="container">
+            <form
+              class="privacy-form"
+              (ngSubmit)="updatePrivacy(privacyForm)"
+              #privacyForm="ngForm"
+              [ngFormOptions]="{ updateOn: 'submit' }"
             >
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            Privacy settings
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">
-              Close
-            </button>
-            <button type="button" class="btn btn-primary">Save changes</button>
+              <div class="row">
+                <div class="col">
+                  <div class="form-group">
+                      <input
+                      type="text"
+                      class="form-control"
+                      id="password"
+                      required
+                      ngModel
+                      name="password"
+                      #password="ngModel"
+                      pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$"
+                      placeholder="Password"
+                    />
+                    <div
+                      [hidden]="password.valid || password.untouched"
+                      class="alert alert-danger"
+                    >
+                      Field is required. Password must contain at least 8 characters,
+                      one lowercase letter, one uppercase letter and number. (e.g.
+                      PassWord7)
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col">
+                  <div class="form-group">
+                      <input
+                      type="text"
+                      class="form-control"
+                      id="password2"
+                      required
+                      ngModel
+                      name="password2"
+                      #password2="ngModel"
+                      pattern="{{ password.value }}"
+                      placeholder="Repeat password"
+                    />
+                    <div
+                      [hidden]="password2.valid || password2.untouched"
+                      class="alert alert-danger"
+                    >
+                      Field is required and must match with first password
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col">
+                  <button
+                    type="submit"
+                    class="btn btn-primary btn-block"
+                    onclick="$('.modal').modal('hide')"
+                  >
+                    Save
+                  </button>
+                </div>
+                <div class="col">
+                  <button
+                    type="button"
+                    class="btn btn-danger btn-block"
+                    data-dismiss="modal"
+                  >
+                    Cancel
+                  </button>
+                </div>
+              </div>
+            </form>
           </div>
         </div>
       </div>
     </div>
+  </div>
     <div class="container-fluid">
       <div class="row">
         <div class="col-xs-14 col-sm-12 col-md-6">

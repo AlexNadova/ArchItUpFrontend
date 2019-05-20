@@ -38,6 +38,9 @@ export class OwnerProfileComponent implements OnInit {
     { propPhone: "phone"; value: "" },
     { propEmail: "email"; value: "" }
   ];
+  privacyInfo: [
+    { propPassword: "password"; value: "" }
+  ];
   eduObj = {
     school: "",
     specialization: "",
@@ -210,6 +213,28 @@ export class OwnerProfileComponent implements OnInit {
       err => this.notifier.notify("error", "Error occured: " + err.message)
     );
   }
+
+  updatePrivacy(form: NgForm) {
+    this.privacyInfo = [
+      {
+        propPassword: "password",
+        value:
+          typeof form.value.password === "string"
+            ? form.value.password
+            : this.user.password
+      }
+    ];
+    this.userService.updateUser(this.privacyInfo).subscribe(
+      res => {
+        this.notifier.notify(
+          "success",
+          "Your contact information was successfully updated"
+        );
+      },
+      err => this.notifier.notify("error", "Error occured: " + err.message)
+    );
+  }
+
   updateEducation(form: NgForm) {
     console.log(this.user);
     console.log(form.value.education);
