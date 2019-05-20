@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { NavigationBarService } from '../navigation-bar/navigation-bar.service';
 import { FooterService } from '../footer/footer.service';
 import { Router, NavigationEnd } from '@angular/router';
 
@@ -11,7 +10,6 @@ import { Router, NavigationEnd } from '@angular/router';
 export class HelpPageComponent implements OnInit {
 
   constructor(
-    private nav: NavigationBarService,
     private footer: FooterService,
     public router: Router
   ) { 
@@ -35,7 +33,6 @@ export class HelpPageComponent implements OnInit {
   }
   
   ngOnInit() {
-    this.nav.show();
-    this.footer.show();
+    this.footer.hide();
   }
 }
