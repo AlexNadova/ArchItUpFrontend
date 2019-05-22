@@ -13,21 +13,16 @@
       Replace the "router.navigate(['/articles']);" with the route of the project or category of projects.
   -->
   <section>
-    <div class="projects-container" id="projects">
-      <h2>Projects</h2>
+    <div class="join-us row justify-content-center">
+      <h1 class="col-4">Join us today!</h1>
+      <button
+        type="button"
+        class="btn btn-outline-light btn-lg col-3"
+        [routerLink]="['/register']"
+      >
+        Registration
+      </button>
     </div>
-  </section>
-  <section>
-      <div class="join-us row justify-content-center">
-        <h1 class="col-4">Join us today!</h1>
-        <button
-          type="button"
-          class="btn btn-outline-light btn-lg col-3"
-          [routerLink]="['/register']"
-        >
-          Registration
-        </button>
-      </div>
   </section>
 
   <section>
@@ -64,41 +59,26 @@
           10 Buildings That Helped Define Modernism in New York City
         </h5>
       </div>
-      <div class="category itemNo-3" >
-        <div class="categoryBox">
-          <img 
-          id="project-pic"
-          src="assets/home-pics/project-img.jpg"
-          alt="Project picture"
-          />
-          <h3 class="categoryTitle">Project 3</h3>
-          <h4 class="categoryTitleExample">Villa</h4>
-        </div>
-      </div>
     </div>
   </section>
-
-    <section >
-      <div class="aboutUs-container" id="aboutUs">
-        <h2>About us</h2>
-      </div>
-      <div class="content">
-        <p>
-            ArchItUp is creative platform for new architects and students of
-          architecture that want to introduce themselves to the pubpc.
-        </p>
-        <p>
-            It’s a place where they can show their projects,
-          write and read interesting articles,
-          discuss architecture, share knowledge with others,
-          find out about workshops and lectures they can attend or test their
-          skills on different competitions.
-        </p>
-        <p>
-            Main focus is to help new architects to present themselves, gain
-          confidence and teach them how to sell themselves.
-        </p>
-      </div>
-    </section>
-    
+  <section class="about-us">
+    <h3>About us</h3>
+    <hr />
+    <div class="content">
+      <p>
+        ArchItUp is creative platform for new architects and students of
+        architecture that want to introduce themselves to the public.
+      </p>
+      <p>
+        It’s a place where they can show their projects, write and read
+        interesting articles, discuss architecture, share knowledge with others,
+        find out about workshops and lectures they can attend or test their
+        skills on different competitions.
+      </p>
+      <p>
+        Main focus is to help new architects to present themselves, gain
+        confidence and teach them how to sell themselves.
+      </p>
+    </div>
+  </section>
 </div>
