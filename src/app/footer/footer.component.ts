@@ -8,16 +8,7 @@ import { FooterService } from "./footer.service";
   styleUrls: ["./footer.component.css"]
 })
 export class FooterComponent implements OnInit {
-  constructor(public footer: FooterService, private router: Router) {
-    router.events.subscribe((_: NavigationEnd) => (this.currentUrl = _.url));
-  }
-
-  public routerLinkVariable = "/home";
-  currentUrl: String;
-
-  updateRouterLinkToHelp() {
-    return (this.routerLinkVariable = "/help");
-  }
+  constructor(public footer: FooterService) {  }
 
   topFunction() {
     document.body.scrollTop = 0;

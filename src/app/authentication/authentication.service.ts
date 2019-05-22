@@ -10,10 +10,10 @@ export class AuthenticationService {
   public isAuthenticated(): boolean {
     let jwtHelper: JwtHelperService = new JwtHelperService();
     //get token
-    const token = localStorage.getItem("token");
+    const token = this.getToken();
 
     if (
-      localStorage.getItem("token") === null ||
+      this.getToken() === null ||
       jwtHelper.isTokenExpired(token)
     ) {
       localStorage.clear();
