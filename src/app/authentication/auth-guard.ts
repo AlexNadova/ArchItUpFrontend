@@ -17,6 +17,7 @@ export class AuthGuard implements CanActivate {
     return false;
   }
 }
+@Injectable()
 export class NotAuth implements CanActivate {
   constructor(
     public authenticationService: AuthenticationService,
