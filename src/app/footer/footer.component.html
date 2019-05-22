@@ -66,16 +66,11 @@
           style="width: 60px;"
         />
         <p>
-          <a class="dark-grey-text" href="#!">Become an Affiliate</a>
           <a class="dark-grey-text" href="#!">User agreement</a>
         </p>
         <p>
-          <a href="#!" class="dark-grey-text">About us</a>
-        </p>
-        <p>
           <a
-            [routerLink]="updateRouterLinkToHelp()"
-            [class.activated]="currentUrl == '/help'"
+            [routerLink]="['/help']"
             class="dark-grey-text"
             (click)="topFunction()"
             >Help</a

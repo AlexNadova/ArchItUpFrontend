@@ -31,13 +31,6 @@ const routes: Routes = [
     loadChildren: "../app/article/article.module#ArticleModule"
   },
   {
-    path: "help",
-    component: HowToUsePageComponent,
-    data: {
-      title: "Help page"
-    }
-  },
-  {
     path: "register", // e.g.: architup.sk/register
     component: RegistrationComponent, //component for path
     canActivate:[NotAuth],
@@ -65,7 +58,7 @@ const routes: Routes = [
     path: "help",
     component: HelpPageComponent,
     data: {
-      title: "Profile"
+      title: "Help"
     }
   },
   {
@@ -90,13 +83,6 @@ const routes: Routes = [
       title: "Login"
     }
   },
-  // {
-  //   path: "error",
-  //   component: ErrorsComponent,
-  //   data: {
-  //     title: "Error"
-  //   }
-  // },
   // { //this could be used for admin access (e.g. reports)
   //   path: 'admin',
   //   component: AdminComponent,
