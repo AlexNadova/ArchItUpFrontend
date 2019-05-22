@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit {
   hideAll() {
     this.nav.hide();
     this.footer.hide();
-  }
+  } 
 
   OnSubmit(form: NgForm) {
     this.userService.login(form).subscribe(
