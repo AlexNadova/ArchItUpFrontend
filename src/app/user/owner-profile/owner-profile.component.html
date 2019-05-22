@@ -373,7 +373,7 @@
                 <div class="col">
                   <div class="form-group">
                       <input
-                      type="text"
+                      type="password"
                       class="form-control"
                       id="password"
                       required
@@ -398,7 +398,7 @@
                 <div class="col">
                   <div class="form-group">
                       <input
-                      type="text"
+                      type="password"
                       class="form-control"
                       id="password2"
                       required
@@ -1010,7 +1010,7 @@
               <div class="card-body">
                 <h5 id="title" class="card-title">
                   Articles
-                  <span [routerLink]="['/articles/create-article']" id="add" class="fas fa-plus clickable"></span>
+                  <span [routerLink]="['/articles/create']" id="add" class="fas fa-plus clickable"></span>
                 </h5>
                 <div class="card-text" *ngFor="let key of articleKeys(articles)">
                     <div class="row" *ngIf="articles[key].length > 0 || articles[key].ownerId===tempId">
