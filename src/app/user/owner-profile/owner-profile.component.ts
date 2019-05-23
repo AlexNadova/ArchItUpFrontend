@@ -6,12 +6,12 @@ import { User, Education, Experience } from "src/app/models/user";
 import { FooterService } from "src/app/footer/footer.service";
 import { NotifierService } from "angular-notifier";
 import { NgForm } from "@angular/forms";
-import { ArticleService } from 'src/app/article/article.service';
+import { ArticleService } from "src/app/article/article.service";
 
 @Component({
-  selector: 'app-owner-profile',
-  templateUrl: './owner-profile.component.html',
-  styleUrls: ['./owner-profile.component.css']
+  selector: "app-owner-profile",
+  templateUrl: "./owner-profile.component.html",
+  styleUrls: ["./owner-profile.component.css"]
 })
 export class OwnerProfileComponent implements OnInit {
   user: User = {
@@ -38,9 +38,7 @@ export class OwnerProfileComponent implements OnInit {
     { propPhone: "phone"; value: "" },
     { propEmail: "email"; value: "" }
   ];
-  privacyInfo: [
-    { propPassword: "password"; value: "" }
-  ];
+  privacyInfo: [{ propPassword: "password"; value: "" }];
   eduObj = {
     school: "",
     specialization: "",
@@ -76,7 +74,7 @@ export class OwnerProfileComponent implements OnInit {
   ) {
     this.notifier = notifierService;
   }
-  tempId=localStorage.getItem("_id");
+  tempId = localStorage.getItem("_id");
   getUserProfile(id) {
     this.userService.getUser(id).subscribe(
       (data: User) => {
@@ -130,9 +128,7 @@ export class OwnerProfileComponent implements OnInit {
     a.push("");
   }
   addArrayFields(a) {
-    console.log(this.education);
     a.push(this.eduObj);
-    console.log(this.education);
   }
 
   removeFields(a) {
@@ -255,17 +251,14 @@ export class OwnerProfileComponent implements OnInit {
       err => this.notifier.notify("error", "Error occured: " + err.message)
     );
   }
-  updateExperience(form: NgForm) {
-    console.log(this.user);
-    console.log(form.value);
-    console.log(this.experience);
+  updateExperience() {
     this.experienceInfo = [
       {
         propWorkExperience: "workExperience",
         value: this.experience
       }
     ];
-    console.log(this.experienceInfo);
+    console.log(JSON.stringify(this.experienceInfo));
     this.userService.updateUser(this.experienceInfo).subscribe(
       res => {
         this.notifier.notify(
@@ -277,4 +270,3 @@ export class OwnerProfileComponent implements OnInit {
     );
   }
 }
-
