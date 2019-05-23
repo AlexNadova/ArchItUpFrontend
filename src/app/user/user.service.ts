@@ -24,15 +24,10 @@ export class UserService {
     password: ""
   };
 
-  register(user:User): Observable<any> {
-    console.log(JSON.stringify(user));
-    return this.http.post<User>(
-      registerUrl,
-      JSON.stringify(user),
-      {
-        headers: httpheaders
-      }
-    );
+  register(user: User): Observable<any> {
+    return this.http.post<User>(registerUrl, JSON.stringify(user), {
+      headers: httpheaders
+    });
   }
 
   getUser(id): Observable<any> {
@@ -42,7 +37,6 @@ export class UserService {
   }
 
   login(form: NgForm): Observable<any> {
-    this.logout();
     this.loginUser = {
       email: form.value.email,
       password: form.value.password

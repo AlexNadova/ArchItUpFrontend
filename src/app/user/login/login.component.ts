@@ -39,21 +39,14 @@ export class LoginComponent implements OnInit {
         localStorage.clear();
         localStorage.setItem("_id", res.id);
         localStorage.setItem("token", res.token);
-        this.router.navigate(["/profile",res.id]);
+        this.router.navigate(["/my-profile",res.id]);
         this.showAll();
         this.notifier.notify("success", "User successfully logged.");
       },
       err => this.notifier.notify("error", "Error occured: " + err.message)
     );
   }
-  navigateTo() {
-    if (this.router.url === "profile") {
-      this.showAll();
-    } else {
-      this.router.navigate(["login"]);
-      this.hideAll();
-    }
-  }
+
   ngOnInit() {
     this.nav.hide();
     this.footer.hide();
