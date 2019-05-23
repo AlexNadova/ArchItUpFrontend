@@ -1,6 +1,9 @@
 import { Component, OnInit } from "@angular/core";
 import { Router, NavigationEnd } from "@angular/router";
 import { NavigationBarService } from "./navigation-bar.service";
+import { UserService } from "../user/user.service";
+import { AuthenticationService } from "../authentication/authentication.service";
+import { NotifierService } from "angular-notifier";
 
 @Component({
   selector: "app-navigation-bar",
@@ -10,9 +13,16 @@ import { NavigationBarService } from "./navigation-bar.service";
 export class NavigationBarComponent implements OnInit {
   public routerLinkVariable = "/home";
   currentUrl: String;
-  public id = 1; //need fix
+  private readonly notifier: NotifierService;
 
-  constructor(private router: Router, public nav: NavigationBarService) {
+  constructor(
+    private router: Router,
+    public nav: NavigationBarService,
+    private userService: UserService,
+    public authService: AuthenticationService,
+    private notifierService: NotifierService
+  ) {
+    this.notifier = notifierService;
     router.events.subscribe((_: NavigationEnd) => (this.currentUrl = _.url));
   }
 
@@ -29,5 +39,10 @@ export class NavigationBarComponent implements OnInit {
   }
   updateRouterLinkToHome() {
     return (this.routerLinkVariable = "/home");
+  }
+  logout() {
+    this.userService.logout();
+    this.router.navigate(["login"]);
+    this.notifier.notify("success", "Logged off.");
   }
 }

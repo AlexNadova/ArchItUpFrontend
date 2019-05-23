@@ -1,16 +1,19 @@
 <div class="first-container">
-  <div class="second-container" id="loginContainer"> 
+  <div class="second-container" id="loginContainer">
     <div class="login-header">
       <h1>Login</h1>
     </div>
-    
     <!-- if it's not working replace [formGroup]="loginForm"  with class="login-form"-->
-    <div class="container" [hidden]="submitted">
-      <form class="login-form" (ngSubmit)="OnSubmit(userForm)" #userForm="ngForm">
-        <div class="row justify-content-center">
-          <div class="col-xs-14 col-sm-10 col-md-6">
+    <div class="container">
+      <form
+        class="login-form"
+        (ngSubmit)="OnSubmit(userForm)"
+        #userForm="ngForm"
+      >
+        <div class="row">
+          <div class="col">
             <div class="form-group">
-                <input
+              <input
                 type="text"
                 class="form-control"
                 id="email"
@@ -19,26 +22,24 @@
                 name="email"
                 #email="ngModel"
                 placeholder="Email"
-                
               />
               <!--
               <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
                   <div *ngIf="f.email.errors.required">Email is required</div>
               </div>-->
               <div
-                  [hidden]="email.valid || email.untouched"
-                  class="alert alert-danger"
-                >
-                  Field is required
-                </div>
+                [hidden]="email.valid || email.untouched"
+                class="alert alert-danger"
+              >
+                Field is required
+              </div>
             </div>
           </div>
         </div>
-
-        <div class="row justify-content-center">
-          <div class="col-xs-14 col-sm-10 col-md-6">
+        <div class="row">
+          <div class="col">
             <div class="form-group">
-                <input
+              <input
                 type="text"
                 class="form-control"
                 id="password"
@@ -46,14 +47,8 @@
                 ngModel
                 name="password"
                 #password="ngModel"
-                pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$"
                 placeholder="Password"
-               
               />
-              <!--
-              <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
-                  <div *ngIf="f.password.errors.required">Password is required</div>
-              </div>-->
               <div
                 [hidden]="password.valid || password.untouched"
                 class="alert alert-danger"
@@ -66,18 +61,7 @@
           </div>
         </div>
 
-        <div class="row justify-content-center">
-          <div class="col">
-            <div class="form-check mb-3">
-              <input 
-                class="form-check-input" 
-                type="checkbox" 
-                checked="checked" 
-                name="remember">
-              <label class="invert-text">Remember me!</label>
-            </div>
-          </div>
-
+        <div class="row">
           <div class="col">
             <!-- [disabled]...: button is disabled if some fields are invalid -->
             <!-- When you click the Login button, the submitted flag becomes true and the form disappears. (submitted property from ts file) -->
@@ -85,30 +69,38 @@
             <button
               type="submit"
               class="btn btn-primary btn-block"
-              [disabled]="!userForm.form.valid"
-              (click)="router.navigate(['/profile']); showAll();"
-              >
+              (click)="navigateTo();"
+            >
               Login
             </button>
           </div>
-        </div>
-
-        <div class="row justify-content-center"> 
-          <!--For now, the forgotten password? option goes to "/home" page.-->
           <div class="col">
-            <span class="invert-text">Forgot <a href="#">password?</a></span>
-          </div>
-          <div class="col">
-            <button 
-              type="cancel" 
-              class="btn btn-primary btn-block cancelbtn"
-              (click)="router.navigate(['/home']); showAll();"
-              >
+            <button
+              type="button"
+              class="btn btn-danger btn-block"
+              (click)="router.navigate(['/home']); showAll()"
+            >
               Cancel
             </button>
           </div>
         </div>
-
+        <div class="row">
+          <div class="col">
+            <div class="form-check mb-3">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                checked="checked"
+                name="remember"
+              />
+              <label class="invert-text">Remember me!</label>
+            </div>
+          </div>
+          <!--For now, the forgotten password? option goes to "/home" page.-->
+          <div class="col">
+            <span class="invert-text">Forgot <a href="#">password?</a></span>
+          </div>
+        </div>
       </form>
     </div>
   </div>
