@@ -40,13 +40,9 @@ export class RegistrationComponent implements OnInit {
     this.notifier = notifierService;
   }
 
-  onSubmit(form: NgForm) {
-    console.log(form);
-    this.register(form);
-  }
+  onSubmit() {}
 
   register(form: NgForm) {
-    console.log(form.value);
     this.user = {
       _id: "",
       password: form.value.password,
@@ -60,7 +56,6 @@ export class RegistrationComponent implements OnInit {
       education: [] = [],
       workExperience: [] = []
     };
-    console.log(this.user);
     this.userService.register(this.user).subscribe(
       res => {
         this.router.navigate(["/login"]);

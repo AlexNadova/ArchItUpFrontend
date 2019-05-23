@@ -14,7 +14,7 @@
       and monitors their properties, including their validity. It also has its own valid property which is 
       true only if every contained control is valid. -->
       <!-- bind the form's ngSubmit event property to the hero form component's onSubmit() method -->
-      <form class="reg-form" #regForm="ngForm" >
+      <form class="reg-form" #regForm="ngForm">
         <div class="row justify-content-center">
           <div class="col-xs-14 col-sm-10 col-md-6">
             <div class="form-group">
@@ -52,15 +52,15 @@
                 type="text"
                 class="form-control"
                 id="lastName"
-                required
                 ngModel
                 name="lastName"
-                #lastName="ngModel"
+                #lName="ngModel"
+                required
                 pattern="[a-zA-Z]{2,}"
                 placeholder="Last name"
               />
               <div
-                [hidden]="lastName.valid || lastName.untouched"
+                [hidden]="lName.valid || lName.untouched"
                 class="alert alert-danger"
               >
                 Field is required. Name must contain 2 or more letters.
@@ -133,7 +133,8 @@
                 [hidden]="email.valid || email.untouched"
                 class="alert alert-danger"
               >
-                Field is required. Email must be in correct form. (e.g.: mail@website.com)
+                Field is required. Email must be in correct form. (e.g.:
+                mail@website.com)
               </div>
             </div>
           </div>
@@ -154,7 +155,8 @@
                 [hidden]="phone.valid || phone.untouched"
                 class="alert alert-danger"
               >
-                Field is required. Number must start with country prefix and space. (e.g. +421 918654953 for SK, +45 50256895 for DK)
+                Field is required. Number must start with country prefix and
+                space. (e.g. +421 918654953 for SK, +45 50256895 for DK)
               </div>
             </div>
           </div>
