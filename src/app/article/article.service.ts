@@ -14,7 +14,6 @@ const articleUrl = "http://localhost:4000/api/article/";
 })
 export class ArticleService { 
   constructor(private http: HttpClient) {}
-  id: string;
 
   create(article:Article): Observable<any> {
     console.log(JSON.stringify(article));
@@ -43,16 +42,14 @@ export class ArticleService {
     localStorage.clear();
   }
 
-  deleteArticle(): Observable<any> {
-    //this.id = localStorage.getItem("_id");
-    return this.http.delete<Article>(articleUrl + this.id, {
+  deleteArticle(id): Observable<any> {
+    return this.http.delete<Article>(articleUrl + id, {
       headers: httpheaders
     });
   }
 
-  updateArticle(article): Observable<any> {
-    //this.id = localStorage.getItem("_id");
-    return this.http.patch<Article>(articleUrl + this.id, JSON.stringify(article), {
+  updateArticle(id, article): Observable<any> {
+    return this.http.patch<Article>(articleUrl + id, JSON.stringify(article), {
       headers: httpheaders
     });
   }
