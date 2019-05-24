@@ -20,29 +20,29 @@ export class ArticlesComponent implements OnInit {
   };
   private readonly notifier: NotifierService;
 
-  articleKeys = Object.keys;
-  articles;
-  pageLimit:number = 9;
+  articles: [] = [];
+  pageLimit: number = 9;
 
   constructor(
     private articleService: ArticleService,
-    private notifierService: NotifierService,
+    private notifierService: NotifierService
   ) {
     this.notifier = notifierService;
   }
 
   getAllArticle() {
     this.articleService.getAllArticles().subscribe(
-      (data) => {
-        this.articles = { ...data.articles };
+      data => {
+        this.articles = data.articles;
       },
       err => this.notifier.notify("error", "Error occured: " + err.message)
     );
   }
   //load more articles on page
-  loadMore(){
-    let limit = this.pageLimit+9;
-    this.pageLimit = limit > this.articles.length ? this.articles.length : limit;
+  loadMore() {
+    let limit = this.pageLimit + 9;
+    this.pageLimit =
+      limit > this.articles.length ? this.articles.length : limit;
   }
   ngOnInit() {
     this.getAllArticle();

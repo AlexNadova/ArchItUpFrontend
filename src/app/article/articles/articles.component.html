@@ -4,11 +4,11 @@
     <!-- articleKeys(articles)="0","1","2",... -->
     <div
       class="col-sm-4 py-2"
-      *ngFor="let key of articleKeys(articles) | slice: 0:pageLimit"
+      *ngFor="let key of articles | slice: 0:pageLimit"
     >
       <a
         class="card img-fluid bg-dark mb-2 article-frame"
-        [routerLink]="['article', articles[key]._id]"
+        [routerLink]="['article', key._id]"
       >
         <img
           class="card-img-top"
@@ -17,10 +17,10 @@
         />
         <div class="card-img-overlay">
           <div class="card-title" id="title">
-            {{ articles[key].title }}
+            {{ key.title }}
           </div>
           <div class="card-footer">
-            <p class="author" *ngFor="let author of articles[key].author">
+            <p class="author" *ngFor="let author of key.author">
               {{ author }}
             </p>
           </div>
